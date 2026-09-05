@@ -635,18 +635,159 @@
   .glitch { position: relative; }
   .glitch::before, .glitch::after { display: none !important; }
 
-  /* ── MOBILE ── */
+  /* ── COMPREHENSIVE RESPONSIVE DESIGN (TABLET & MOBILE) ── */
   @media (max-width: 900px) {
-    nav { padding: 1.2rem 1.5rem; }
-    .nav-links { gap: 1.5rem; }
-    section { padding: 5rem 1.5rem; }
-    #hero { padding: 0 1.5rem; }
-    #about { grid-template-columns: 1fr; gap: 3rem; }
-    .about-visual { max-width: 280px; }
-    #contact { grid-template-columns: 1fr; gap: 3rem; }
-    .projects-grid { grid-template-columns: 1fr; }
+    nav { padding: 1rem 1.5rem; }
+    section { padding: 4.5rem 1.5rem; }
+    #hero { padding: 6.5rem 1.5rem 3rem 1.5rem; }
+    #about { grid-template-columns: 1fr; gap: 2.5rem; }
+    .about-visual { max-width: 100%; width: 100%; }
+    .about-frame { min-height: 420px; max-height: 480px; width: 100%; }
+    #contact { grid-template-columns: 1fr; gap: 2.5rem; }
+    .projects-grid { grid-template-columns: 1fr; gap: 1.5rem; }
     .project-card.featured, .project-card.medium, .project-card.small { grid-column: span 1; grid-row: auto; }
     footer { padding: 2rem 1.5rem; }
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 0.85rem 1.25rem; }
+    .nav-toggle-btn { display: flex !important; }
+    .nav-links {
+      display: none;
+      position: fixed;
+      top: 60px;
+      left: 0;
+      right: 0;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      flex-direction: column;
+      padding: 1.5rem 1.25rem 2rem 1.25rem;
+      gap: 1.2rem;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.7);
+      z-index: 999;
+    }
+    .nav-links.mobile-open {
+      display: flex !important;
+      animation: navSlideDown 0.25s ease forwards;
+    }
+    .nav-links a {
+      font-size: 0.92rem;
+      padding: 0.35rem 0;
+      display: block;
+    }
+    .nav-resume-pill {
+      display: block !important;
+      text-align: center;
+      padding: 0.65rem 1.2rem !important;
+      margin-top: 0.4rem;
+      width: 100%;
+    }
+    .torch-box { margin-right: 0.2rem; }
+    .torch-label { display: none !important; }
+    .torch-btn { padding: 0.35rem 0.5rem !important; gap: 5px; }
+
+    #hero {
+      padding: 6.5rem 1.25rem 2.5rem 1.25rem;
+      min-height: calc(100vh - 60px);
+    }
+    .hero-name {
+      font-size: clamp(2.3rem, 8.5vw, 4rem) !important;
+      line-height: 1.0 !important;
+    }
+    .hero-terminal-sub { font-size: 0.8rem; }
+    .hero-cta {
+      margin-top: 2rem;
+      gap: 0.8rem;
+    }
+    .hero-scroll { display: none !important; }
+
+    section { padding: 3.5rem 1.25rem; }
+    .section-title { font-size: clamp(1.8rem, 6vw, 2.5rem); }
+
+    .about-frame {
+      clip-path: none !important;
+      border-radius: 8px;
+      padding: 1rem 0.9rem;
+      min-height: 390px;
+      max-height: 460px;
+    }
+    .term-body { font-size: 0.72rem; }
+    .term-input { font-size: 16px !important; } /* Prevents iOS auto-zoom */
+    .term-chips-row { flex-wrap: wrap; gap: 4px; }
+    .term-chip { font-size: 0.65rem; padding: 0.2rem 0.55rem; }
+
+    .skills-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 0.85rem; }
+
+    .theme-universe-bar {
+      padding: 1rem 1.1rem;
+      gap: 0.8rem;
+    }
+    .universe-bar-header { flex-direction: column; align-items: flex-start; gap: 0.3rem; }
+    .universe-pills-row { gap: 0.4rem; }
+    .universe-pill { font-size: 0.68rem; padding: 0.35rem 0.75rem; }
+
+    .project-card { padding: 1.4rem 1.15rem; }
+    .project-actions-row {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.6rem;
+    }
+    .project-actions-row .btn-activate-theme,
+    .project-actions-row .card-gh-link,
+    .project-actions-row .project-click-hint {
+      width: 100%;
+      text-align: center;
+      justify-content: center;
+    }
+
+    .timeline { padding-left: 1.2rem; }
+    .timeline::before { left: 0; }
+    .timeline-dot { left: -1.5rem; }
+
+    .contact-form { width: 100%; }
+    .form-input, .form-textarea { font-size: 16px !important; }
+
+    /* Modal Responsive */
+    .modal-backdrop { padding: 0.75rem; }
+    .modal-container {
+      padding: 1.5rem 1.15rem !important;
+      max-height: 92vh;
+      border-radius: 10px;
+      width: 100%;
+    }
+    .modal-close-btn {
+      top: 0.85rem;
+      right: 0.85rem;
+      width: 32px;
+      height: 32px;
+      font-size: 1rem;
+    }
+    .modal-title { font-size: 1.35rem !important; }
+    .modal-actions {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .modal-actions .modal-btn-action {
+      width: 100%;
+      justify-content: center;
+      padding: 0.7rem 1rem;
+    }
+    .modal-meta-grid { grid-template-columns: 1fr 1fr; gap: 0.5rem; padding: 0.8rem; }
+    .modal-metrics-grid { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
+    .modal-asset-grid { grid-template-columns: repeat(2, 1fr); gap: 0.6rem; }
+  }
+
+  @media (max-width: 480px) {
+    .hero-cta { flex-direction: column; width: 100%; }
+    .hero-cta .btn { width: 100%; justify-content: center; }
+    .stats-grid { grid-template-columns: 1fr; }
+    .modal-meta-grid { grid-template-columns: 1fr; }
+  }
+
+  @keyframes navSlideDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
   /* ── TYPEWRITER ── */
@@ -931,43 +1072,192 @@
   }
   .modal-actions {
     display: flex;
-    gap: 1rem;
+    gap: 0.75rem;
     flex-wrap: wrap;
-    margin-bottom: 2rem;
+    margin-bottom: 1.6rem;
+  }
+  .modal-btn-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 0.65rem 1.25rem;
+    border-radius: 6px;
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    user-select: none;
+  }
+  .modal-btn-github {
+    background: #1e293b;
+    color: #f8fafc;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+  }
+  .modal-btn-github:hover {
+    background: #334155;
+    color: #ffffff;
+    border-color: #94a3b8;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+  }
+  .modal-btn-live {
+    background: transparent;
+    color: var(--modal-accent, var(--accent));
+    border: 1.5px solid var(--modal-accent, var(--accent));
+  }
+  .modal-btn-live:hover {
+    background: var(--modal-accent, var(--accent));
+    color: #090d13;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
   }
   .modal-btn-cheer {
     background: var(--modal-accent, var(--accent));
     color: #090d13;
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 0.8rem;
-    padding: 0.7rem 1.4rem;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    transition: all 0.2s;
   }
   .modal-btn-cheer:hover {
-    transform: translateY(-2px);
     filter: brightness(1.1);
+    transform: translateY(-2px);
   }
   .modal-btn-theme {
-    background: transparent;
+    background: rgba(255, 255, 255, 0.05);
     color: var(--text);
     border: 1px solid var(--border);
     font-family: var(--font-mono);
-    font-size: 0.75rem;
-    padding: 0.7rem 1.2rem;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.2s;
+    font-size: 0.74rem;
   }
   .modal-btn-theme:hover {
     border-color: var(--modal-accent, var(--accent));
     color: var(--modal-accent, var(--accent));
+    transform: translateY(-2px);
+  }
+
+  /* Modal Metadata Grid */
+  .modal-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 0.6rem;
+    margin-bottom: 1.4rem;
+    padding: 0.85rem 1.1rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+  .modal-meta-item {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--muted);
+    display: flex;
+    gap: 6px;
+  }
+  .modal-meta-item strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  /* Modal Overview Card */
+  .modal-overview-card {
+    background: rgba(255, 255, 255, 0.025);
+    border-left: 3px solid var(--modal-accent, var(--accent));
+    border-radius: 0 8px 8px 0;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    line-height: 1.7;
+    color: var(--text);
+  }
+
+  /* Modal Metrics Grid */
+  .modal-metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1.4rem;
+  }
+  .modal-metric-box {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.85rem 1rem;
+    text-align: center;
+  }
+  .modal-metric-box .metric-val {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--modal-accent, var(--accent));
+    margin-bottom: 0.2rem;
+  }
+  .modal-metric-box .metric-lbl {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* Modal Highlights Card */
+  .modal-highlights-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.1rem 1.3rem;
+    margin-bottom: 1.5rem;
+  }
+  .modal-highlights-card h5 {
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    color: var(--modal-accent, var(--accent));
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.7rem;
+  }
+  .modal-highlights-card ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .modal-highlights-card li {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    color: var(--muted);
+    line-height: 1.6;
+    position: relative;
+    padding-left: 1.2rem;
+  }
+  .modal-highlights-card li::before {
+    content: '▹';
+    position: absolute;
+    left: 0;
+    color: var(--modal-accent, var(--accent));
+  }
+
+  /* Direct Card GitHub Link */
+  .card-gh-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border);
+    padding: 0.38rem 0.75rem;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+  .card-gh-link:hover {
+    background: #1e293b;
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-1px);
   }
   .modal-section-title {
     font-family: var(--font-mono);
@@ -1117,12 +1407,36 @@
     font-family: 'Press Start 2P', monospace !important;
   }
   html[data-theme-style="minecraft"] .hero-name {
-    font-size: clamp(2.2rem, 5.5vw, 4.2rem) !important;
-    line-height: 1.25 !important;
-    text-shadow: 4px 4px 0 #064e3b, 8px 8px 0 #022c22 !important;
+    font-size: clamp(1.4rem, 3.8vw, 2.5rem) !important;
+    line-height: 1.35 !important;
+    letter-spacing: -0.02em !important;
+    margin-bottom: 1.5rem !important;
+    text-shadow: 3px 3px 0 #064e3b, 6px 6px 0 #022c22 !important;
   }
   html[data-theme-style="minecraft"] .section-title {
-    font-size: clamp(1.2rem, 2.5vw, 1.7rem) !important;
+    font-size: clamp(0.95rem, 2.3vw, 1.35rem) !important;
+    line-height: 1.45 !important;
+    margin-bottom: 1.4rem !important;
+  }
+  html[data-theme-style="minecraft"] .nav-logo {
+    font-size: 0.85rem !important;
+    letter-spacing: 0 !important;
+  }
+  html[data-theme-style="minecraft"] .project-title {
+    font-size: 0.82rem !important;
+    line-height: 1.6 !important;
+    margin: 0.75rem 0 1rem 0 !important;
+    letter-spacing: -0.01em !important;
+  }
+  html[data-theme-style="minecraft"] .modal-title {
+    font-size: clamp(0.95rem, 2.4vw, 1.35rem) !important;
+    line-height: 1.5 !important;
+    margin: 0.5rem 0 0.8rem 0 !important;
+  }
+  html[data-theme-style="minecraft"] .section-label,
+  html[data-theme-style="minecraft"] .universe-bar-label {
+    font-size: 0.62rem !important;
+    letter-spacing: 0.04em !important;
   }
   html[data-theme-style="minecraft"] .btn,
   html[data-theme-style="minecraft"] .project-card,
@@ -1130,18 +1444,67 @@
   html[data-theme-style="minecraft"] .universe-pill,
   html[data-theme-style="minecraft"] .modal-container {
     border: 3px solid #3f8e3f !important;
-    box-shadow: inset -3px -3px 0 #142a14, inset 3px 3px 0 #6ee7b7, 0 8px 0 #062406 !important;
+    box-shadow: inset -3px -3px 0 #142a14, inset 3px 3px 0 #6ee7b7, 0 6px 0 #062406 !important;
     border-radius: 0px !important;
   }
+  html[data-theme-style="minecraft"] .universe-pill {
+    margin-bottom: 6px !important;
+    font-size: 0.7rem !important;
+  }
+  html[data-theme-style="minecraft"] .btn {
+    margin-bottom: 6px !important;
+  }
+  html[data-theme-style="minecraft"] .project-card {
+    margin-bottom: 12px !important;
+  }
   html[data-theme-style="minecraft"] .project-card:hover {
-    transform: translateY(-4px);
-    box-shadow: inset -3px -3px 0 #142a14, inset 3px 3px 0 #6ee7b7, 0 12px 0 #062406 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: inset -3px -3px 0 #142a14, inset 3px 3px 0 #6ee7b7, 0 8px 0 #062406 !important;
   }
   html[data-theme-style="minecraft"] .tech-pill {
     border-radius: 0px !important;
     border: 1.5px solid #2cf5d6 !important;
     font-family: 'Press Start 2P', monospace !important;
+    font-size: 0.5rem !important;
+    padding: 0.35rem 0.55rem !important;
+  }
+  html[data-theme-style="minecraft"] .btn-activate-theme {
+    border-radius: 0px !important;
+    border: 2px solid #3f8e3f !important;
+    font-family: 'Press Start 2P', monospace !important;
     font-size: 0.52rem !important;
+    box-shadow: 0 4px 0 #062406 !important;
+    margin-bottom: 4px !important;
+  }
+  html[data-theme-style="minecraft"] .card-gh-link {
+    border-radius: 0px !important;
+    border: 2px solid #3f8e3f !important;
+    font-family: 'Press Start 2P', monospace !important;
+    font-size: 0.52rem !important;
+    box-shadow: 0 4px 0 #062406 !important;
+    margin-bottom: 4px !important;
+  }
+  html[data-theme-style="minecraft"] .project-click-hint {
+    font-family: 'Press Start 2P', monospace !important;
+    font-size: 0.48rem !important;
+  }
+  html[data-theme-style="minecraft"] .modal-card-box,
+  html[data-theme-style="minecraft"] .modal-arch-card,
+  html[data-theme-style="minecraft"] .modal-meta-grid,
+  html[data-theme-style="minecraft"] .modal-overview-card,
+  html[data-theme-style="minecraft"] .modal-highlights-card,
+  html[data-theme-style="minecraft"] .modal-metric-box {
+    border-radius: 0px !important;
+    border: 2px solid #3f8e3f !important;
+    box-shadow: inset -2px -2px 0 #142a14, inset 2px 2px 0 #6ee7b7 !important;
+  }
+  html[data-theme-style="minecraft"] .modal-btn-action {
+    border-radius: 0px !important;
+    border: 2px solid #3f8e3f !important;
+    box-shadow: inset -2px -2px 0 #142a14, inset 2px 2px 0 #6ee7b7, 0 4px 0 #062406 !important;
+    font-family: 'Press Start 2P', monospace !important;
+    font-size: 0.55rem !important;
+    margin-bottom: 4px !important;
   }
 
   /* 2. AGRICULTURE THEME (PAYASWINI / OBELE) */
@@ -1240,16 +1603,21 @@
   /* ── THEME UNIVERSE SWITCHER BAR ── */
   .theme-universe-bar {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 1rem;
+    flex-direction: column;
+    gap: 0.9rem;
     margin-bottom: 2.5rem;
-    padding: 1rem 1.4rem;
+    padding: 1.1rem 1.4rem;
     background: rgba(255, 255, 255, 0.02);
     border: 1px solid var(--border);
     border-radius: 12px;
     backdrop-filter: blur(12px);
+  }
+  .universe-bar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
   }
   .universe-bar-label {
     font-family: var(--font-mono);
@@ -1258,16 +1626,41 @@
     color: var(--accent);
     font-weight: 700;
   }
+  .universe-bar-note {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--muted);
+  }
   .universe-pills {
     display: flex;
-    gap: 0.6rem;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+  .universe-pills-row {
+    display: flex;
+    align-items: center;
     flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .pills-label {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--muted);
+    font-weight: 600;
+    margin-right: 0.2rem;
+  }
+  .pill-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 4px;
   }
   .universe-pill {
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid var(--border);
     color: var(--text);
-    padding: 0.42rem 0.9rem;
+    padding: 0.42rem 0.85rem;
     border-radius: 9999px;
     font-family: var(--font-mono);
     font-size: 0.72rem;
@@ -1276,6 +1669,7 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
+    white-space: nowrap;
   }
   .universe-pill:hover,
   .universe-pill.active {
@@ -1284,6 +1678,62 @@
     border-color: var(--accent) !important;
     font-weight: 700;
     box-shadow: 0 0 14px var(--accent);
+  }
+  .universe-pill-mc {
+    border-color: #3f8e3f;
+    color: #4ade80;
+  }
+  .universe-pill-mc.active {
+    background: #142a14 !important;
+    color: #2cf5d6 !important;
+    border-color: #2cf5d6 !important;
+    box-shadow: 0 0 14px rgba(44, 245, 214, 0.4) !important;
+  }
+
+  /* Hamburger button for mobile navigation */
+  .nav-toggle-btn {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    padding: 7px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+  .hamburger-bar {
+    width: 100%;
+    height: 2px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: all 0.25s ease;
+  }
+  .nav-toggle-btn.open .hamburger-bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .nav-toggle-btn.open .hamburger-bar:nth-child(2) {
+    opacity: 0;
+  }
+  .nav-toggle-btn.open .hamburger-bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+  .nav-resume-pill {
+    color: var(--accent) !important;
+    border: 1px solid var(--accent);
+    padding: 0.3rem 0.85rem;
+    border-radius: 4px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+  .nav-resume-pill:hover {
+    background: var(--accent);
+    color: #090d13 !important;
   }
 
   /* ── PROJECT CARD QUICK-ACTIONS ── */
@@ -1377,18 +1827,9 @@
 <body>
 
 <!-- NAV -->
-<nav>
+<nav id="navbar">
   <a href="#hero" class="nav-logo">JN</a>
   <div class="nav-right-cluster">
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#contact">Contact</a></li>
-      <li><a href="/resume" style="color: var(--accent); border: 1px solid var(--accent); padding: 0.3rem 0.85rem; border-radius: 4px; font-weight: 700;">Resume ↗</a></li>
-    </ul>
-
     <!-- Torch Dark/Light Toggle with Banter (Vector SVGs with yellow glow & white background) -->
     <div class="torch-box">
       <button class="torch-btn" id="torch-btn" aria-label="Toggle Torch (Dark / Light Mode)" title="Click to strike the torch!">
@@ -1403,6 +1844,22 @@
         <div id="banter-text">It's dark in here... click the torch to light up!</div>
       </div>
     </div>
+
+    <!-- Mobile Hamburger Toggle -->
+    <button class="nav-toggle-btn" id="nav-toggle-btn" aria-label="Toggle Navigation Menu">
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+    </button>
+
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#about" class="nav-item-link">About</a></li>
+      <li><a href="#skills" class="nav-item-link">Skills</a></li>
+      <li><a href="#projects" class="nav-item-link">Projects</a></li>
+      <li><a href="#experience" class="nav-item-link">Experience</a></li>
+      <li><a href="#contact" class="nav-item-link">Contact</a></li>
+      <li><a href="/resume" class="nav-resume-pill">Resume ↗</a></li>
+    </ul>
   </div>
 </nav>
 
@@ -1453,9 +1910,10 @@
       <div class="terminal-suggestions-bar">
         <span class="sugg-label">⚡ Try:</span>
         <button type="button" class="sugg-chip" onclick="event.stopPropagation(); executeTermCommand('help')">help</button>
-        <button type="button" class="sugg-chip" onclick="event.stopPropagation(); executeTermCommand('profile')">profile</button>
-        <button type="button" class="sugg-chip" onclick="event.stopPropagation(); executeTermCommand('skills')">skills</button>
         <button type="button" class="sugg-chip" onclick="event.stopPropagation(); executeTermCommand('projects')">projects</button>
+        <button type="button" class="sugg-chip" onclick="event.stopPropagation(); executeTermCommand('github')">github</button>
+        <button type="button" class="sugg-chip" onclick="event.stopPropagation(); executeTermCommand('skills')">skills</button>
+        <button type="button" class="sugg-chip" onclick="event.stopPropagation(); executeTermCommand('profile')">profile</button>
         <button type="button" class="sugg-chip" onclick="event.stopPropagation(); executeTermCommand('contact')">contact</button>
         <button type="button" class="sugg-chip" onclick="event.stopPropagation(); executeTermCommand('matrix')">matrix</button>
         <button type="button" class="sugg-chip" onclick="event.stopPropagation(); executeTermCommand('torch')">torch</button>
@@ -1579,14 +2037,23 @@
 
   <!-- THEME UNIVERSE SWITCHER -->
   <div class="theme-universe-bar reveal">
-    <span class="universe-bar-label">⚡ UNIVERSE THEME ENGINE:</span>
+    <div class="universe-bar-header">
+      <span class="universe-bar-label">⚡ PALETTES &amp; MINECRAFT UNIVERSE:</span>
+      <span class="universe-bar-note">// Note: Minecraft is the only visual &amp; structural theme overhaul; others are tailored accent color palettes.</span>
+    </div>
     <div class="universe-pills">
-      <button class="universe-pill active" data-style="default" onclick="applyThemeStyle('default')">🌟 Default Obsidian</button>
-      <button class="universe-pill" data-style="agriculture" onclick="applyThemeStyle('agriculture')">🌾 Payaswini AgriTech</button>
-      <button class="universe-pill" data-style="minecraft" onclick="applyThemeStyle('minecraft')">⛏️ Minecraft AIBridge</button>
-      <button class="universe-pill" data-style="cyber" onclick="applyThemeStyle('cyber')">⚡ Codex Cyber</button>
-      <button class="universe-pill" data-style="elibrary" onclick="applyThemeStyle('elibrary')">📚 Scholarly Cyan</button>
-      <button class="universe-pill" data-style="cells" onclick="applyThemeStyle('cells')">🧬 Bio-Matrix</button>
+      <div class="universe-pills-row">
+        <span class="pills-label">Color Palettes:</span>
+        <button class="universe-pill active" data-style="default" onclick="applyThemeStyle('default')"><span class="pill-dot" style="background:#38bdf8;"></span> Obsidian (Default)</button>
+        <button class="universe-pill" data-style="agriculture" onclick="applyThemeStyle('agriculture')"><span class="pill-dot" style="background:#10b981;"></span> 🌾 Payaswini Emerald</button>
+        <button class="universe-pill" data-style="cyber" onclick="applyThemeStyle('cyber')"><span class="pill-dot" style="background:#6366f1;"></span> ⚡ Codex Violet</button>
+        <button class="universe-pill" data-style="elibrary" onclick="applyThemeStyle('elibrary')"><span class="pill-dot" style="background:#06b6d4;"></span> 📚 Scholarly Cyan</button>
+        <button class="universe-pill" data-style="cells" onclick="applyThemeStyle('cells')"><span class="pill-dot" style="background:#f43f5e;"></span> 🧬 Crimson Slate</button>
+      </div>
+      <div class="universe-pills-row universe-pills-special">
+        <span class="pills-label">Full Theme Overhaul:</span>
+        <button class="universe-pill universe-pill-mc" data-style="minecraft" onclick="applyThemeStyle('minecraft')">⛏️ Minecraft AIBridge (Retro 8-Bit Overhaul)</button>
+      </div>
     </div>
   </div>
 
@@ -1605,8 +2072,9 @@
         <span class="tech-pill">Validation</span>
       </div>
       <div class="project-actions-row">
-        <button class="btn-activate-theme" onclick="event.stopPropagation(); applyThemeStyle('agriculture')">🌾 Activate Payaswini Theme</button>
-        <span class="project-click-hint">⚡ View Equipment SVGs &amp; Specs ↗</span>
+        <button class="btn-activate-theme" onclick="event.stopPropagation(); applyThemeStyle('agriculture')">🌾 Emerald Palette</button>
+        <a href="https://github.com/Jnanesh321/Payaswini-AgriTech" target="_blank" rel="noopener noreferrer" class="card-gh-link" onclick="event.stopPropagation()">🐙 GitHub ↗</a>
+        <span class="project-click-hint">⚡ View Architecture Specs ↗</span>
       </div>
       <div class="project-arrow">↗</div>
     </div>
@@ -1620,7 +2088,8 @@
         <span class="tech-pill">Node.js</span><span class="tech-pill">Firebase FCM</span><span class="tech-pill">JWT Auth</span><span class="tech-pill">Firestore</span><span class="tech-pill">Unit Tests</span>
       </div>
       <div class="project-actions-row">
-        <button class="btn-activate-theme" onclick="event.stopPropagation(); applyThemeStyle('cyber')">⚡ Activate Cyber Theme</button>
+        <button class="btn-activate-theme" onclick="event.stopPropagation(); applyThemeStyle('cyber')">⚡ Violet Palette</button>
+        <a href="https://github.com/Jnanesh321/codex-backend" target="_blank" rel="noopener noreferrer" class="card-gh-link" onclick="event.stopPropagation()">🐙 GitHub ↗</a>
         <span class="project-click-hint">⚡ View Architecture Specs ↗</span>
       </div>
       <div class="project-arrow">↗</div>
@@ -1635,7 +2104,8 @@
         <span class="tech-pill">MongoDB</span><span class="tech-pill">Express.js</span><span class="tech-pill">React</span><span class="tech-pill">Node.js</span>
       </div>
       <div class="project-actions-row">
-        <button class="btn-activate-theme" onclick="event.stopPropagation(); applyThemeStyle('elibrary')">📚 Activate Library Theme</button>
+        <button class="btn-activate-theme" onclick="event.stopPropagation(); applyThemeStyle('elibrary')">📚 Cyan Palette</button>
+        <a href="https://github.com/Jnanesh321/E-Library-Management-System" target="_blank" rel="noopener noreferrer" class="card-gh-link" onclick="event.stopPropagation()">🐙 GitHub ↗</a>
         <span class="project-click-hint">⚡ View Architecture Specs ↗</span>
       </div>
       <div class="project-arrow">↗</div>
@@ -1650,7 +2120,8 @@
         <span class="tech-pill">JavaScript</span><span class="tech-pill">Express.js</span><span class="tech-pill">DBMS</span>
       </div>
       <div class="project-actions-row">
-        <button class="btn-activate-theme" onclick="event.stopPropagation(); applyThemeStyle('cells')">🧬 Activate Bio Theme</button>
+        <button class="btn-activate-theme" onclick="event.stopPropagation(); applyThemeStyle('cells')">🧬 Crimson Palette</button>
+        <a href="https://github.com/Jnanesh321/Cells-AMS" target="_blank" rel="noopener noreferrer" class="card-gh-link" onclick="event.stopPropagation()">🐙 GitHub ↗</a>
         <span class="project-click-hint">⚡ View Specs ↗</span>
       </div>
       <div class="project-arrow">↗</div>
@@ -1665,8 +2136,9 @@
         <span class="tech-pill">Java 17</span><span class="tech-pill">Paper API</span><span class="tech-pill">OpenCode AI</span><span class="tech-pill">Linux</span>
       </div>
       <div class="project-actions-row">
-        <button class="btn-activate-theme" onclick="event.stopPropagation(); applyThemeStyle('minecraft')">⛏️ Activate Minecraft Theme</button>
-        <span class="project-click-hint">⚡ View Pixel SVGs &amp; Java Code ↗</span>
+        <button class="btn-activate-theme" onclick="event.stopPropagation(); applyThemeStyle('minecraft')">⛏️ Minecraft Overhaul</button>
+        <a href="https://github.com/Jnanesh321/MGU-AIBridge-Plugin" target="_blank" rel="noopener noreferrer" class="card-gh-link" onclick="event.stopPropagation()">🐙 GitHub ↗</a>
+        <span class="project-click-hint">⚡ View Pixel SVGs &amp; Specs ↗</span>
       </div>
       <div class="project-arrow">↗</div>
     </div>
@@ -1996,6 +2468,9 @@ function executeTermCommand(rawCmd) {
         <div>📍 <strong>Location:</strong> India 🇮🇳</div>
       </div>
     `;
+  } else if (lower === 'github' || lower === 'gh') {
+    output.innerHTML = `<span class="term-success">🐙 Launching GitHub repository profile: <a href="https://github.com/Jnanesh321" target="_blank" style="color:var(--accent);text-decoration:underline;">github.com/Jnanesh321 ↗</a></span>`;
+    window.open('https://github.com/Jnanesh321', '_blank');
   } else if (lower === 'resume') {
     output.innerHTML = `<span class="term-success">📄 Opening official technical resume...</span>`;
     setTimeout(() => { window.location.href = '/resume'; }, 600);
@@ -2328,6 +2803,53 @@ async function openProjectModal(id) {
       </div>
     ` : '';
 
+    // Action buttons: GitHub, Live Demo, Cheer, Palette/Theme
+    const githubBtn = p.github ? `
+      <a href="${p.github}" target="_blank" rel="noopener noreferrer" class="modal-btn-action modal-btn-github">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        <span>View on GitHub ↗</span>
+      </a>
+    ` : '';
+
+    const liveBtn = p.liveUrl ? `
+      <a href="${p.liveUrl}" target="_blank" rel="noopener noreferrer" class="modal-btn-action modal-btn-live">
+        <span>🌐</span>
+        <span>Live Deployment ↗</span>
+      </a>
+    ` : '';
+
+    // Metadata items (Role, Timeline, Category, Status)
+    const metaRow = `
+      <div class="modal-meta-grid">
+        <div class="modal-meta-item"><span>Role:</span> <strong>${p.role || 'Developer'}</strong></div>
+        <div class="modal-meta-item"><span>Timeline:</span> <strong>${p.timeline || '2025'}</strong></div>
+        <div class="modal-meta-item"><span>Category:</span> <strong>${p.category}</strong></div>
+        <div class="modal-meta-item"><span>Status:</span> <strong>${p.status}</strong></div>
+      </div>
+    `;
+
+    // Metrics grid (if present)
+    const metricsHtml = (p.metrics && p.metrics.length) ? `
+      <div class="modal-metrics-grid">
+        ${p.metrics.map(m => `
+          <div class="modal-metric-box">
+            <div class="metric-val">${m.value}</div>
+            <div class="metric-lbl">${m.label}</div>
+          </div>
+        `).join('')}
+      </div>
+    ` : '';
+
+    // Highlights list (if present)
+    const highlightsHtml = (p.highlights && p.highlights.length) ? `
+      <div class="modal-highlights-card">
+        <h5>✨ Key Engineering Highlights &amp; SLAs</h5>
+        <ul>
+          ${p.highlights.map(h => `<li>${h}</li>`).join('')}
+        </ul>
+      </div>
+    ` : '';
+
     // Build equipment gallery if available (Obele / Agriculture)
     const equipmentHtml = p.equipmentGallery ? `
       <div class="modal-section-title">🌾 Payaswini Agricultural Fleet &amp; Equipment SVGs</div>
@@ -2370,14 +2892,24 @@ async function openProjectModal(id) {
       <div class="modal-subtitle">// ${p.subtitle} · <em>${p.status}</em></div>
 
       <div class="modal-actions">
-        <button class="modal-btn-cheer" id="btn-cheer-${p.id}" onclick="cheerProject('${p.id}')">
+        ${githubBtn}
+        ${liveBtn}
+        <button class="modal-btn-action modal-btn-cheer" id="btn-cheer-${p.id}" onclick="cheerProject('${p.id}')">
           🔥 Cheer Project (<span id="modal-cheer-num">${p.cheers}</span>)
         </button>
-        <button class="modal-btn-theme" onclick="applyThemeStyle('${p.themeKey || 'default'}')">
-          🎨 Activate Full "${p.theme.name}" Theme
+        <button class="modal-btn-action modal-btn-theme" onclick="applyThemeStyle('${p.themeKey || (p.theme && p.theme.key) || 'default'}')">
+          🎨 Apply "${p.theme.name}"
         </button>
       </div>
 
+      ${metaRow}
+
+      <div class="modal-overview-card">
+        <p>${p.overview}</p>
+      </div>
+
+      ${metricsHtml}
+      ${highlightsHtml}
       ${equipmentHtml}
       ${minecraftHtml}
 
@@ -2449,11 +2981,11 @@ async function cheerProject(id) {
 
 const themeNamesMap = {
   default: '🌟 Default Obsidian',
-  agriculture: '🌾 Payaswini AgriTech Theme',
-  minecraft: '⛏️ Minecraft AIBridge Theme',
-  cyber: '⚡ Codex Cyber Violet Theme',
-  elibrary: '📚 Scholarly Cyan Theme',
-  cells: '🧬 Cells Bio-Matrix Theme'
+  agriculture: '🌾 Payaswini Emerald Palette',
+  minecraft: '⛏️ Minecraft AIBridge Overhaul',
+  cyber: '⚡ Codex Violet Palette',
+  elibrary: '📚 Scholarly Cyan Palette',
+  cells: '🧬 Crimson Slate Palette'
 };
 
 function applyThemeStyle(styleKey, showToast = true) {
@@ -2472,7 +3004,10 @@ function applyThemeStyle(styleKey, showToast = true) {
   });
 
   if (showToast) {
-    toastThemeName.textContent = themeNamesMap[styleKey] || styleKey;
+    const isMinecraft = (styleKey === 'minecraft');
+    toastThemeName.textContent = isMinecraft
+      ? '⛏️ Minecraft AIBridge: Full Theme Overhaul Active (8-bit typography & 3D pixel shaders)'
+      : (themeNamesMap[styleKey] || styleKey);
     themeToast.classList.add('show');
     clearTimeout(window.toastTimer);
     window.toastTimer = setTimeout(() => {
@@ -2489,6 +3024,32 @@ function resetPortfolioTheme() {
 const savedUniverse = localStorage.getItem('jnanesh-theme-style') || 'default';
 if (savedUniverse !== 'default') {
   applyThemeStyle(savedUniverse, false);
+}
+
+// ── Mobile Hamburger Navigation Handler ──
+const navToggleBtn = document.getElementById('nav-toggle-btn');
+const navLinks = document.getElementById('nav-links');
+
+if (navToggleBtn && navLinks) {
+  navToggleBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = navLinks.classList.toggle('mobile-open');
+    navToggleBtn.classList.toggle('open', isOpen);
+  });
+
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('mobile-open');
+      navToggleBtn.classList.remove('open');
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!navToggleBtn.contains(e.target) && !navLinks.contains(e.target)) {
+      navLinks.classList.remove('mobile-open');
+      navToggleBtn.classList.remove('open');
+    }
+  });
 }
 </script>
 
