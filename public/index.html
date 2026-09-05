@@ -115,16 +115,35 @@
   .hero-content { position: relative; z-index: 2; max-width: 900px; }
 
   .hero-badge {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    font-family: var(--font-mono); font-size: 0.72rem;
-    color: var(--accent); letter-spacing: 0.08em;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-mono);
+    font-size: clamp(0.68rem, 1.8vw, 0.76rem);
+    color: var(--accent);
+    letter-spacing: 0.06em;
     border: 1px solid var(--border);
-    background: rgba(255,255,255,0.03);
-    padding: 0.4rem 1rem; border-radius: 4px;
-    margin-bottom: 2rem;
+    background: rgba(255, 255, 255, 0.04);
+    padding: 0.42rem 0.95rem;
+    border-radius: 9999px;
+    margin-bottom: clamp(1.2rem, 3vw, 2rem);
     animation: fadeUp 0.6s ease both;
+    white-space: nowrap;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.2;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   }
-  .hero-badge span { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 1.5s infinite; }
+  .hero-badge .badge-dot, .hero-badge span:first-child {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 8px #10b981;
+    flex-shrink: 0;
+    animation: pulse 1.5s infinite;
+  }
 
   @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
 
@@ -765,12 +784,12 @@
 
   /* ── COMPREHENSIVE RESPONSIVE DESIGN (TABLET & MOBILE) ── */
   @media (max-width: 900px) {
-    nav { padding: 1rem 1.5rem; }
+    nav { padding: 0.9rem 1.5rem; }
     section { padding: 4.5rem 1.5rem; }
     #hero { padding: 6.5rem 1.5rem 3rem 1.5rem; }
-    #about { grid-template-columns: 1fr; gap: 2.5rem; }
+    .about-top-grid { grid-template-columns: 1fr !important; gap: 1.8rem !important; }
     .about-visual { max-width: 100%; width: 100%; }
-    .about-frame { min-height: 420px; max-height: 480px; width: 100%; }
+    .about-frame { min-height: 420px; max-height: 490px; width: 100%; }
     #contact { grid-template-columns: 1fr; gap: 2.5rem; }
     .projects-grid { grid-template-columns: 1fr; gap: 1.5rem; }
     .project-card.featured, .project-card.medium, .project-card.small { grid-column: span 1; grid-row: auto; }
@@ -778,12 +797,19 @@
   }
 
   @media (max-width: 768px) {
-    nav { padding: 0.85rem 1.25rem; }
+    html, body {
+      overflow-x: hidden !important;
+      max-width: 100vw !important;
+      width: 100% !important;
+    }
+
+    nav { padding: 0.75rem 1.1rem; }
+    .nav-right-cluster { gap: 0.65rem !important; }
     .nav-toggle-btn { display: flex !important; }
     .nav-links {
       display: none;
       position: fixed;
-      top: 60px;
+      top: 56px;
       left: 0;
       right: 0;
       background: var(--surface);
@@ -792,7 +818,7 @@
       padding: 1.5rem 1.25rem 2rem 1.25rem;
       gap: 1.2rem;
       box-shadow: 0 20px 40px rgba(0,0,0,0.7);
-      z-index: 999;
+      z-index: 9999;
     }
     .nav-links.mobile-open {
       display: flex !important;
@@ -810,107 +836,247 @@
       margin-top: 0.4rem;
       width: 100%;
     }
-    .torch-box { margin-right: 0.2rem; }
+    .torch-box { margin-right: 0; }
     .torch-label { display: none !important; }
-    .torch-btn { padding: 0.35rem 0.5rem !important; gap: 5px; }
+    .torch-btn { padding: 0.32rem 0.55rem !important; gap: 4px; }
+    .torch-icon-wrap { width: 26px !important; height: 26px !important; }
+    .torch-img-svg { width: 22px !important; height: 22px !important; }
+    .torch-banter-bubble { right: -10px !important; width: 240px !important; font-size: 0.68rem !important; }
 
     #hero {
-      padding: 6.5rem 1.25rem 2.5rem 1.25rem;
-      min-height: calc(100vh - 60px);
+      padding: 5.5rem 1.1rem 2.5rem 1.1rem !important;
+      min-height: auto !important;
     }
+    .hero-content { width: 100% !important; max-width: 100% !important; }
+
+    .hero-badge {
+      font-size: 0.68rem !important;
+      padding: 0.32rem 0.75rem !important;
+      margin-bottom: 1.1rem !important;
+      white-space: nowrap !important;
+      max-width: 100% !important;
+    }
+    html[data-theme-style="minecraft"] .hero-badge {
+      font-size: 0.44rem !important;
+      padding: 0.32rem 0.58rem !important;
+      margin-bottom: 1rem !important;
+    }
+
     .hero-name {
-      font-size: clamp(2.3rem, 8.5vw, 4rem) !important;
-      line-height: 1.0 !important;
+      font-size: clamp(2rem, 7.8vw, 3.2rem) !important;
+      line-height: 1.05 !important;
+      word-break: break-word !important;
     }
-    .hero-terminal-sub { font-size: 0.8rem; }
+    html[data-theme-style="minecraft"] .hero-name {
+      font-size: clamp(1.12rem, 4.4vw, 1.55rem) !important;
+      line-height: 1.35 !important;
+      margin-bottom: 1.1rem !important;
+      text-shadow: 2px 2px 0 #064e3b, 4px 4px 0 #022c22 !important;
+    }
+
+    .hero-sub {
+      margin-top: 1.2rem !important;
+      font-size: 0.74rem !important;
+      line-height: 1.55 !important;
+      max-width: 100% !important;
+    }
+    .hero-terminal-sub .typed-line {
+      min-height: 1.5em !important;
+      flex-wrap: wrap !important;
+      word-break: break-word !important;
+    }
+
     .hero-cta {
-      margin-top: 2rem;
-      gap: 0.8rem;
+      margin-top: 1.6rem !important;
+      flex-direction: column !important;
+      width: 100% !important;
+      gap: 0.65rem !important;
+    }
+    .hero-cta .btn {
+      width: 100% !important;
+      justify-content: center !important;
+      text-align: center !important;
+      padding: 0.78rem 1rem !important;
+      font-size: 0.74rem !important;
+    }
+    html[data-theme-style="minecraft"] .btn {
+      font-size: 0.52rem !important;
+      padding: 0.7rem 0.85rem !important;
     }
     .hero-scroll { display: none !important; }
 
-    section { padding: 3.5rem 1.25rem; }
-    .section-title { font-size: clamp(1.8rem, 6vw, 2.5rem); }
+    section { padding: 3.5rem 1.1rem !important; }
+    .section-title { font-size: clamp(1.6rem, 5.5vw, 2.2rem) !important; line-height: 1.15 !important; }
+    html[data-theme-style="minecraft"] .section-title {
+      font-size: clamp(0.85rem, 3vw, 1.1rem) !important;
+    }
+
+    #about {
+      padding-left: 1.1rem !important;
+      padding-right: 1.1rem !important;
+      gap: 1.6rem !important;
+    }
+    .about-top-grid {
+      grid-template-columns: 1fr !important;
+      gap: 1.6rem !important;
+    }
+    .about-bio-col p {
+      font-size: 0.88rem !important;
+      line-height: 1.65 !important;
+      margin-bottom: 0.8rem !important;
+    }
+    .about-stats-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 0.55rem !important;
+    }
+    .stat-card {
+      padding: 0.85rem 0.8rem !important;
+      border-radius: 6px !important;
+    }
+    .stat-card .stat-num { font-size: 1.45rem !important; }
+    .stat-card .stat-label { font-size: 0.56rem !important; }
 
     .about-frame {
       clip-path: none !important;
       border-radius: 8px;
-      padding: 1rem 0.9rem;
-      min-height: 390px;
-      max-height: 460px;
+      padding: 0.95rem 0.85rem !important;
+      min-height: 380px !important;
+      max-height: 480px !important;
+      width: 100% !important;
     }
-    .term-body { font-size: 0.72rem; }
-    .term-input { font-size: 16px !important; } /* Prevents iOS auto-zoom */
+    .about-terminal-header {
+      flex-wrap: wrap !important;
+      gap: 6px !important;
+      padding-bottom: 0.6rem !important;
+    }
+    .terminal-title {
+      max-width: 130px !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      white-space: nowrap !important;
+      font-size: 0.55rem !important;
+    }
+    .terminal-sys-status {
+      display: flex !important;
+      align-items: center !important;
+      gap: 5px !important;
+      margin-left: auto !important;
+    }
+    .term-expand-btn {
+      font-size: 0.52rem !important;
+      padding: 0.15rem 0.45rem !important;
+    }
+    .terminal-live-badge {
+      font-size: 0.48rem !important;
+      padding: 0.12rem 0.4rem !important;
+    }
+    .term-cli-input { font-size: 16px !important; } /* Prevents iOS auto-zoom */
+    .about-terminal-body { font-size: 0.7rem !important; line-height: 1.5 !important; }
     .term-chips-row { flex-wrap: wrap; gap: 4px; }
     .term-chip { font-size: 0.65rem; padding: 0.2rem 0.55rem; }
 
-    .skills-grid { grid-template-columns: 1fr; gap: 1.2rem; }
-    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 0.85rem; }
+    .skills-grid { grid-template-columns: 1fr !important; gap: 1rem !important; }
+    .skill-card { padding: 1.4rem 1.15rem !important; }
 
     .theme-universe-bar {
-      padding: 1rem 1.1rem;
-      gap: 0.8rem;
+      padding: 0.85rem 0.95rem !important;
+      gap: 0.7rem !important;
+      margin-bottom: 1.8rem !important;
+      border-radius: 8px !important;
     }
-    .universe-bar-header { flex-direction: column; align-items: flex-start; gap: 0.3rem; }
-    .universe-pills-row { gap: 0.4rem; }
-    .universe-pill { font-size: 0.68rem; padding: 0.35rem 0.75rem; }
+    .universe-bar-header { flex-direction: column !important; align-items: flex-start !important; gap: 0.3rem !important; }
+    .universe-bar-note { font-size: 0.62rem !important; line-height: 1.4 !important; }
+    .universe-pills-row { gap: 0.35rem !important; flex-wrap: wrap !important; }
+    .universe-pill { font-size: 0.65rem !important; padding: 0.32rem 0.65rem !important; }
 
-    .project-card { padding: 1.4rem 1.15rem; }
+    .project-card { padding: 1.35rem 1.1rem !important; border-radius: 8px !important; }
+    .project-title { font-size: 1.22rem !important; line-height: 1.3 !important; }
+    html[data-theme-style="minecraft"] .project-title {
+      font-size: 0.72rem !important;
+      line-height: 1.5 !important;
+    }
     .project-actions-row {
-      flex-direction: column;
-      align-items: stretch;
-      gap: 0.6rem;
+      flex-direction: column !important;
+      align-items: stretch !important;
+      gap: 0.55rem !important;
     }
     .project-actions-row .btn-activate-theme,
     .project-actions-row .card-gh-link,
     .project-actions-row .project-click-hint {
-      width: 100%;
-      text-align: center;
-      justify-content: center;
+      width: 100% !important;
+      text-align: center !important;
+      justify-content: center !important;
     }
 
-    .timeline { padding-left: 1.2rem; }
-    .timeline::before { left: 0; }
-    .timeline-dot { left: -1.5rem; }
+    .timeline { padding-left: 1.1rem !important; }
+    .timeline::before { left: 0 !important; }
+    .timeline-item { padding-left: 1rem !important; margin-bottom: 2.2rem !important; }
+    .timeline-dot { left: -1.55rem !important; width: 8px !important; height: 8px !important; }
+    .timeline-role { font-size: 1.05rem !important; }
 
-    .contact-form { width: 100%; }
-    .form-input, .form-textarea { font-size: 16px !important; }
+    #contact { grid-template-columns: 1fr !important; gap: 2rem !important; }
+    .contact-form { width: 100% !important; }
+    .form-input, .form-textarea { font-size: 16px !important; width: 100% !important; box-sizing: border-box !important; }
+    .contact-btn { width: 100% !important; justify-content: center !important; }
+
+    footer {
+      padding: 2rem 1.1rem !important;
+      flex-direction: column !important;
+      gap: 1rem !important;
+      text-align: center !important;
+    }
 
     /* Modal Responsive */
-    .modal-backdrop { padding: 0.75rem; }
+    .modal-backdrop { padding: 0.6rem !important; }
     .modal-container {
-      padding: 1.5rem 1.15rem !important;
-      max-height: 92vh;
-      border-radius: 10px;
-      width: 100%;
+      padding: 1.4rem 1rem !important;
+      max-height: 92vh !important;
+      border-radius: 8px !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
     }
     .modal-close-btn {
-      top: 0.85rem;
-      right: 0.85rem;
-      width: 32px;
-      height: 32px;
-      font-size: 1rem;
+      top: 0.75rem !important;
+      right: 0.75rem !important;
+      width: 30px !important;
+      height: 30px !important;
+      font-size: 0.9rem !important;
     }
-    .modal-title { font-size: 1.35rem !important; }
+    .modal-title { font-size: 1.25rem !important; line-height: 1.3 !important; }
     .modal-actions {
-      flex-direction: column;
-      gap: 0.5rem;
+      flex-direction: column !important;
+      gap: 0.5rem !important;
     }
     .modal-actions .modal-btn-action {
-      width: 100%;
-      justify-content: center;
-      padding: 0.7rem 1rem;
+      width: 100% !important;
+      justify-content: center !important;
+      padding: 0.65rem 1rem !important;
     }
-    .modal-meta-grid { grid-template-columns: 1fr 1fr; gap: 0.5rem; padding: 0.8rem; }
-    .modal-metrics-grid { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
-    .modal-asset-grid { grid-template-columns: repeat(2, 1fr); gap: 0.6rem; }
+    .modal-meta-grid { grid-template-columns: 1fr 1fr !important; gap: 0.45rem !important; padding: 0.7rem !important; font-size: 0.68rem !important; }
+    .modal-problem-solution { grid-template-columns: 1fr !important; gap: 0.75rem !important; }
+    .modal-arch-grid { grid-template-columns: 1fr !important; gap: 0.75rem !important; }
+    .modal-metrics-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 0.5rem !important; }
+    .modal-asset-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 0.5rem !important; }
+
+    .theme-indicator-toast {
+      left: 12px !important;
+      right: 12px !important;
+      bottom: 14px !important;
+      padding: 0.65rem 0.95rem !important;
+      font-size: 0.68rem !important;
+      justify-content: space-between !important;
+    }
   }
 
   @media (max-width: 480px) {
-    .hero-cta { flex-direction: column; width: 100%; }
-    .hero-cta .btn { width: 100%; justify-content: center; }
-    .stats-grid { grid-template-columns: 1fr; }
-    .modal-meta-grid { grid-template-columns: 1fr; }
+    .hero-name { font-size: clamp(1.85rem, 8.5vw, 2.7rem) !important; }
+    html[data-theme-style="minecraft"] .hero-name {
+      font-size: clamp(0.98rem, 4.4vw, 1.35rem) !important;
+      text-shadow: 2px 2px 0 #064e3b !important;
+    }
+    .about-stats-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 0.45rem !important; }
+    .stat-card .stat-num { font-size: 1.3rem !important; }
+    .stat-card .stat-label { font-size: 0.52rem !important; }
   }
 
   @keyframes navSlideDown {
@@ -1534,11 +1700,30 @@
   html[data-theme-style="minecraft"] .universe-bar-label {
     font-family: 'Press Start 2P', monospace !important;
   }
+  html[data-theme-style="minecraft"] .hero-badge {
+    border-radius: 0px !important;
+    border: 2px solid #3f8e3f !important;
+    box-shadow: inset -2px -2px 0 #142a14, inset 2px 2px 0 #6ee7b7, 0 4px 0 #062406 !important;
+    font-family: 'Press Start 2P', monospace !important;
+    font-size: clamp(0.48rem, 1.4vw, 0.58rem) !important;
+    padding: 0.38rem 0.75rem !important;
+    margin-bottom: 1.3rem !important;
+    white-space: nowrap !important;
+    max-width: 100% !important;
+  }
+  html[data-theme-style="minecraft"] .hero-badge .badge-dot,
+  html[data-theme-style="minecraft"] .hero-badge span:first-child {
+    border-radius: 0 !important;
+    width: 6px !important;
+    height: 6px !important;
+    background: #2cf5d6 !important;
+    box-shadow: 0 0 6px #2cf5d6 !important;
+  }
   html[data-theme-style="minecraft"] .hero-name {
-    font-size: clamp(1.4rem, 3.8vw, 2.5rem) !important;
+    font-size: clamp(1.3rem, 3.6vw, 2.4rem) !important;
     line-height: 1.35 !important;
     letter-spacing: -0.02em !important;
-    margin-bottom: 1.5rem !important;
+    margin-bottom: 1.4rem !important;
     text-shadow: 3px 3px 0 #064e3b, 6px 6px 0 #022c22 !important;
   }
   html[data-theme-style="minecraft"] .section-title {
@@ -2218,14 +2403,14 @@
   <div class="hero-grid-bg"></div>
   <div class="hero-content">
     <div class="hero-badge">
-      <span></span>
-      <span id="typed-role">Available for opportunities</span>
+      <span class="badge-dot"></span>
+      <span id="typed-role">Available for Internships</span>
     </div>
     <h1 class="hero-name glitch" data-text="Jnanesh">
       <span>Jnanesh</span><br>
       <span class="line2">Sharma H<span class="accent">.</span></span>
     </h1>
-    <div class="hero-sub hero-terminal-sub" id="hero-typewriter-sub" aria-label="CS Engineering Student VCET VTU 3rd Year. Backend Dev Node.js and Express. India, Turning ideas into resilient software.">
+    <div class="hero-sub hero-terminal-sub" id="hero-typewriter-sub" aria-label="CS Engineering Student VCET VTU 3rd Year. Backend Dev Node.js and Express. India, Building scalable backends and robust systems.">
       <div class="typed-line" id="type-line-1"><span class="comment-slash">//</span> <span class="typed-text"></span></div>
       <div class="typed-line" id="type-line-2"><span class="comment-slash">//</span> <span class="typed-text"></span></div>
       <div class="typed-line" id="type-line-3"><span class="comment-slash">//</span> <span class="typed-text"></span></div>
@@ -2644,10 +2829,10 @@ document.querySelectorAll('.skill-card').forEach(c => skillObserver.observe(c));
 
 // ── Typewriter roles ──
 const roles = [
-  'Backend Developer',
+  'Available for Internships',
+  'Backend & Systems Developer',
   'Node.js & Express Engineer',
-  'CS Engineering Student · 3rd Year',
-  'Building Resilient Systems'
+  'REST APIs & Cloud Services'
 ];
 let ri = 0, ci = 0, deleting = false;
 const tyEl = document.getElementById('typed-role');
@@ -2668,7 +2853,7 @@ typewrite();
 const heroSubLines = [
   { id: 'type-line-1', text: 'CS Engineering Student · VCET (VTU) · 3rd Year' },
   { id: 'type-line-2', text: 'Backend Dev · Node.js & Express · Distributed & Community Systems' },
-  { id: 'type-line-3', text: 'India · Turning ideas into resilient software' }
+  { id: 'type-line-3', text: 'India 🇮🇳 · Building scalable backends & robust systems' }
 ];
 
 function initHeroSubtypewriter() {
