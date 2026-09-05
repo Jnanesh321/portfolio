@@ -1060,7 +1060,8 @@
     }
     .project-actions-row .btn-activate-theme,
     .project-actions-row .card-gh-link,
-    .project-actions-row .project-click-hint {
+    .project-actions-row .card-gh-private,
+    .project-actions-row .btn-view-more {
       width: 100% !important;
       text-align: center !important;
       justify-content: center !important;
@@ -1324,20 +1325,29 @@
   .project-card:hover {
     box-shadow: 0 12px 30px rgba(0,0,0,0.25);
   }
-  .project-click-hint {
-    margin-top: 1.2rem;
-    font-family: var(--font-mono);
-    font-size: 0.66rem;
-    color: var(--accent);
+  .btn-view-more {
     display: inline-flex;
     align-items: center;
     gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
     font-weight: 700;
-    letter-spacing: 0.05em;
-    transition: transform 0.2s ease;
+    color: var(--accent);
+    background: rgba(56, 189, 248, 0.08);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    padding: 0.38rem 0.82rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+    letter-spacing: 0.03em;
   }
-  .project-card:hover .project-click-hint {
-    transform: translateX(4px);
+  .btn-view-more:hover {
+    background: var(--accent);
+    color: #090d13;
+    border-color: var(--accent);
+    transform: translateY(-1px);
+    box-shadow: 0 0 14px rgba(56, 189, 248, 0.35);
   }
 
   /* ── PROJECT DEEP-DIVE MODAL ── */
@@ -1870,9 +1880,19 @@
     box-shadow: 0 4px 0 #062406 !important;
     margin-bottom: 4px !important;
   }
-  html[data-theme-style="minecraft"] .project-click-hint {
+  html[data-theme-style="minecraft"] .btn-view-more {
+    border-radius: 0px !important;
+    border: 2px solid #3f8e3f !important;
     font-family: 'Press Start 2P', monospace !important;
-    font-size: 0.48rem !important;
+    font-size: 0.52rem !important;
+    box-shadow: 0 4px 0 #062406 !important;
+    background: #182018 !important;
+    color: #4ade80 !important;
+    margin-bottom: 4px !important;
+  }
+  html[data-theme-style="minecraft"] .btn-view-more:hover {
+    background: #3f8e3f !important;
+    color: #0d1a0d !important;
   }
   html[data-theme-style="minecraft"] .modal-card-box,
   html[data-theme-style="minecraft"] .modal-arch-card,
@@ -2641,11 +2661,11 @@
 
     <div class="skill-card reveal reveal-delay-1" data-target-pct="94">
       <div class="skill-icon">🧱</div>
-      <div class="skill-name">Minecraft &amp; Systems</div>
-      <div class="skill-desc">Paper/Spigot API, Demand Balancer ShopGUI, BWLava custom integrations, community operations, server moderation, and Linux hosting.</div>
+      <div class="skill-name">Systems &amp; Game Architecture</div>
+      <div class="skill-desc">Paper/Spigot Java API, Demand Balancer ShopGUI, event pipelines, player state handling, server moderation, and Linux hosting.</div>
       <div class="skill-bar"><div class="skill-fill" style="--w:0.94"></div></div>
       <div class="skill-meta">
-        <span class="skill-level" style="color:#4ade80;">Mastery (Primary Focus)</span>
+        <span class="skill-level">Advanced Systems</span>
         <span class="skill-pct-badge skill-pct-mc"><span class="pct-val">0</span>%</span>
       </div>
     </div>
@@ -2713,7 +2733,7 @@
       <div class="project-actions-row">
         <button class="btn-activate-theme" onclick="event.stopPropagation(); applyThemeStyle('agriculture')">🌾 Emerald Palette</button>
         <a href="https://github.com/Jnanesh321/Payaswini-O-Bele" target="_blank" rel="noopener noreferrer" class="card-gh-link" onclick="event.stopPropagation()">🐙 GitHub ↗</a>
-        <span class="project-click-hint">⚡ View Architecture Specs ↗</span>
+        <button type="button" class="btn-view-more" onclick="event.stopPropagation(); openProjectModal('obele')">View More ↗</button>
       </div>
       <div class="project-arrow">↗</div>
     </div>
@@ -2729,7 +2749,7 @@
       <div class="project-actions-row">
         <button class="btn-activate-theme" onclick="event.stopPropagation(); applyThemeStyle('cyber')">⚡ Violet Palette</button>
         <span class="card-gh-private" onclick="event.stopPropagation()" title="Private Production Repository">🔒 Private Repo</span>
-        <span class="project-click-hint">⚡ View Architecture Specs ↗</span>
+        <button type="button" class="btn-view-more" onclick="event.stopPropagation(); openProjectModal('codex')">View More ↗</button>
       </div>
       <div class="project-arrow">↗</div>
     </div>
@@ -2745,7 +2765,7 @@
       <div class="project-actions-row">
         <button class="btn-activate-theme" onclick="event.stopPropagation(); applyThemeStyle('elibrary')">📚 Cyan Palette</button>
         <a href="https://github.com/Jnanesh321/E-Library-Management" target="_blank" rel="noopener noreferrer" class="card-gh-link" onclick="event.stopPropagation()">🐙 GitHub ↗</a>
-        <span class="project-click-hint">⚡ View Architecture Specs ↗</span>
+        <button type="button" class="btn-view-more" onclick="event.stopPropagation(); openProjectModal('elibrary')">View More ↗</button>
       </div>
       <div class="project-arrow">↗</div>
     </div>
@@ -2761,7 +2781,7 @@
       <div class="project-actions-row">
         <button class="btn-activate-theme" onclick="event.stopPropagation(); applyThemeStyle('cells')">🧬 Crimson Palette</button>
         <a href="https://github.com/Jnanesh321/Cells-Ams" target="_blank" rel="noopener noreferrer" class="card-gh-link" onclick="event.stopPropagation()">🐙 GitHub ↗</a>
-        <span class="project-click-hint">⚡ View Specs ↗</span>
+        <button type="button" class="btn-view-more" onclick="event.stopPropagation(); openProjectModal('cells')">View More ↗</button>
       </div>
       <div class="project-arrow">↗</div>
     </div>
@@ -2778,7 +2798,7 @@
         <button class="btn-activate-theme" onclick="event.stopPropagation(); applyThemeStyle('minecraft')">⛏️ Minecraft Overhaul</button>
         <a href="https://github.com/Jnanesh321/upgraded-octo-chainsaw" target="_blank" rel="noopener noreferrer" class="card-gh-link" onclick="event.stopPropagation()" title="Pterodactyl AI Gateway">🐙 AI Gateway ↗</a>
         <a href="https://github.com/Jnanesh321/Demand-Balancer" target="_blank" rel="noopener noreferrer" class="card-gh-link" onclick="event.stopPropagation()" title="Demand Balancer Plugin">⛏️ Demand Balancer ↗</a>
-        <span class="project-click-hint">⚡ Specs ↗</span>
+        <button type="button" class="btn-view-more" onclick="event.stopPropagation(); openProjectModal('mgu')">View More ↗</button>
       </div>
       <div class="project-arrow">↗</div>
     </div>
@@ -2793,7 +2813,7 @@
       </div>
       <div class="project-actions-row">
         <a href="https://github.com/Jnanesh321/17-00" target="_blank" rel="noopener noreferrer" class="card-gh-link" onclick="event.stopPropagation()">🐙 GitHub ↗</a>
-        <span class="project-click-hint">⚡ View Specs ↗</span>
+        <button type="button" class="btn-view-more" onclick="event.stopPropagation(); openProjectModal('game1700')">View More ↗</button>
       </div>
       <div class="project-arrow">↗</div>
     </div>
