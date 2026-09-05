@@ -220,31 +220,159 @@
   }
   .section-title em { font-style: normal; color: var(--accent); }
 
-  /* ── ABOUT ── */
-  #about { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+  /* ── ABOUT: FULL-WIDTH IMMERSIVE WORKSTATION ── */
+  /* ── ABOUT: FULL-WIDTH IMMERSIVE WORKSTATION ── */
+  #about {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 100%;
+    margin: 0 auto;
+    width: 100%;
+    padding-left: clamp(1.25rem, 4vw, 3.5rem);
+    padding-right: clamp(1.25rem, 4vw, 3.5rem);
+  }
+  .about-intro-wrap {
+    max-width: 1300px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .about-top-grid {
+    display: grid;
+    grid-template-columns: 1.25fr 0.75fr;
+    gap: 3rem;
+    align-items: center;
+  }
+  .about-bio-col p {
+    color: var(--muted);
+    line-height: 1.8;
+    font-size: 0.98rem;
+    margin-bottom: 1rem;
+  }
+  .about-bio-col p strong { color: var(--text); }
+  .about-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.85rem;
+  }
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 1.1rem 1.2rem;
+    border-radius: 8px;
+    transition: all 0.25s ease;
+  }
+  .stat-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+  }
+  .stat-card .stat-num {
+    font-size: 1.85rem;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+    font-family: var(--font-display);
+  }
+  .stat-card .stat-label {
+    font-family: var(--font-mono);
+    font-size: 0.64rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-top: 0.4rem;
+  }
+
   .about-visual {
     position: relative;
     width: 100%;
-    max-width: 480px;
+    max-width: 100%;
   }
   .about-frame {
     width: 100%;
-    min-height: 480px;
-    max-height: 520px;
+    min-height: 550px;
+    max-height: 620px;
     border: 1px solid var(--border);
     background: var(--surface);
     display: flex;
     flex-direction: column;
-    padding: 1.25rem 1.4rem;
+    padding: 1.4rem 1.6rem;
     position: relative;
     clip-path: polygon(0 0, calc(100% - 24px) 0, 100% 24px, 100% 100%, 24px 100%, 0 calc(100% - 24px));
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 20px 40px -15px rgba(0,0,0,0.5);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 24px 48px -15px rgba(0,0,0,0.6);
     transition: all 0.3s ease;
     cursor: text;
   }
   .about-frame:hover, .about-frame:focus-within {
     border-color: var(--accent);
-    box-shadow: 0 14px 36px -10px rgba(0,0,0,0.6), inset 0 0 16px rgba(56,189,248,0.05);
+    box-shadow: 0 16px 42px -10px rgba(0,0,0,0.7), inset 0 0 20px rgba(56,189,248,0.06);
+  }
+
+  /* ── FULLSCREEN IMMERSION WORKSTATION MODE ── */
+  .about-frame.fullscreen-active {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    min-height: 100vh !important;
+    max-height: 100vh !important;
+    z-index: 99999 !important;
+    border-radius: 0 !important;
+    clip-path: none !important;
+    padding: 1.5rem 2.5rem !important;
+    background: #080c14 !important;
+    box-shadow: none !important;
+  }
+  .about-frame.fullscreen-active .about-terminal-body {
+    max-height: calc(100vh - 130px) !important;
+    height: calc(100vh - 130px) !important;
+    font-size: 0.85rem !important;
+  }
+  .about-frame.fullscreen-active .about-terminal-header {
+    padding-bottom: 1rem !important;
+    margin-bottom: 0.9rem !important;
+  }
+
+  .terminal-sys-status {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .term-expand-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border);
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    font-weight: 700;
+    padding: 0.2rem 0.65rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+  }
+  .term-expand-btn:hover {
+    background: var(--accent);
+    color: #090d13;
+    border-color: var(--accent);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(56, 189, 248, 0.3);
+  }
+  .sys-tag {
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+  @media (max-width: 768px) {
+    .sys-tag { display: none; }
   }
   .about-terminal-header {
     display: flex;
@@ -1600,6 +1728,228 @@
     --muted: #fecdd3 !important;
   }
 
+  /* ══════════════════════════════════════════════════════════════
+     THEME-SPECIFIC TORCH & ALTERNATE DAYLIGHT/OVERDRIVE MODES
+     ══════════════════════════════════════════════════════════════ */
+
+  /* 1. MINECRAFT DAYLIGHT & REDSTONE ACTIVE MODE */
+  html[data-theme-style="minecraft"][data-theme="light"] {
+    --accent: #15803d !important;
+    --accent2: #dc2626 !important;
+    --bg: #f2fbf4 !important;
+    --surface: #ffffff !important;
+    --border: #22c55e !important;
+    --text: #14532d !important;
+    --muted: #166534 !important;
+  }
+  html[data-theme-style="minecraft"][data-theme="light"] body {
+    background-color: #f2fbf4 !important;
+    background-image:
+      linear-gradient(rgba(34, 197, 94, 0.08) 2px, transparent 2px),
+      linear-gradient(90deg, rgba(34, 197, 94, 0.08) 2px, transparent 2px) !important;
+    background-size: 32px 32px !important;
+  }
+  html[data-theme-style="minecraft"][data-theme="light"] nav {
+    background: rgba(242, 251, 244, 0.94) !important;
+    border-bottom: 2px solid #22c55e !important;
+  }
+  html[data-theme-style="minecraft"][data-theme="light"] .hero-name {
+    text-shadow: 3px 3px 0 #86efac, 6px 6px 0 #4ade80 !important;
+    color: #14532d !important;
+  }
+  html[data-theme-style="minecraft"][data-theme="light"] .hero-name .line2 {
+    -webkit-text-stroke: 1.5px #15803d !important;
+    color: #166534 !important;
+  }
+  html[data-theme-style="minecraft"][data-theme="light"] .btn,
+  html[data-theme-style="minecraft"][data-theme="light"] .project-card,
+  html[data-theme-style="minecraft"][data-theme="light"] .torch-btn,
+  html[data-theme-style="minecraft"][data-theme="light"] .universe-pill,
+  html[data-theme-style="minecraft"][data-theme="light"] .modal-container {
+    border: 3px solid #22c55e !important;
+    box-shadow: inset -3px -3px 0 #dcfce7, inset 3px 3px 0 #15803d, 0 6px 0 #166534 !important;
+    background: #ffffff !important;
+  }
+  html[data-theme-style="minecraft"][data-theme="light"] .project-card:hover {
+    box-shadow: inset -3px -3px 0 #dcfce7, inset 3px 3px 0 #15803d, 0 8px 0 #166534 !important;
+  }
+  html[data-theme-style="minecraft"][data-theme="light"] .tech-pill {
+    border: 1.5px solid #15803d !important;
+    background: #dcfce7 !important;
+    color: #14532d !important;
+  }
+  html[data-theme-style="minecraft"][data-theme="light"] .torch-active {
+    background: #ffffff !important;
+    border-color: #ef4444 !important;
+    box-shadow: inset -3px -3px 0 #fee2e2, inset 3px 3px 0 #b91c1c, 0 0 16px rgba(239, 68, 68, 0.4) !important;
+  }
+  html[data-theme-style="minecraft"][data-theme="light"] .about-frame {
+    background: #152215 !important;
+    border: 3px solid #22c55e !important;
+    box-shadow: inset -3px -3px 0 #0d170d, inset 3px 3px 0 #4ade80, 0 6px 0 #166534 !important;
+  }
+
+  /* 2. AGRICULTURE GOLDEN SUN HARVEST MODE */
+  html[data-theme-style="agriculture"][data-theme="light"] {
+    --accent: #059669 !important;
+    --accent2: #d97706 !important;
+    --bg: #fdfdf0 !important;
+    --surface: #ffffff !important;
+    --border: rgba(5, 150, 105, 0.22) !important;
+    --text: #064e3b !important;
+    --muted: #15803d !important;
+  }
+  html[data-theme-style="agriculture"][data-theme="light"] body {
+    background-color: #fdfdf0 !important;
+    background-image:
+      radial-gradient(circle at 10% 20%, rgba(245, 158, 11, 0.12) 0%, transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 40%),
+      linear-gradient(rgba(5, 150, 105, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(5, 150, 105, 0.05) 1px, transparent 1px) !important;
+    background-size: auto, auto, 40px 40px, 40px 40px !important;
+  }
+  html[data-theme-style="agriculture"][data-theme="light"] nav {
+    background: rgba(253, 253, 240, 0.92) !important;
+    border-bottom-color: rgba(5, 150, 105, 0.2) !important;
+  }
+  html[data-theme-style="agriculture"][data-theme="light"] .hero-name .line2 {
+    -webkit-text-stroke: 1.5px rgba(6, 78, 59, 0.35) !important;
+  }
+  html[data-theme-style="agriculture"][data-theme="light"] .project-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%) !important;
+    border-color: rgba(5, 150, 105, 0.25) !important;
+    box-shadow: 0 8px 24px rgba(5, 150, 105, 0.08) !important;
+  }
+  html[data-theme-style="agriculture"][data-theme="light"] .project-card:hover {
+    border-color: #059669 !important;
+    box-shadow: 0 16px 36px rgba(5, 150, 105, 0.18) !important;
+  }
+  html[data-theme-style="agriculture"][data-theme="light"] .stat-card,
+  html[data-theme-style="agriculture"][data-theme="light"] .skill-card,
+  html[data-theme-style="agriculture"][data-theme="light"] .timeline-item {
+    background: #ffffff !important;
+  }
+  html[data-theme-style="agriculture"][data-theme="light"] .about-frame {
+    background: #081d15 !important;
+    border-color: #10b981 !important;
+  }
+
+  /* 3. CYBER OPTIC OVERDRIVE & QUANTUM LAB MODE */
+  html[data-theme-style="cyber"][data-theme="light"] {
+    --accent: #4f46e5 !important;
+    --accent2: #7c3aed !important;
+    --bg: #f6f5ff !important;
+    --surface: #ffffff !important;
+    --border: rgba(79, 70, 229, 0.25) !important;
+    --text: #1e1b4b !important;
+    --muted: #4338ca !important;
+  }
+  html[data-theme-style="cyber"][data-theme="light"] body {
+    background-color: #f6f5ff !important;
+    background-image:
+      linear-gradient(rgba(79, 70, 229, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(79, 70, 229, 0.06) 1px, transparent 1px) !important;
+    background-size: 50px 50px !important;
+  }
+  html[data-theme-style="cyber"][data-theme="light"] nav {
+    background: rgba(246, 245, 255, 0.92) !important;
+    border-bottom-color: rgba(79, 70, 229, 0.2) !important;
+  }
+  html[data-theme-style="cyber"][data-theme="light"] .hero-name .line2 {
+    -webkit-text-stroke: 1.5px rgba(30, 27, 75, 0.35) !important;
+  }
+  html[data-theme-style="cyber"][data-theme="light"] .project-card {
+    background: #ffffff !important;
+    border-color: rgba(79, 70, 229, 0.22) !important;
+    box-shadow: 0 6px 24px rgba(99, 102, 241, 0.09) !important;
+  }
+  html[data-theme-style="cyber"][data-theme="light"] .project-card:hover {
+    border-color: #4f46e5 !important;
+    box-shadow: 0 16px 36px rgba(79, 70, 229, 0.18) !important;
+  }
+  html[data-theme-style="cyber"][data-theme="light"] .about-frame {
+    background: #0b0d24 !important;
+    border-color: #6366f1 !important;
+  }
+
+  /* 4. E-LIBRARY ILLUMINATED GRAND READING HALL MODE */
+  html[data-theme-style="elibrary"][data-theme="light"] {
+    --accent: #0891b2 !important;
+    --accent2: #2563eb !important;
+    --bg: #f0fdfa !important;
+    --surface: #ffffff !important;
+    --border: rgba(8, 145, 178, 0.25) !important;
+    --text: #083344 !important;
+    --muted: #155e75 !important;
+  }
+  html[data-theme-style="elibrary"][data-theme="light"] body {
+    background-color: #f0fdfa !important;
+    background-image:
+      radial-gradient(circle at 50% 0%, rgba(8, 145, 178, 0.08) 0%, transparent 50%),
+      linear-gradient(rgba(8, 145, 178, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(8, 145, 178, 0.04) 1px, transparent 1px) !important;
+    background-size: auto, 45px 45px, 45px 45px !important;
+  }
+  html[data-theme-style="elibrary"][data-theme="light"] nav {
+    background: rgba(240, 253, 250, 0.92) !important;
+    border-bottom-color: rgba(8, 145, 178, 0.2) !important;
+  }
+  html[data-theme-style="elibrary"][data-theme="light"] .hero-name .line2 {
+    -webkit-text-stroke: 1.5px rgba(8, 51, 68, 0.35) !important;
+  }
+  html[data-theme-style="elibrary"][data-theme="light"] .project-card {
+    background: #ffffff !important;
+    border-color: rgba(8, 145, 178, 0.22) !important;
+    box-shadow: 0 6px 24px rgba(6, 182, 212, 0.09) !important;
+  }
+  html[data-theme-style="elibrary"][data-theme="light"] .project-card:hover {
+    border-color: #0891b2 !important;
+    box-shadow: 0 16px 36px rgba(8, 145, 178, 0.18) !important;
+  }
+  html[data-theme-style="elibrary"][data-theme="light"] .about-frame {
+    background: #041824 !important;
+    border-color: #06b6d4 !important;
+  }
+
+  /* 5. CELLS AMS FLUORESCENT UV BIO-SCANNER MODE */
+  html[data-theme-style="cells"][data-theme="light"] {
+    --accent: #e11d48 !important;
+    --accent2: #be123c !important;
+    --bg: #fff1f2 !important;
+    --surface: #ffffff !important;
+    --border: rgba(225, 29, 72, 0.25) !important;
+    --text: #4c0519 !important;
+    --muted: #881337 !important;
+  }
+  html[data-theme-style="cells"][data-theme="light"] body {
+    background-color: #fff1f2 !important;
+    background-image:
+      radial-gradient(circle at 80% 20%, rgba(225, 29, 72, 0.08) 0%, transparent 40%),
+      linear-gradient(rgba(225, 29, 72, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(225, 29, 72, 0.04) 1px, transparent 1px) !important;
+    background-size: auto, 45px 45px, 45px 45px !important;
+  }
+  html[data-theme-style="cells"][data-theme="light"] nav {
+    background: rgba(255, 241, 242, 0.92) !important;
+    border-bottom-color: rgba(225, 29, 72, 0.2) !important;
+  }
+  html[data-theme-style="cells"][data-theme="light"] .hero-name .line2 {
+    -webkit-text-stroke: 1.5px rgba(76, 5, 25, 0.35) !important;
+  }
+  html[data-theme-style="cells"][data-theme="light"] .project-card {
+    background: #ffffff !important;
+    border-color: rgba(225, 29, 72, 0.22) !important;
+    box-shadow: 0 6px 24px rgba(244, 63, 94, 0.09) !important;
+  }
+  html[data-theme-style="cells"][data-theme="light"] .project-card:hover {
+    border-color: #e11d48 !important;
+    box-shadow: 0 16px 36px rgba(225, 29, 72, 0.18) !important;
+  }
+  html[data-theme-style="cells"][data-theme="light"] .about-frame {
+    background: #1c0b10 !important;
+    border-color: #f43f5e !important;
+  }
+
   /* ── THEME UNIVERSE SWITCHER BAR ── */
   .theme-universe-bar {
     display: flex;
@@ -1894,22 +2244,49 @@
 
 <!-- ABOUT -->
 <section id="about">
+  <div class="about-intro-wrap">
+    <div class="section-label">Profile &amp; Interactive Shell</div>
+    <div class="about-top-grid">
+      <div class="about-bio-col">
+        <h2 class="section-title reveal">Who I <em>Am</em></h2>
+        <p class="reveal reveal-delay-1">I'm <strong>Jnanesh Sharma H.</strong>, a Computer Science Engineering student (3rd Year, VCET &mdash; affiliated with VTU) with a 7.4 CGPA. I specialize in backend development, scalable REST services, and resilient community-scale platform management.</p>
+        <p class="reveal reveal-delay-2">My experience spans from engineering production backends &mdash; such as implementing hardened JWT authentication and building a Firebase Cloud Messaging (FCM) notification service during my software internship at Akanksha Charitable Trust &mdash; to managing gaming communities and server infrastructure on MGU.One, and designing peer-to-peer agricultural rental systems.</p>
+      </div>
+      <div class="about-stats-col reveal reveal-delay-2">
+        <div class="about-stats-grid">
+          <div class="stat-card"><div class="stat-num">3rd</div><div class="stat-label">Year B.E. CS (VCET VTU)</div></div>
+          <div class="stat-card"><div class="stat-num">7.4</div><div class="stat-label">Cumulative CGPA</div></div>
+          <div class="stat-card"><div class="stat-num">10+</div><div class="stat-label">Projects &amp; Repos</div></div>
+          <div class="stat-card"><div class="stat-num">50+</div><div class="stat-label">LeetCode Solved</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FULL-WIDTH IMMERSIVE TERMINAL WORKSTATION -->
   <div class="about-visual reveal">
     <div class="about-frame" title="Click to interact with Jnanesh's Terminal!" id="about-terminal-card" onclick="focusTermInput()">
       <div class="about-terminal-header">
         <div class="terminal-dots">
-          <span class="terminal-dot dot-red" title="Clear terminal" onclick="event.stopPropagation(); executeTermCommand('clear')"></span>
-          <span class="terminal-dot dot-yellow" title="Show commands" onclick="event.stopPropagation(); executeTermCommand('help')"></span>
-          <span class="terminal-dot dot-green" title="Matrix Mode" onclick="event.stopPropagation(); executeTermCommand('matrix')"></span>
+          <span class="terminal-dot dot-red" title="Clear terminal screen" onclick="event.stopPropagation(); executeTermCommand('clear')"></span>
+          <span class="terminal-dot dot-yellow" title="Show available commands" onclick="event.stopPropagation(); executeTermCommand('help')"></span>
+          <span class="terminal-dot dot-green" title="Toggle Fullscreen Immersion" onclick="event.stopPropagation(); toggleTermFullscreen()"></span>
         </div>
-        <span class="terminal-title">bash: jnanesh@vcet:~</span>
-        <span class="terminal-live-badge">INTERACTIVE CLI</span>
+        <span class="terminal-title">bash: jnanesh@vcet-workstation: ~/workspace/portfolio (main)</span>
+        <div class="terminal-sys-status">
+          <button type="button" class="term-expand-btn" id="term-expand-btn" onclick="event.stopPropagation(); toggleTermFullscreen()" title="Toggle Fullscreen Immersion">⛶ Fullscreen</button>
+          <span class="sys-tag">Node v20.x</span>
+          <span class="sys-tag">Express API Online</span>
+          <span class="sys-tag">India 🇮🇳</span>
+          <span class="terminal-live-badge">INTERACTIVE CLI</span>
+        </div>
       </div>
 
       <!-- Quick Auto-Fill Suggestion Chips -->
       <div class="terminal-suggestions-bar">
         <span class="sugg-label">⚡ Try:</span>
         <button type="button" class="sugg-chip" onclick="event.stopPropagation(); executeTermCommand('help')">help</button>
+        <button type="button" class="sugg-chip" onclick="event.stopPropagation(); executeTermCommand('fullscreen')">fullscreen</button>
         <button type="button" class="sugg-chip" onclick="event.stopPropagation(); executeTermCommand('projects')">projects</button>
         <button type="button" class="sugg-chip" onclick="event.stopPropagation(); executeTermCommand('github')">github</button>
         <button type="button" class="sugg-chip" onclick="event.stopPropagation(); executeTermCommand('skills')">skills</button>
@@ -1929,19 +2306,19 @@
             <span class="term-brace">{</span><br>
             &nbsp;&nbsp;<span class="term-key">"name"</span>: <span class="term-str">"Jnanesh Sharma H."</span>,<br>
             &nbsp;&nbsp;<span class="term-key">"role"</span>: <span class="term-str">"Backend &amp; Systems Engineer"</span>,<br>
-            &nbsp;&nbsp;<span class="term-key">"education"</span>: <span class="term-str">"VCET (VTU) · 3rd Year"</span>,<br>
+            &nbsp;&nbsp;<span class="term-key">"education"</span>: <span class="term-str">"VCET (VTU) · 3rd Year Computer Science"</span>,<br>
             &nbsp;&nbsp;<span class="term-key">"cgpa"</span>: <span class="term-num">7.4</span>,<br>
-            &nbsp;&nbsp;<span class="term-key">"focus"</span>: <span class="term-str">"Scalable APIs &amp; Distributed Systems"</span>,<br>
-            &nbsp;&nbsp;<span class="term-key">"stack"</span>: [<span class="term-str">"Node"</span>, <span class="term-str">"Express"</span>, <span class="term-str">"C++"</span>, <span class="term-str">"Java"</span>],<br>
-            &nbsp;&nbsp;<span class="term-key">"status"</span>: <span class="term-accent">"Open for Internships"</span><br>
+            &nbsp;&nbsp;<span class="term-key">"focus"</span>: <span class="term-str">"Scalable APIs, JWT Hardening &amp; Distributed Platforms"</span>,<br>
+            &nbsp;&nbsp;<span class="term-key">"stack"</span>: [<span class="term-str">"Node.js"</span>, <span class="term-str">"Express"</span>, <span class="term-str">"C++"</span>, <span class="term-str">"Java 17"</span>, <span class="term-str">"MongoDB"</span>],<br>
+            &nbsp;&nbsp;<span class="term-key">"status"</span>: <span class="term-accent">"Available for Backend Software Internships"</span><br>
             <span class="term-brace">}</span>
           </div>
-          <div class="term-hint-msg">💡 <em>Click anywhere below to type. Press <strong>Tab</strong> to auto-fill, or click chips above.</em></div>
+          <div class="term-hint-msg">💡 <em>Full-width Interactive Workstation Shell. Click anywhere inside to type. Press <strong>Tab</strong> to autocomplete commands.</em></div>
         </div>
 
         <!-- Active Input Line with Real Command Execution -->
         <div class="term-input-row" id="term-input-row" onclick="event.stopPropagation()">
-          <span class="term-prompt">jnanesh@vcet:~$</span>
+          <span class="term-prompt">jnanesh@vcet-workstation:~$</span>
           <input type="text" id="term-cli-input" class="term-cli-input" placeholder="type 'help' or press Tab..." autocomplete="off" spellcheck="false" />
           <div id="term-autocomplete-hint" class="term-autocomplete-hint"></div>
         </div>
@@ -1950,20 +2327,6 @@
       <div class="about-corner tr"></div>
       <div class="about-corner bl"></div>
       <div class="about-corner br"></div>
-    </div>
-    <div class="about-tag age">// VCET · 3rd Year</div>
-    <div class="about-tag loc">⚡ Backend &amp; Distributed</div>
-  </div>
-  <div class="about-text">
-    <div class="section-label">About Me</div>
-    <h2 class="section-title reveal">Who I <em>Am</em></h2>
-    <p class="reveal reveal-delay-1">I'm <strong>Jnanesh Sharma H.</strong>, a Computer Science Engineering student (3rd Year, VCET &mdash; affiliated with VTU) with a 7.4 CGPA. I specialize in backend development, scalable REST services, and community-scale platform management.</p>
-    <p class="reveal reveal-delay-2">My experience spans from engineering production backends &mdash; such as implementing hardened JWT authentication and building a Firebase Cloud Messaging (FCM) notification service during my software internship at Akanksha Charitable Trust &mdash; to managing gaming communities and server infrastructure on MGU.One, and previously leading creative production at WeMod.</p>
-    <p class="reveal reveal-delay-3">Currently designing peer-to-peer agricultural equipment platforms, architecting modular Express micro-routes, and tackling algorithmic challenges on LeetCode. Always open to backend software internships and high-impact collaborative engineering.</p>
-    <div class="about-stats reveal">
-      <div class="stat"><div class="stat-num">3rd</div><div class="stat-label">Year B.E. CS</div></div>
-      <div class="stat"><div class="stat-num">7.4</div><div class="stat-label">CGPA</div></div>
-      <div class="stat"><div class="stat-num">10+</div><div class="stat-label">Projects &amp; Systems</div></div>
     </div>
   </div>
 </section>
@@ -2350,7 +2713,7 @@ const termCard = document.getElementById('about-terminal-card');
 
 const termCommandList = [
   'help', 'profile', 'skills', 'projects', 'project 1', 'project 2', 'project 3', 'project 4', 'project 5',
-  'contact', 'resume', 'clear', 'torch', 'matrix', 'easteregg', 'sudo', 'sudo rm -rf /',
+  'contact', 'resume', 'fullscreen', 'clear', 'torch', 'matrix', 'easteregg', 'sudo', 'sudo rm -rf /',
   'whoami', 'uname -a', 'coffee', 'tea', 'minecraft', 'ls', 'cat secret.txt', 'date', 'git status', 'exit'
 ];
 
@@ -2359,6 +2722,20 @@ let termHistoryIdx = -1;
 
 function focusTermInput() {
   if (termInput) termInput.focus();
+}
+
+function toggleTermFullscreen() {
+  if (!termCard) return;
+  const isFull = termCard.classList.toggle('fullscreen-active');
+  const btn = document.getElementById('term-expand-btn');
+  if (btn) {
+    btn.innerHTML = isFull ? '✕ Exit Fullscreen' : '⛶ Fullscreen';
+    btn.style.color = isFull ? '#ef4444' : 'var(--accent)';
+    btn.style.borderColor = isFull ? '#ef4444' : 'var(--border)';
+  }
+  if (isFull) {
+    focusTermInput();
+  }
 }
 
 function executeTermCommand(rawCmd) {
@@ -2391,6 +2768,7 @@ function executeTermCommand(rawCmd) {
       <div class="term-success">⚡ Jnanesh Sharma H. &mdash; Interactive Bash Terminal</div>
       <div class="term-muted">Available commands:</div>
       <div style="display:grid;grid-template-columns:auto 1fr;gap:4px 14px;margin-top:4px;">
+        <span class="term-key">fullscreen</span><span class="term-muted">Fill the entire monitor with the terminal (immersive mode)</span>
         <span class="term-key">profile</span><span class="term-muted">View developer profile JSON</span>
         <span class="term-key">skills</span><span class="term-muted">View technical stack &amp; skill matrix</span>
         <span class="term-key">projects</span><span class="term-muted">List all 5 architecture projects</span>
@@ -2399,7 +2777,7 @@ function executeTermCommand(rawCmd) {
         <span class="term-key">resume</span><span class="term-muted">Open printable technical resume (/resume)</span>
         <span class="term-key">torch</span><span class="term-muted">Strike the cave torch (toggle dark/light)</span>
         <span class="term-key">matrix</span><span class="term-muted">Toggle hacker green Matrix terminal mode</span>
-        <span class="term-key">theme &lt;name&gt;</span><span class="term-muted">Activate theme (obsidian, agri, minecraft, cyber)</span>
+        <span class="term-key">theme &lt;name&gt;</span><span class="term-muted">Activate theme (obsidian, agri, minecraft, cyber, elibrary, cells)</span>
         <span class="term-key">easteregg</span><span class="term-muted">Discover secret easter egg commands</span>
         <span class="term-key">clear</span><span class="term-muted">Clear terminal history screen</span>
       </div>
@@ -2481,6 +2859,12 @@ function executeTermCommand(rawCmd) {
     output.innerHTML = `<span class="term-easteregg">🔥 Striking cave torch! Toggling mode...</span>`;
     const btn = document.getElementById('torch-btn');
     if (btn) btn.click();
+  } else if (lower === 'fullscreen' || lower === 'expand' || lower === 'wide') {
+    toggleTermFullscreen();
+    const isFull = termCard.classList.contains('fullscreen-active');
+    output.innerHTML = isFull
+      ? `<span class="term-success">⛶ Workstation FULLSCREEN IMMERSION active. Monitor filled edge-to-edge! Press <strong style="color:var(--accent);">ESC</strong> or click 'Exit Fullscreen' to restore.</span>`
+      : `<span class="term-muted">⛶ Restored to inline workstation view.</span>`;
   } else if (lower === 'matrix') {
     termCard.classList.toggle('matrix-active');
     const isActive = termCard.classList.contains('matrix-active');
@@ -2672,7 +3056,7 @@ window.addEventListener('scroll', () => {
   document.querySelector('nav').style.padding = window.scrollY > 80 ? '0.9rem 4rem' : '1.5rem 4rem';
 });
 
-// ── Torch Dark/Light Mode with Banter ──
+// ── Universe-Aware Torch & Alternate Daylight Modes Engine ──
 const torchBtn = document.getElementById('torch-btn');
 const torchImg = document.getElementById('torch-img');
 const torchLabel = document.getElementById('torch-label');
@@ -2681,21 +3065,160 @@ const torchBanter = document.getElementById('torch-banter');
 const banterText = document.getElementById('banter-text');
 const banterMode = document.getElementById('banter-mode');
 
-const darkBanter = [
-  "🔥 AHH! Who turned on the sun?! My dev eyes!",
-  "☀️ Blinded by the light! Welcome to day-shift mode.",
-  "✨ Torch ignited! Coding outside the terminal?!",
-  "🔥 Warning: Light mode active! Don't stare directly!",
-  "🔦 The torch burns bright! Cave explored!"
-];
-
-const lightReturnBanter = [
-  "💨 *Puff* Extinguished. Back to the dev cave! 🦇",
-  "🌑 Ahhh, sweet darkness returns. Hello terminal!",
-  "🦇 Back into the shadows where the real bugs hide.",
-  "🕶️ Retinas saved. Darkness restored.",
-  "💨 Torch put out. Midnight coding commences."
-];
+const themeTorchConfig = {
+  default: {
+    darkLabel: 'Torch Off',
+    lightLabel: 'Torch Lit',
+    darkDot: '#64748b',
+    lightDot: '#f59e0b',
+    darkIcon: '/assets/torch-off.svg',
+    lightIcon: '/assets/torch.svg',
+    hoverDark: "It's dark in here... click the torch to light up! 🔦",
+    hoverLight: "Torch is blazing! Click to extinguish & go dark 💨",
+    darkBadge: "Dark Mode Restored",
+    lightBadge: "Torch Lit",
+    lightBanter: [
+      "🔥 AHH! Who turned on the sun?! My dev eyes!",
+      "☀️ Blinded by the light! Welcome to day-shift mode.",
+      "✨ Torch ignited! Coding outside the terminal?!",
+      "🔥 Warning: Light mode active! Don't stare directly!",
+      "🔦 The torch burns bright! Cave explored!"
+    ],
+    darkBanter: [
+      "💨 *Puff* Extinguished. Back to the dev cave! 🦇",
+      "🌑 Ahhh, sweet darkness returns. Hello terminal!",
+      "🦇 Back into the shadows where the real bugs hide.",
+      "🕶️ Retinas saved. Darkness restored.",
+      "💨 Torch put out. Midnight coding commences."
+    ]
+  },
+  minecraft: {
+    darkLabel: 'Redstone OFF ⛏️',
+    lightLabel: 'Redstone ON ⚡',
+    darkDot: '#3f8e3f',
+    lightDot: '#ef4444',
+    darkIcon: '/assets/torch-off.svg',
+    lightIcon: '/assets/torch.svg',
+    hoverDark: "Deepslate dark... Click to energize Redstone current! ⚡",
+    hoverLight: "Redstone circuit energized! Click to cut the power ⛏️",
+    darkBadge: "Deepslate Mines",
+    lightBadge: "Redstone Current Active",
+    lightBanter: [
+      "⚡ REDSTONE POWERED! Daylight sensor activated at Level 15 luminance!",
+      "☀️ Overworld Sunrise! Creepers are starting to sizzle in the sun!",
+      "🔥 Redstone torch placed! Automatic iron farm operating at max efficiency!",
+      "✨ Piston gate triggered! Diamond armor gleaming in the sunlight!",
+      "⚡ Power surge! AIBridge neural gateway fully illuminated!"
+    ],
+    darkBanter: [
+      "🌑 Nightfall in the Overworld! Skeletons in the forest... get to the shelter!",
+      "⛏️ Descending into the deepslate caves. Keep your diamond sword ready!",
+      "💨 Redstone current broken. Nether dark restored.",
+      "🦇 Returning to bedrock layer. Watch out for the Warden!",
+      "🌑 Torches quenched. Total cave darkness engages."
+    ]
+  },
+  agriculture: {
+    darkLabel: 'Night Dew 🌙',
+    lightLabel: 'Golden Sun ☀️',
+    darkDot: '#10b981',
+    lightDot: '#f59e0b',
+    darkIcon: '/assets/torch-off.svg',
+    lightIcon: '/assets/torch.svg',
+    hoverDark: "Night mist on the fields... Click for Golden Sun morning! ☀️",
+    hoverLight: "Sun high over Payaswini! Click for night irrigation mist 🌙",
+    darkBadge: "Night Dew Irrigation",
+    lightBadge: "Golden Sun Harvest",
+    lightBanter: [
+      "☀️ Golden morning sun on the Payaswini fields! Harvest time!",
+      "🌾 Sunlight breaking through! Solar telemetry reading 100% capacity!",
+      "🚜 Obele tractor fleet rolling out under warm golden daylight!",
+      "🌻 Crops drinking up the rays! Soil moisture sensors optimal!",
+      "✨ Golden hour across the plantation! Agricultural dashboard active."
+    ],
+    darkBanter: [
+      "🌙 Evening mist descending on the fields. Automated drip irrigation active.",
+      "🦗 Crickets chirping over the harvest fields. Night canopy chill engaged.",
+      "💧 Night dew forming on the leaves. Moisture telemetry in power-save mode.",
+      "🌾 Field floodlights dimmed. Payaswini farmers resting for tomorrow's harvest."
+    ]
+  },
+  cyber: {
+    darkLabel: 'Stealth Recon 🕶️',
+    lightLabel: 'Neon Overdrive ⚡',
+    darkDot: '#6366f1',
+    lightDot: '#00f2fe',
+    darkIcon: '/assets/torch-off.svg',
+    lightIcon: '/assets/torch.svg',
+    hoverDark: "Stealth darknet... Click for Neon Overdrive lasers! ⚡",
+    hoverLight: "Neon lasers blazing! Click to cloak back to stealth 🕶️",
+    darkBadge: "Stealth Cloak",
+    lightBadge: "Neon Overdrive 10GHz",
+    lightBanter: [
+      "⚡ NEON OVERDRIVE INITIATED! Quantum optic lasers at 100% output!",
+      "🔮 Synthwave grid illuminated! Codex neural firewalls glowing violet!",
+      "🌐 Photonic matrix online! 100,000 packets per nanosecond decrypted!",
+      "⚡ High-frequency neon bypass active! Cleanroom telemetry streaming!",
+      "✨ Optical overclock engaged! Retinal scanners running full power!"
+    ],
+    darkBanter: [
+      "🕶️ Cloaking field engaged. Vanishing into the encrypted darknet...",
+      "🖤 Zero-trace stealth mode restored. Packet sniffing undetected.",
+      "🕶️ Neon emitters powered down. Back behind the shadow proxy.",
+      "🌌 Quantum stealth active. The grid returns to silent operation."
+    ]
+  },
+  elibrary: {
+    darkLabel: 'Midnight Study 🕯️',
+    lightLabel: 'Desk Lamp Lit 💡',
+    darkDot: '#06b6d4',
+    lightDot: '#38bdf8',
+    darkIcon: '/assets/torch-off.svg',
+    lightIcon: '/assets/torch.svg',
+    hoverDark: "Quiet midnight stacks... Click to switch on the Desk Lamp! 💡",
+    hoverLight: "Reading Hall illuminated! Click to return to midnight study 🕯️",
+    darkBadge: "Midnight Archival",
+    lightBadge: "Reading Hall Illuminated",
+    lightBanter: [
+      "💡 Desk lamp switched ON! The Grand Reading Hall is fully illuminated!",
+      "📖 Sunlight streaming through library skylights! Digitize all records!",
+      "📚 Bright study session started. 10,000 engineering journals indexed!",
+      "✨ High-clarity illumination: VTU repository catalog open for research!",
+      "💡 Reading lights burning bright. Speed-reading through algorithms!"
+    ],
+    darkBanter: [
+      "🕯️ Desk lamp dimmed. The quiet midnight archival shift begins.",
+      "🌙 Whispering in the silent stacks... midnight study vibes restored.",
+      "🕯️ Flickering candlelight in the library archives. Silent reading mode.",
+      "📚 Night curfew in the library hall. Whispers and shadows only."
+    ]
+  },
+  cells: {
+    darkLabel: 'Dark Culture 🔬',
+    lightLabel: 'UV Scanner 🧬',
+    darkDot: '#f43f5e',
+    lightDot: '#fb7185',
+    darkIcon: '/assets/torch-off.svg',
+    lightIcon: '/assets/torch.svg',
+    hoverDark: "Culture trays in dark... Click to trigger UV Fluorescent Scanner! 🧬",
+    hoverLight: "UV lasers active! Click to return cultures to dark incubator 🔬",
+    darkBadge: "Dark Incubator",
+    lightBadge: "UV Fluorescence Active",
+    lightBanter: [
+      "🧬 UV BIO-SCANNER ACTIVATED! Fluorescent cell markers glowing brightly!",
+      "🔬 Cleanroom laminar flow active! Specimen telemetry under bright light!",
+      "💉 Microscopic fluorescence triggered! High-contrast tracking engaged!",
+      "✨ Bioluminescent reaction captured! Cell count increasing exponentially!",
+      "🧬 Full-spectrum photon analysis online! Antibody binding observed!"
+    ],
+    darkBanter: [
+      "🔬 Returning culture trays to dark incubator. Photosensitive cells safe.",
+      "🩸 UV lasers powered down. Night telemetry recording cellular kinetics.",
+      "🧫 Incubator door sealed. Ambient light reduced to zero lux.",
+      "🔬 Darkroom incubation restored. Cell colonies resting in the dark."
+    ]
+  }
+};
 
 let banterTimer = null;
 function showBanter(message, modeLabel) {
@@ -2706,6 +3229,46 @@ function showBanter(message, modeLabel) {
   banterTimer = setTimeout(() => {
     torchBanter.classList.remove('show');
   }, 4500);
+}
+
+function updateTorchThemeUI(showSpeech = false) {
+  if (!torchBtn) return;
+  const currentStyle = document.documentElement.getAttribute('data-theme-style') || 'default';
+  const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+  const cfg = themeTorchConfig[currentStyle] || themeTorchConfig['default'];
+  const isLight = (currentTheme === 'light');
+
+  if (isLight) {
+    torchBtn.classList.add('torch-active');
+    if (torchImg) {
+      torchImg.src = cfg.lightIcon;
+      torchImg.alt = cfg.lightLabel;
+    }
+    if (torchLabel) torchLabel.textContent = cfg.lightLabel;
+    if (torchDot) {
+      torchDot.style.background = cfg.lightDot;
+      torchDot.style.boxShadow = `0 0 8px ${cfg.lightDot}`;
+    }
+    if (showSpeech) {
+      const line = cfg.lightBanter[Math.floor(Math.random() * cfg.lightBanter.length)];
+      showBanter(line, cfg.lightBadge);
+    }
+  } else {
+    torchBtn.classList.remove('torch-active');
+    if (torchImg) {
+      torchImg.src = cfg.darkIcon;
+      torchImg.alt = cfg.darkLabel;
+    }
+    if (torchLabel) torchLabel.textContent = cfg.darkLabel;
+    if (torchDot) {
+      torchDot.style.background = cfg.darkDot;
+      torchDot.style.boxShadow = 'none';
+    }
+    if (showSpeech) {
+      const line = cfg.darkBanter[Math.floor(Math.random() * cfg.darkBanter.length)];
+      showBanter(line, cfg.darkBadge);
+    }
+  }
 }
 
 function initTorch() {
@@ -2719,12 +3282,14 @@ function initTorch() {
   });
 
   torchBtn.addEventListener('mouseenter', () => {
+    const currentStyle = document.documentElement.getAttribute('data-theme-style') || 'default';
     const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+    const cfg = themeTorchConfig[currentStyle] || themeTorchConfig['default'];
     if (!torchBanter.classList.contains('show')) {
       if (currentTheme === 'dark') {
-        showBanter("It's dark in here... click the torch to light up! 🔦", "Dark Mode");
+        showBanter(cfg.hoverDark, cfg.darkBadge);
       } else {
-        showBanter("Torch is blazing! Click to extinguish & go dark 💨", "Light Mode");
+        showBanter(cfg.hoverLight, cfg.lightBadge);
       }
     }
   });
@@ -2733,32 +3298,7 @@ function initTorch() {
 function applyTheme(theme, showSpeech) {
   document.documentElement.setAttribute('data-theme', theme);
   localStorage.setItem('jnanesh-portfolio-theme', theme);
-
-  if (theme === 'light') {
-    torchBtn.classList.add('torch-active');
-    if (torchImg) {
-      torchImg.src = '/assets/torch.svg';
-      torchImg.alt = 'Torch Lit';
-    }
-    torchLabel.textContent = 'Torch Lit';
-    torchDot.style.background = '#f59e0b';
-    if (showSpeech) {
-      const line = darkBanter[Math.floor(Math.random() * darkBanter.length)];
-      showBanter(line, "Light Mode Active");
-    }
-  } else {
-    torchBtn.classList.remove('torch-active');
-    if (torchImg) {
-      torchImg.src = '/assets/torch-off.svg';
-      torchImg.alt = 'Torch Off';
-    }
-    torchLabel.textContent = 'Torch Off';
-    torchDot.style.background = '#64748b';
-    if (showSpeech) {
-      const line = lightReturnBanter[Math.floor(Math.random() * lightReturnBanter.length)];
-      showBanter(line, "Dark Mode Restored");
-    }
-  }
+  updateTorchThemeUI(showSpeech);
 }
 initTorch();
 
@@ -2956,8 +3496,13 @@ modalBackdrop.addEventListener('click', e => {
   if (e.target === modalBackdrop) modalBackdrop.classList.remove('open');
 });
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && modalBackdrop.classList.contains('open')) {
-    modalBackdrop.classList.remove('open');
+  if (e.key === 'Escape') {
+    if (modalBackdrop && modalBackdrop.classList.contains('open')) {
+      modalBackdrop.classList.remove('open');
+    }
+    if (typeof termCard !== 'undefined' && termCard && termCard.classList.contains('fullscreen-active')) {
+      toggleTermFullscreen();
+    }
   }
 });
 
@@ -3002,6 +3547,11 @@ function applyThemeStyle(styleKey, showToast = true) {
   document.querySelectorAll('.universe-pill').forEach(pill => {
     pill.classList.toggle('active', pill.getAttribute('data-style') === (styleKey || 'default'));
   });
+
+  // Dynamically update torch mode, labels, dot color and banter for this universe
+  if (typeof updateTorchThemeUI === 'function') {
+    updateTorchThemeUI(false);
+  }
 
   if (showToast) {
     const isMinecraft = (styleKey === 'minecraft');
