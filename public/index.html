@@ -328,6 +328,19 @@
   }
 
   /* ── FULLSCREEN IMMERSION WORKSTATION MODE ── */
+  body.terminal-theater-active {
+    overflow: hidden !important;
+  }
+  body.terminal-theater-active #about,
+  body.terminal-theater-active .about-visual,
+  body.terminal-theater-active .about-intro-wrap {
+    transform: none !important;
+    filter: none !important;
+    perspective: none !important;
+  }
+
+  .about-frame:fullscreen,
+  .about-frame:-webkit-full-screen,
   .about-frame.fullscreen-active {
     position: fixed !important;
     top: 0 !important;
@@ -338,18 +351,23 @@
     height: 100vh !important;
     min-height: 100vh !important;
     max-height: 100vh !important;
-    z-index: 99999 !important;
+    z-index: 9999999 !important;
     border-radius: 0 !important;
     clip-path: none !important;
     padding: 1.5rem 2.5rem !important;
-    background: #080c14 !important;
+    background: #070a10 !important;
     box-shadow: none !important;
+    border: none !important;
   }
+  .about-frame:fullscreen .about-terminal-body,
+  .about-frame:-webkit-full-screen .about-terminal-body,
   .about-frame.fullscreen-active .about-terminal-body {
     max-height: calc(100vh - 130px) !important;
     height: calc(100vh - 130px) !important;
-    font-size: 0.85rem !important;
+    font-size: 0.88rem !important;
   }
+  .about-frame:fullscreen .about-terminal-header,
+  .about-frame:-webkit-full-screen .about-terminal-header,
   .about-frame.fullscreen-active .about-terminal-header {
     padding-bottom: 1rem !important;
     margin-bottom: 0.9rem !important;
@@ -359,27 +377,31 @@
     margin-left: auto;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
   }
   .term-expand-btn {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--border);
-    color: var(--accent);
+    background: rgba(56, 189, 248, 0.16) !important;
+    border: 1px solid rgba(56, 189, 248, 0.5) !important;
+    color: #38bdf8 !important;
     font-family: var(--font-mono);
-    font-size: 0.58rem;
-    font-weight: 700;
-    padding: 0.2rem 0.65rem;
+    font-size: 0.65rem !important;
+    font-weight: 700 !important;
+    padding: 0.32rem 0.85rem !important;
     border-radius: 4px;
     cursor: pointer;
     transition: all 0.2s ease;
     user-select: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.25);
   }
   .term-expand-btn:hover {
-    background: var(--accent);
-    color: #090d13;
-    border-color: var(--accent);
+    background: #38bdf8 !important;
+    color: #090d13 !important;
+    border-color: #38bdf8 !important;
     transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(56, 189, 248, 0.3);
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
   }
   .sys-tag {
     font-family: var(--font-mono);
@@ -660,7 +682,43 @@
   .skill-bar { height: 2px; background: var(--border); border-radius: 2px; overflow: hidden; }
   .skill-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent2)); border-radius: 2px; transform-origin: left; transform: scaleX(0); transition: transform 1s ease; }
   .skill-card:hover .skill-fill { transform: scaleX(1); }
-  .skill-level { font-family: var(--font-mono); font-size: 0.6rem; color: var(--accent); text-align: right; margin-top: 0.3rem; }
+  .skill-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.6rem;
+  }
+  .skill-level {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--muted);
+  }
+  .skill-pct-badge {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent);
+    background: rgba(56, 189, 248, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    padding: 0.18rem 0.55rem;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 1px;
+  }
+  .skill-pct-badge.skill-pct-mc {
+    color: #4ade80 !important;
+    background: rgba(74, 222, 128, 0.15) !important;
+    border-color: rgba(74, 222, 128, 0.4) !important;
+    box-shadow: 0 0 10px rgba(74, 222, 128, 0.2);
+  }
+  html[data-theme-style="minecraft"] .skill-pct-badge {
+    font-family: 'Press Start 2P', monospace !important;
+    font-size: 0.55rem !important;
+    border-radius: 0 !important;
+  }
 
   /* ── PROJECTS ── */
   #projects {}
@@ -1552,6 +1610,21 @@
     border-color: var(--accent);
     color: var(--accent);
     transform: translateY(-1px);
+  }
+  .card-gh-private {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: var(--muted);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 0.38rem 0.75rem;
+    border-radius: 6px;
+    user-select: none;
+    cursor: default;
   }
   .modal-section-title {
     font-family: var(--font-mono);
@@ -2449,7 +2522,7 @@
   </div>
 
   <!-- FULL-WIDTH IMMERSIVE TERMINAL WORKSTATION -->
-  <div class="about-visual reveal">
+  <div class="about-visual">
     <div class="about-frame" title="Click to interact with Jnanesh's Terminal!" id="about-terminal-card" onclick="focusTermInput()">
       <div class="about-terminal-header">
         <div class="terminal-dots">
@@ -2522,52 +2595,70 @@
   <h2 class="section-title reveal">What I <em>Know</em></h2>
   <div class="skills-grid">
 
-    <div class="skill-card reveal">
+    <div class="skill-card reveal" data-target-pct="68">
       <div class="skill-icon">⚡</div>
       <div class="skill-name">Languages</div>
       <div class="skill-desc">C++, C, JavaScript, Java, Python &mdash; writing clean, performant code across systems, backend web services, and algorithmic problem solving.</div>
-      <div class="skill-bar"><div class="skill-fill" style="--w:0.88"></div></div>
-      <div class="skill-level">Advanced</div>
+      <div class="skill-bar"><div class="skill-fill" style="--w:0.68"></div></div>
+      <div class="skill-meta">
+        <span class="skill-level">Advanced</span>
+        <span class="skill-pct-badge"><span class="pct-val">0</span>%</span>
+      </div>
     </div>
 
-    <div class="skill-card reveal reveal-delay-1">
+    <div class="skill-card reveal reveal-delay-1" data-target-pct="70">
       <div class="skill-icon">🌐</div>
       <div class="skill-name">Backend &amp; Web Dev</div>
       <div class="skill-desc">Node.js, Express.js, RESTful APIs, React, MongoDB (MERN). Modular controllers, request validation middleware, and token-based security.</div>
-      <div class="skill-bar"><div class="skill-fill" style="--w:0.85"></div></div>
-      <div class="skill-level">Advanced</div>
+      <div class="skill-bar"><div class="skill-fill" style="--w:0.70"></div></div>
+      <div class="skill-meta">
+        <span class="skill-level">Advanced</span>
+        <span class="skill-pct-badge"><span class="pct-val">0</span>%</span>
+      </div>
     </div>
 
-    <div class="skill-card reveal reveal-delay-2">
+    <div class="skill-card reveal reveal-delay-2" data-target-pct="65">
       <div class="skill-icon">🔒</div>
       <div class="skill-name">Auth &amp; Cloud Services</div>
       <div class="skill-desc">JWT authentication security, Firebase Cloud Messaging (FCM), Firestore indexing, and background schedulers for automated reminders.</div>
-      <div class="skill-bar"><div class="skill-fill" style="--w:0.82"></div></div>
-      <div class="skill-level">Intermediate–Advanced</div>
+      <div class="skill-bar"><div class="skill-fill" style="--w:0.65"></div></div>
+      <div class="skill-meta">
+        <span class="skill-level">Intermediate–Advanced</span>
+        <span class="skill-pct-badge"><span class="pct-val">0</span>%</span>
+      </div>
     </div>
 
-    <div class="skill-card reveal">
+    <div class="skill-card reveal" data-target-pct="68">
       <div class="skill-icon">🗄️</div>
       <div class="skill-name">Core Fundamentals</div>
       <div class="skill-desc">Data Structures &amp; Algorithms (DSA), Object-Oriented Programming (OOP), Database Management Systems (DBMS), LeetCode problem solving.</div>
-      <div class="skill-bar"><div class="skill-fill" style="--w:0.84"></div></div>
-      <div class="skill-level">Advanced</div>
+      <div class="skill-bar"><div class="skill-fill" style="--w:0.68"></div></div>
+      <div class="skill-meta">
+        <span class="skill-level">Advanced</span>
+        <span class="skill-pct-badge"><span class="pct-val">0</span>%</span>
+      </div>
     </div>
 
-    <div class="skill-card reveal reveal-delay-1">
+    <div class="skill-card reveal reveal-delay-1" data-target-pct="94">
       <div class="skill-icon">🧱</div>
       <div class="skill-name">Minecraft &amp; Systems</div>
       <div class="skill-desc">Paper/Spigot API, Demand Balancer ShopGUI, BWLava custom integrations, community operations, server moderation, and Linux hosting.</div>
-      <div class="skill-bar"><div class="skill-fill" style="--w:0.90"></div></div>
-      <div class="skill-level">Expert</div>
+      <div class="skill-bar"><div class="skill-fill" style="--w:0.94"></div></div>
+      <div class="skill-meta">
+        <span class="skill-level" style="color:#4ade80;">Mastery (Primary Focus)</span>
+        <span class="skill-pct-badge skill-pct-mc"><span class="pct-val">0</span>%</span>
+      </div>
     </div>
 
-    <div class="skill-card reveal reveal-delay-2">
+    <div class="skill-card reveal reveal-delay-2" data-target-pct="66">
       <div class="skill-icon">🔧</div>
       <div class="skill-name">Tools &amp; Version Control</div>
       <div class="skill-desc">Git, GitHub, Linux CLI, Bash, unit testing, Postman, and collaborative engineering workflows.</div>
-      <div class="skill-bar"><div class="skill-fill" style="--w:0.80"></div></div>
-      <div class="skill-level">Proficient</div>
+      <div class="skill-bar"><div class="skill-fill" style="--w:0.66"></div></div>
+      <div class="skill-meta">
+        <span class="skill-level">Proficient</span>
+        <span class="skill-pct-badge"><span class="pct-val">0</span>%</span>
+      </div>
     </div>
 
   </div>
@@ -2609,19 +2700,19 @@
 
     <div class="project-card featured reveal" data-project-id="obele">
       <div class="project-num"><span>01</span><span>★ Featured · AgriTech</span></div>
-      <div class="project-tag">🌾 Agricultural Web Platform (Payaswini)</div>
+      <div class="project-tag">🌾 National-Scale Farm-Tool Marketplace</div>
       <div class="project-title">O~Bele / Payaswini &mdash; Tool Rental Platform</div>
-      <div class="project-desc">A peer-to-peer agricultural equipment rental platform connecting farm machinery owners with smallholder operators across agricultural communities. Features verified certified-operator workflows with a 4-hour confirmation SLA, hourly/daily billing models, and a complete suite of agricultural equipment SVGs.</div>
+      <div class="project-desc">A national-scale farm-tool and equipment rental marketplace (Amazon / Zomato / Instamart-style UX) connecting machinery owners with smallholders and verified operators across agricultural regions. Kasaragod is its launch market, designed to treat every region and language as a first-class citizen. Features verified operator workflows with a 4-hour confirmation SLA.</div>
       <div class="project-tech">
         <span class="tech-pill">Node.js</span>
         <span class="tech-pill">Express.js</span>
         <span class="tech-pill">REST APIs</span>
         <span class="tech-pill">Agriculture SVGs</span>
-        <span class="tech-pill">Validation</span>
+        <span class="tech-pill">State Machine</span>
       </div>
       <div class="project-actions-row">
         <button class="btn-activate-theme" onclick="event.stopPropagation(); applyThemeStyle('agriculture')">🌾 Emerald Palette</button>
-        <a href="https://github.com/Jnanesh321/Payaswini-AgriTech" target="_blank" rel="noopener noreferrer" class="card-gh-link" onclick="event.stopPropagation()">🐙 GitHub ↗</a>
+        <a href="https://github.com/Jnanesh321/Payaswini-O-Bele" target="_blank" rel="noopener noreferrer" class="card-gh-link" onclick="event.stopPropagation()">🐙 GitHub ↗</a>
         <span class="project-click-hint">⚡ View Architecture Specs ↗</span>
       </div>
       <div class="project-arrow">↗</div>
@@ -2631,13 +2722,13 @@
       <div class="project-num"><span>02</span><span>Production Internship</span></div>
       <div class="project-tag">⚡ Backend Services &amp; Security</div>
       <div class="project-title">Codex Learning Platform Backend</div>
-      <div class="project-desc">Engineered backend enhancements at Akanksha Charitable Trust. Implemented hardened JWT security validation, built a Firebase Cloud Messaging (FCM) notification service with in-process streak reminders, and integrated gamification milestones.</div>
+      <div class="project-desc">Engineered production backend services at Akanksha Charitable Trust. Implemented hardened cryptographic JWT security validation against tampering, built an in-process Firebase Cloud Messaging (FCM) streak reminder scheduler, and optimized Firestore compound queries.</div>
       <div class="project-tech">
-        <span class="tech-pill">Node.js</span><span class="tech-pill">Firebase FCM</span><span class="tech-pill">JWT Auth</span><span class="tech-pill">Firestore</span><span class="tech-pill">Unit Tests</span>
+        <span class="tech-pill">Node.js</span><span class="tech-pill">Firebase FCM</span><span class="tech-pill">JWT Auth</span><span class="tech-pill">Firestore</span><span class="tech-pill">Jest Tests</span>
       </div>
       <div class="project-actions-row">
         <button class="btn-activate-theme" onclick="event.stopPropagation(); applyThemeStyle('cyber')">⚡ Violet Palette</button>
-        <a href="https://github.com/Jnanesh321/codex-backend" target="_blank" rel="noopener noreferrer" class="card-gh-link" onclick="event.stopPropagation()">🐙 GitHub ↗</a>
+        <span class="card-gh-private" onclick="event.stopPropagation()" title="Private Production Repository">🔒 Private Repo</span>
         <span class="project-click-hint">⚡ View Architecture Specs ↗</span>
       </div>
       <div class="project-arrow">↗</div>
@@ -2647,29 +2738,29 @@
       <div class="project-num"><span>03</span><span>MERN Platform</span></div>
       <div class="project-tag">📚 Academic Repository</div>
       <div class="project-title">E-Library Management System</div>
-      <div class="project-desc">Full-stack library management application. Built RESTful API routes with MongoDB for persistent catalog data, member borrowing records, and CRUD operations, structured with JSON middleware and modular Express controllers.</div>
+      <div class="project-desc">Full-stack library management application. Built RESTful API routes with MongoDB for persistent catalog data, member borrowing records, overdue penalty calculation, and CRUD operations, structured with JSON middleware and modular Express controllers.</div>
       <div class="project-tech">
         <span class="tech-pill">MongoDB</span><span class="tech-pill">Express.js</span><span class="tech-pill">React</span><span class="tech-pill">Node.js</span>
       </div>
       <div class="project-actions-row">
         <button class="btn-activate-theme" onclick="event.stopPropagation(); applyThemeStyle('elibrary')">📚 Cyan Palette</button>
-        <a href="https://github.com/Jnanesh321/E-Library-Management-System" target="_blank" rel="noopener noreferrer" class="card-gh-link" onclick="event.stopPropagation()">🐙 GitHub ↗</a>
+        <a href="https://github.com/Jnanesh321/E-Library-Management" target="_blank" rel="noopener noreferrer" class="card-gh-link" onclick="event.stopPropagation()">🐙 GitHub ↗</a>
         <span class="project-click-hint">⚡ View Architecture Specs ↗</span>
       </div>
       <div class="project-arrow">↗</div>
     </div>
 
     <div class="project-card small reveal" data-project-id="cells">
-      <div class="project-num"><span>04</span><span>In Progress</span></div>
-      <div class="project-tag">🧬 Attendance Systems</div>
-      <div class="project-title">Cells AMS &mdash; Attendance Management</div>
-      <div class="project-desc">Attendance management system for tracking member check-ins, record auditing, and administrative workflows with relational schemas and audit logging.</div>
+      <div class="project-num"><span>04</span><span>Android App · VCET</span></div>
+      <div class="project-tag">📱 Android &amp; Academic Monitoring</div>
+      <div class="project-title">Cells AMS &mdash; Android Application</div>
+      <div class="project-desc">Android application engineered for Cells VCET for academic monitoring, student attendance tracking, and statutory eligibility threshold reviews with immutable audit trails.</div>
       <div class="project-tech">
-        <span class="tech-pill">JavaScript</span><span class="tech-pill">Express.js</span><span class="tech-pill">DBMS</span>
+        <span class="tech-pill">Android</span><span class="tech-pill">Java/Kotlin</span><span class="tech-pill">Node.js</span><span class="tech-pill">Express.js</span>
       </div>
       <div class="project-actions-row">
         <button class="btn-activate-theme" onclick="event.stopPropagation(); applyThemeStyle('cells')">🧬 Crimson Palette</button>
-        <a href="https://github.com/Jnanesh321/Cells-AMS" target="_blank" rel="noopener noreferrer" class="card-gh-link" onclick="event.stopPropagation()">🐙 GitHub ↗</a>
+        <a href="https://github.com/Jnanesh321/Cells-Ams" target="_blank" rel="noopener noreferrer" class="card-gh-link" onclick="event.stopPropagation()">🐙 GitHub ↗</a>
         <span class="project-click-hint">⚡ View Specs ↗</span>
       </div>
       <div class="project-arrow">↗</div>
@@ -2677,16 +2768,32 @@
 
     <div class="project-card small reveal reveal-delay-1" data-project-id="mgu">
       <div class="project-num"><span>05</span><span>Paper 1.21.4 + AI</span></div>
-      <div class="project-tag">⛏️ Minecraft AIBridge &amp; Server Ops</div>
-      <div class="project-title">MGU.One &amp; Minecraft AIBridge</div>
-      <div class="project-desc">Ongoing server administration and custom Java 17+ Paper plugin development — including AIBridge, a direct Paper-to-OpenCode headless server bridge for in-game automated server administration with FileGuard sandboxing.</div>
+      <div class="project-tag">⛏️ Minecraft Ops &amp; Custom Plugins</div>
+      <div class="project-title">MGU.One &amp; Minecraft Systems</div>
+      <div class="project-desc">Server administration on MGU.One and custom Paper Java plugins: Demand-Balancer (real-time in-game shop economy balancer) and Pterodactyl AI Gateway (upgraded-octo-chainsaw) for headless management with FileGuard sandboxing.</div>
       <div class="project-tech">
-        <span class="tech-pill">Java 17</span><span class="tech-pill">Paper API</span><span class="tech-pill">OpenCode AI</span><span class="tech-pill">Linux</span>
+        <span class="tech-pill">Java 17</span><span class="tech-pill">Paper API</span><span class="tech-pill">Pterodactyl Gateway</span><span class="tech-pill">Demand-Balancer</span>
       </div>
       <div class="project-actions-row">
         <button class="btn-activate-theme" onclick="event.stopPropagation(); applyThemeStyle('minecraft')">⛏️ Minecraft Overhaul</button>
-        <a href="https://github.com/Jnanesh321/MGU-AIBridge-Plugin" target="_blank" rel="noopener noreferrer" class="card-gh-link" onclick="event.stopPropagation()">🐙 GitHub ↗</a>
-        <span class="project-click-hint">⚡ View Pixel SVGs &amp; Specs ↗</span>
+        <a href="https://github.com/Jnanesh321/upgraded-octo-chainsaw" target="_blank" rel="noopener noreferrer" class="card-gh-link" onclick="event.stopPropagation()" title="Pterodactyl AI Gateway">🐙 AI Gateway ↗</a>
+        <a href="https://github.com/Jnanesh321/Demand-Balancer" target="_blank" rel="noopener noreferrer" class="card-gh-link" onclick="event.stopPropagation()" title="Demand Balancer Plugin">⛏️ Demand Balancer ↗</a>
+        <span class="project-click-hint">⚡ Specs ↗</span>
+      </div>
+      <div class="project-arrow">↗</div>
+    </div>
+
+    <div class="project-card small reveal reveal-delay-2" data-project-id="game1700">
+      <div class="project-num"><span>06</span><span>MERN Mastery Game</span></div>
+      <div class="project-tag">🎮 Interactive Express &amp; MERN Game</div>
+      <div class="project-title">17-00 &mdash; Express &amp; MERN Game</div>
+      <div class="project-desc">An interactive game created with Express to master full-stack MERN stack principles, real-time game loop state management, player action endpoints, and responsive feedback cycles.</div>
+      <div class="project-tech">
+        <span class="tech-pill">Node.js</span><span class="tech-pill">Express.js</span><span class="tech-pill">React</span><span class="tech-pill">MongoDB</span><span class="tech-pill">Game Loop</span>
+      </div>
+      <div class="project-actions-row">
+        <a href="https://github.com/Jnanesh321/17-00" target="_blank" rel="noopener noreferrer" class="card-gh-link" onclick="event.stopPropagation()">🐙 GitHub ↗</a>
+        <span class="project-click-hint">⚡ View Specs ↗</span>
       </div>
       <div class="project-arrow">↗</div>
     </div>
@@ -2815,16 +2922,45 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.12 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-// ── Skill bar on hover ──
-// (handled by CSS :hover) — also trigger on scroll into view
+// ── Skill bar & Percentage increment animation on scroll ──
 const skillObserver = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if(e.isIntersecting) {
-      const fill = e.target.querySelector('.skill-fill');
-      if(fill) { setTimeout(() => { fill.style.transform = `scaleX(${getComputedStyle(fill).getPropertyValue('--w') || 0.7})`; }, 300); }
+      const card = e.target;
+      const fill = card.querySelector('.skill-fill');
+      const targetPct = parseInt(card.getAttribute('data-target-pct'), 10) || 70;
+      const pctValElem = card.querySelector('.pct-val');
+
+      if(fill) {
+        setTimeout(() => {
+          fill.style.transform = `scaleX(${targetPct / 100})`;
+        }, 150);
+      }
+
+      if(pctValElem && !card.dataset.animated) {
+        card.dataset.animated = 'true';
+        let start = 0;
+        const duration = 1200;
+        const startTime = performance.now();
+
+        function step(currentTime) {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          const easeOut = 1 - Math.pow(1 - progress, 3);
+          const currentVal = Math.round(start + (targetPct - start) * easeOut);
+          pctValElem.textContent = currentVal;
+
+          if(progress < 1) {
+            requestAnimationFrame(step);
+          } else {
+            pctValElem.textContent = targetPct;
+          }
+        }
+        requestAnimationFrame(step);
+      }
     }
   });
-}, { threshold: 0.5 });
+}, { threshold: 0.35 });
 document.querySelectorAll('.skill-card').forEach(c => skillObserver.observe(c));
 
 // ── Typewriter roles ──
@@ -2911,17 +3047,48 @@ function focusTermInput() {
 
 function toggleTermFullscreen() {
   if (!termCard) return;
-  const isFull = termCard.classList.toggle('fullscreen-active');
+  const isCurrentlyFull = termCard.classList.contains('fullscreen-active') || !!document.fullscreenElement;
+
+  if (!isCurrentlyFull) {
+    termCard.classList.add('fullscreen-active');
+    document.body.classList.add('terminal-theater-active');
+    if (termCard.requestFullscreen) {
+      termCard.requestFullscreen().catch(() => {});
+    }
+    updateFullscreenBtnState(true);
+  } else {
+    termCard.classList.remove('fullscreen-active');
+    document.body.classList.remove('terminal-theater-active');
+    if (document.fullscreenElement) {
+      document.exitFullscreen().catch(() => {});
+    }
+    updateFullscreenBtnState(false);
+  }
+  focusTermInput();
+}
+
+function updateFullscreenBtnState(isFull) {
   const btn = document.getElementById('term-expand-btn');
   if (btn) {
     btn.innerHTML = isFull ? '✕ Exit Fullscreen' : '⛶ Fullscreen';
-    btn.style.color = isFull ? '#ef4444' : 'var(--accent)';
-    btn.style.borderColor = isFull ? '#ef4444' : 'var(--border)';
-  }
-  if (isFull) {
-    focusTermInput();
+    btn.style.color = isFull ? '#ef4444' : '#38bdf8';
+    btn.style.borderColor = isFull ? '#ef4444' : 'rgba(56, 189, 248, 0.5)';
+    btn.style.background = isFull ? 'rgba(239, 68, 68, 0.18)' : 'rgba(56, 189, 248, 0.16)';
   }
 }
+
+document.addEventListener('fullscreenchange', () => {
+  const isNative = !!document.fullscreenElement;
+  if (isNative) {
+    if (termCard) termCard.classList.add('fullscreen-active');
+    document.body.classList.add('terminal-theater-active');
+    updateFullscreenBtnState(true);
+  } else {
+    if (termCard) termCard.classList.remove('fullscreen-active');
+    document.body.classList.remove('terminal-theater-active');
+    updateFullscreenBtnState(false);
+  }
+});
 
 function executeTermCommand(rawCmd) {
   const cmd = (rawCmd || (termInput ? termInput.value : '')).trim();
@@ -2997,13 +3164,14 @@ function executeTermCommand(rawCmd) {
     output.innerHTML = `
       <div class="term-success">🚀 Featured Engineering Projects:</div>
       <div style="margin-top:4px;display:flex;flex-direction:column;gap:4px;">
-        <div><span class="term-num">1.</span> <strong class="term-key">O~Bele / Payaswini</strong> &mdash; AgriTech Rental &amp; 4-Hr Operator SLA (<a href="#projects" style="color:var(--accent);" onclick="openProjectModal('obele')">open obele</a>)</div>
-        <div><span class="term-num">2.</span> <strong class="term-key">Codex Platform Backend</strong> &mdash; Production JWT Auth &amp; FCM Schedulers (<a href="#projects" style="color:var(--accent);" onclick="openProjectModal('codex')">open codex</a>)</div>
-        <div><span class="term-num">3.</span> <strong class="term-key">E-Library System</strong> &mdash; Full-Stack MERN Catalog &amp; Overdue Loan Engine (<a href="#projects" style="color:var(--accent);" onclick="openProjectModal('elibrary')">open elibrary</a>)</div>
-        <div><span class="term-num">4.</span> <strong class="term-key">Cells AMS</strong> &mdash; Batch Attendance Tracking &amp; Record Auditing (<a href="#projects" style="color:var(--accent);" onclick="openProjectModal('cells')">open cells</a>)</div>
-        <div><span class="term-num">5.</span> <strong class="term-key">MGU.One AIBridge</strong> &mdash; Java 17 Paper Minecraft Plugin &amp; Headless AI (<a href="#projects" style="color:var(--accent);" onclick="openProjectModal('mgu')">open mgu</a>)</div>
+        <div><span class="term-num">1.</span> <strong class="term-key">O~Bele / Payaswini</strong> &mdash; National AgriTech Marketplace (<a href="#projects" style="color:var(--accent);" onclick="openProjectModal('obele')">open obele</a>)</div>
+        <div><span class="term-num">2.</span> <strong class="term-key">Codex Platform Backend</strong> &mdash; Private Enterprise JWT &amp; FCM (<a href="#projects" style="color:var(--accent);" onclick="openProjectModal('codex')">open codex</a>)</div>
+        <div><span class="term-num">3.</span> <strong class="term-key">E-Library System</strong> &mdash; Full-Stack MERN Catalog &amp; Overdue Engine (<a href="#projects" style="color:var(--accent);" onclick="openProjectModal('elibrary')">open elibrary</a>)</div>
+        <div><span class="term-num">4.</span> <strong class="term-key">Cells AMS</strong> &mdash; Android App for VCET Academic Monitoring (<a href="#projects" style="color:var(--accent);" onclick="openProjectModal('cells')">open cells</a>)</div>
+        <div><span class="term-num">5.</span> <strong class="term-key">MGU.One &amp; Minecraft Systems</strong> &mdash; AI Gateway &amp; Demand-Balancer Plugin (<a href="#projects" style="color:var(--accent);" onclick="openProjectModal('mgu')">open mgu</a>)</div>
+        <div><span class="term-num">6.</span> <strong class="term-key">17-00</strong> &mdash; Express &amp; MERN Learning Game (<a href="#projects" style="color:var(--accent);" onclick="openProjectModal('game1700')">open 1700</a>)</div>
       </div>
-      <div class="term-muted" style="margin-top:4px;">Type <strong style="color:var(--accent);">project 1</strong> or <strong style="color:var(--accent);">project &lt;name&gt;</strong> to open deep-dive modal!</div>
+      <div class="term-muted" style="margin-top:4px;">Type <strong style="color:var(--accent);">project 1</strong> through <strong style="color:var(--accent);">project 6</strong> or click any project to view specs!</div>
     `;
   } else if (lower.startsWith('project ') || lower.startsWith('open ')) {
     const target = lower.replace(/^(project|open)\s+/, '').trim();
@@ -3012,14 +3180,15 @@ function executeTermCommand(rawCmd) {
       '2': 'codex', 'codex': 'codex',
       '3': 'elibrary', 'elibrary': 'elibrary', 'library': 'elibrary',
       '4': 'cells', 'cells': 'cells', 'ams': 'cells',
-      '5': 'mgu', 'mgu': 'mgu', 'minecraft': 'mgu', 'aibridge': 'mgu'
+      '5': 'mgu', 'mgu': 'mgu', 'minecraft': 'mgu', 'aibridge': 'mgu',
+      '6': 'game1700', '17-00': 'game1700', '1700': 'game1700', 'game': 'game1700'
     };
     const resolvedId = projMap[target];
     if (resolvedId) {
       output.innerHTML = `<span class="term-success">✓ Launching architecture modal for '${resolvedId}'...</span>`;
       openProjectModal(resolvedId);
     } else {
-      output.innerHTML = `<span class="term-error">Project '${escapeHtml(target)}' not found. Try 'project 1' through 'project 5'.</span>`;
+      output.innerHTML = `<span class="term-error">Project '${escapeHtml(target)}' not found. Try 'project 1' through 'project 6'.</span>`;
     }
   } else if (lower === 'contact') {
     output.innerHTML = `
@@ -3534,6 +3703,16 @@ async function openProjectModal(id) {
         <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
         <span>View on GitHub ↗</span>
       </a>
+    ` : (p.isPrivate ? `
+      <div class="modal-btn-action" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.18);color:var(--muted);cursor:default;">
+        <span>🔒 Private Production Repo</span>
+      </div>
+    ` : '');
+
+    const demandBalancerBtn = p.demandBalancerGithub ? `
+      <a href="${p.demandBalancerGithub}" target="_blank" rel="noopener noreferrer" class="modal-btn-action modal-btn-github" style="border-color:#4ade80;color:#4ade80;">
+        <span>⛏️ Demand-Balancer Plugin ↗</span>
+      </a>
     ` : '';
 
     const liveBtn = p.liveUrl ? `
@@ -3618,6 +3797,7 @@ async function openProjectModal(id) {
 
       <div class="modal-actions">
         ${githubBtn}
+        ${demandBalancerBtn}
         ${liveBtn}
         <button class="modal-btn-action modal-btn-cheer" id="btn-cheer-${p.id}" onclick="cheerProject('${p.id}')">
           🔥 Cheer Project (<span id="modal-cheer-num">${p.cheers}</span>)

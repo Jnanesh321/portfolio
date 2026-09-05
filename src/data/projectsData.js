@@ -9,7 +9,7 @@ const projects = [
     logo: '/assets/themes/obele/logos/obele-logo.svg',
     role: 'Lead Backend & Platform Engineer',
     timeline: '2025 — Present',
-    github: 'https://github.com/Jnanesh321/Payaswini-AgriTech',
+    github: 'https://github.com/Jnanesh321/Payaswini-O-Bele',
     liveUrl: null,
     theme: {
       name: 'Emerald Harvest & Payaswini',
@@ -31,8 +31,8 @@ const projects = [
       { name: 'Rotary Weed Cutter', icon: '/assets/themes/obele/images/weed-cutter.svg', rate: '₹250/hr' },
       { name: 'Arecanut Harvest Tool', icon: '/assets/themes/obele/images/harvesting-tool.svg', rate: '₹350/hr' }
     ],
-    overview: 'A peer-to-peer equipment sharing marketplace connecting agricultural machinery owners with smallholder farmers and verified equipment operators across agricultural regions in India.',
-    problem: 'Farm machinery in rural districts sits idle 70% of the season, while smallholder farmers face severe labor bottlenecks during harvest. Rental agreements lacked operator verification, resulting in equipment damage and disputes.',
+    overview: 'A national-scale farm-tool and equipment rental marketplace (Amazon/Zomato-style UX) connecting machinery owners with smallholder farmers and verified equipment operators across agricultural regions.',
+    problem: 'Farm machinery in agricultural districts sits idle outside peak windows, while smallholders face severe labor shortages during harvest. Traditional rentals lacked verified operators and standardized confirmation SLAs.',
     solution: 'Engineered a specialized booking lifecycle supporting hourly/daily billing models, equipment security deposits, and a certified-operator enforcement layer with an automated 4-hour confirmation SLA.',
     highlights: [
       '4-Hour Operator SLA: State-machine driven booking confirmation preventing silent fallback to uncertified operation.',
@@ -81,7 +81,9 @@ router.post('/book', validateRentalPayload, async (req, res) => {
     role: 'Backend Engineering Intern',
     timeline: 'Jan 2026 — Jul 2026',
     status: 'Production Internship (Akanksha Charitable Trust)',
-    github: 'https://github.com/Jnanesh321/codex-backend',
+    github: null,
+    isPrivate: true,
+    privateNote: 'Private Enterprise Repository (Akanksha Charitable Trust)',
     liveUrl: 'https://codex.akanksha.org',
     theme: {
       name: 'Cyber Violet & Sapphire',
@@ -93,7 +95,7 @@ router.post('/book', validateRentalPayload, async (req, res) => {
       border: 'rgba(99, 102, 241, 0.25)',
       lightBg: '#eef2ff',
       lightSurface: '#ffffff',
-      badge: '⚡ Production Backend'
+      badge: '⚡ Production Backend (Private)'
     },
     overview: 'Core backend engineering at Akanksha Charitable Trust for the Codex learning platform, handling high-concurrency learning metrics, tamper-resistant auth tokens, automated Firebase Cloud Messaging (FCM) streak notifications, and Firestore query optimization.',
     problem: 'Authentication tokens were vulnerable to malformed payloads, students dropped learning streaks without automated reminders, and unindexed Firestore collections produced high latency on user notification feeds.',
@@ -144,7 +146,7 @@ async function dispatchDailyStreakReminder(userId) {
     role: 'Full-Stack Developer',
     timeline: '2025',
     status: 'Completed & Maintained',
-    github: 'https://github.com/Jnanesh321/E-Library-Management-System',
+    github: 'https://github.com/Jnanesh321/E-Library-Management',
     liveUrl: null,
     theme: {
       name: 'Ocean Cyan & Cobalt',
@@ -202,12 +204,12 @@ router.post('/books/:id/borrow', requireAuth, async (req, res) => {
   {
     id: 'cells',
     title: 'Cells AMS',
-    subtitle: 'Attendance Management & Record Auditing System',
-    category: 'Systems & Attendance Workflow',
+    subtitle: 'Android Application for Cells VCET for Academic Monitoring',
+    category: 'Android Application & Academic Monitoring',
     role: 'Backend & Systems Architect',
     timeline: '2025 — Present',
     status: 'In Active Development',
-    github: 'https://github.com/Jnanesh321/Cells-AMS',
+    github: 'https://github.com/Jnanesh321/Cells-Ams',
     liveUrl: null,
     theme: {
       name: 'Crimson Slate',
@@ -219,20 +221,20 @@ router.post('/books/:id/borrow', requireAuth, async (req, res) => {
       border: 'rgba(244, 63, 94, 0.25)',
       lightBg: '#fff1f2',
       lightSurface: '#ffffff',
-      badge: '📋 State Engine'
+      badge: '📱 Android App'
     },
-    overview: 'An attendance management system designed for colleges, student organizations, and member cells to automate attendance logs, roll-call analytics, eligibility thresholds, and administrative audit trails.',
+    overview: 'Android application engineered for Cells VCET to streamline academic monitoring, attendance tracking, eligibility gate alerts, and faculty administrative audit trails.',
     problem: 'Paper-based and ad-hoc spreadsheet logs lead to attendance tampering, missing audit trails, and slow eligibility reviews for exam hall tickets.',
-    solution: 'Architecting an Express-backed state tracking system with rapid batch check-in, percentage thresholds, and exportable audit summaries.',
+    solution: 'Architecting an Express-backed state tracking system and Android client with rapid batch check-in, percentage thresholds, and exportable audit summaries.',
     highlights: [
       'Batch Roll-Call Serialization: Bulk attendance payload ingestion saving hundreds of individual HTTP round-trips per session.',
       'Eligibility Alert Threshold: Real-time calculation flagging students falling under the statutory 75% attendance criteria.',
       'Tamper-Resistant Audit Trail: Immutable historical log records for all retroactive attendance edits with admin accountability.',
-      'Export Engine: Automated CSV/PDF attendance roster generation for academic boards and cell heads.'
+      'Android Integration: Mobile app interface built specifically for academic monitoring at VCET.'
     ],
     metrics: [
       { label: 'Eligibility Gate', value: '75% Criteria' },
-      { label: 'Transaction Type', value: 'Atomic Bulk' },
+      { label: 'Platform', value: 'Android / VCET' },
       { label: 'Audit Trail', value: 'Immutable Logs' }
     ],
     architecture: [
@@ -245,7 +247,7 @@ router.post('/books/:id/borrow', requireAuth, async (req, res) => {
         description: 'Calculates active percentages and flags members who fall below required 75% attendance criteria.'
       }
     ],
-    techStack: ['JavaScript', 'Node.js', 'Express.js', 'Relational Schemas', 'Audit Logging'],
+    techStack: ['Android', 'Java/Kotlin', 'JavaScript', 'Node.js', 'Express.js', 'Audit Logging'],
     sampleEndpoint: `// POST /api/attendance/session
 router.post('/session', async (req, res) => {
   const { cellId, date, records } = req.body;
@@ -255,13 +257,14 @@ router.post('/session', async (req, res) => {
   },
   {
     id: 'mgu',
-    title: 'MGU.One & Minecraft AIBridge',
-    subtitle: 'Paper Minecraft Server Infrastructure & AIBridge Java Plugin',
+    title: 'MGU.One & Minecraft Systems',
+    subtitle: 'Paper Server Ops, Pterodactyl AI Gateway & Demand-Balancer',
     category: 'Gaming Infrastructure & Autonomous AI Systems',
     role: 'Infrastructure Lead & Systems Developer',
     timeline: '2024 — Present',
     status: 'Live & Active Administration',
-    github: 'https://github.com/Jnanesh321/MGU-AIBridge-Plugin',
+    github: 'https://github.com/Jnanesh321/upgraded-octo-chainsaw',
+    demandBalancerGithub: 'https://github.com/Jnanesh321/Demand-Balancer',
     liveUrl: 'https://mgu.one',
     themeKey: 'minecraft',
     theme: {
@@ -283,49 +286,96 @@ router.post('/session', async (req, res) => {
       { name: 'Redstone Dust', icon: '/assets/themes/minecraft/redstone.svg' },
       { name: 'Diamond Pickaxe', icon: '/assets/themes/minecraft/pickaxe.svg' }
     ],
-    overview: 'Full-stack game server infrastructure, community moderation, and custom Java 17+ Paper plugins — including AIBridge, a direct Paper-to-OpenCode headless server bridge for in-game automated server administration.',
+    overview: 'Full-stack Minecraft server operations on MGU.One, featuring custom Java plugins like Demand-Balancer (dynamic in-game economy balancing) and Pterodactyl AI Gateway (upgraded-octo-chainsaw) for headless server management.',
     problem: 'Minecraft servers require extensive ongoing sysadmin tasks: manual world backups, player permission auditing, economy balancing, and config hot-patching. Traditional remote consoles lack safe in-game contextual intelligence.',
-    solution: 'Engineered AIBridge, a Paper Minecraft plugin communicating with a local OpenCode headless server (port 4096). Implements FileGuard sandboxing, automated world snapshotting via BackupManager, and async AI command tasks without halting the main server tick loop.',
+    solution: 'Engineered Pterodactyl AI Gateway and Demand-Balancer Java plugins. Communicates with local AI daemons, enforces FileGuard security sandboxing, and balances economy transactions dynamically.',
     highlights: [
-      'Headless AI Daemon Bridge: Asynchronous HTTP client communicating with local OpenCode daemon (Port 4096) for zero-cloud latency.',
+      'Pterodactyl AI Gateway: Daemon integration bridging server control panel with headless AI for autonomous operations.',
+      'Demand-Balancer Plugin: Custom Minecraft Bukkit/Paper plugin balancing in-game shop pricing based on dynamic player supply and demand.',
       'FileGuard Sandboxing: Strict whitelist write boundary enforcement preventing unauthorized file modifications on server configs.',
-      'Automated Rollback Engine: Pre-execution snapshot manager capturing world state and config states prior to AI tool runs.',
-      'Bukkit Async Threading: Fully decoupled LLM token ingestion from Bukkit main tick thread, preserving continuous 20.0 TPS stability.'
+      'Bukkit Async Threading: Fully decoupled background tasks from Bukkit main tick thread, preserving continuous 20.0 TPS stability.'
     ],
     metrics: [
       { label: 'Server Stability', value: '20.0 TPS' },
-      { label: 'Protocol Port', value: '4096 Headless' },
+      { label: 'Plugins', value: 'Demand-Balancer' },
       { label: 'Target Platform', value: 'Paper 1.21.4' }
     ],
     architecture: [
       {
-        title: 'OpenCode Headless Client (Port 4096)',
-        description: 'Communicates via asynchronous HTTP POST to a locally running OpenCode daemon for safe in-game prompt evaluations and zero-cloud dependency.'
+        title: 'Pterodactyl AI Gateway (upgraded-octo-chainsaw)',
+        description: 'Communicates via asynchronous HTTP to local AI daemons for safe server evaluations and zero-cloud dependency.'
+      },
+      {
+        title: 'Demand-Balancer Paper Plugin',
+        description: 'Java 17 plugin that calculates exponential decay curves and transaction surges to balance shop item prices in real time.'
       },
       {
         title: 'FileGuard & BackupManager Security Layer',
         description: 'Enforces strict whitelist write boundaries on server configs (server.properties, spigot.yml) and triggers automatic compressed rollbacks prior to file modifications.'
-      },
-      {
-        title: 'Bukkit Async Task Scheduler',
-        description: 'Offloads LLM session token handling and JSON deserialization from the Bukkit main thread, guaranteeing 20.0 TPS stability under high player loads.'
       }
     ],
-    techStack: ['Java 17', 'Paper API 1.21.4', 'OpenCode AI', 'FileGuard Security', 'Bukkit Async', 'Linux Hosting'],
-    sampleEndpoint: `// AIBridge Java Plugin: OpenCode Client Execution
-public CompletableFuture<String> sendPrompt(String sessionId, String prompt) {
-    PromptRequest payload = new PromptRequest(sessionId, prompt);
-    HttpRequest request = HttpRequest.newBuilder()
-        .uri(URI.create(baseUrl + "/session/" + sessionId + "/prompt"))
-        .header("Content-Type", "application/json")
-        .POST(HttpRequest.BodyPublishers.ofString(gson.toJson(payload)))
-        .timeout(Duration.ofSeconds(pluginConfig.getTimeoutSeconds()))
-        .build();
-
-    return httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString())
-        .thenApply(response -> gson.fromJson(response.body(), PromptResponse.class).getContent());
+    techStack: ['Java 17', 'Paper API 1.21.4', 'Pterodactyl AI Gateway', 'Demand-Balancer', 'FileGuard Security', 'Linux Hosting'],
+    sampleEndpoint: `// Demand-Balancer Transaction Handler
+public void onPlayerTransaction(Player player, ShopItem item, int quantity) {
+    double dynamicPrice = priceCalculator.calculateCurrentPrice(item, quantity);
+    economy.withdrawPlayer(player, dynamicPrice);
+    priceCalculator.recordPurchase(item, quantity);
 }`,
     cheers: 42
+  },
+  {
+    id: 'game1700',
+    title: '17-00 — Express & MERN Game',
+    subtitle: 'A Game Made with Express to Master the MERN Stack',
+    category: 'Full-Stack Game & MERN Architecture',
+    role: 'Full-Stack Engineer',
+    timeline: '2025',
+    status: 'Completed',
+    github: 'https://github.com/Jnanesh321/17-00',
+    liveUrl: null,
+    theme: {
+      name: 'Arcade Amber & Slate',
+      key: 'game1700',
+      accent: '#f59e0b',
+      accent2: '#ef4444',
+      bg: '#140e06',
+      surface: '#241a0d',
+      border: 'rgba(245, 158, 11, 0.25)',
+      lightBg: '#fffbeb',
+      lightSurface: '#ffffff',
+      badge: '🎮 MERN Game'
+    },
+    overview: 'An interactive game engineered with Express.js to learn and master full-stack MERN stack principles, including state management, RESTful player action routes, and real-time game cycle updates.',
+    problem: 'Learning full-stack MERN architecture requires real-world experience handling state synchronization, asynchronous backend requests, and game event handling under active user interaction.',
+    solution: 'Developed 17-00, implementing modular Express routing, persistent session states, and clean frontend UI controllers for an engaging game loop.',
+    highlights: [
+      'Express Game Server: Modular API routing separating game rules, player actions, and scoring state.',
+      'MERN Architecture: Hands-on mastery of MongoDB document structures, Express endpoints, React views, and Node.js runtimes.',
+      'Dynamic Event Cycle: Real-time calculation of player outcomes and high scores.'
+    ],
+    metrics: [
+      { label: 'Architecture', value: 'MERN Stack' },
+      { label: 'Server Engine', value: 'Express.js' },
+      { label: 'Goal', value: 'Full-Stack Mastery' }
+    ],
+    architecture: [
+      {
+        title: 'Express REST Game Loop',
+        description: 'Modular endpoints managing player inputs, state transitions, and validation against game rules.'
+      },
+      {
+        title: 'State & Score Synchronization',
+        description: 'Coordinates active game turns and persists high-score leaderboards.'
+      }
+    ],
+    techStack: ['Node.js', 'Express.js', 'React', 'MongoDB', 'REST APIs', 'Game State Logic'],
+    sampleEndpoint: `// POST /api/game/action
+router.post('/action', (req, res) => {
+  const { playerId, move } = req.body;
+  const outcome = gameEngine.processMove(playerId, move);
+  res.json({ success: true, outcome });
+});`,
+    cheers: 28
   }
 ];
 
