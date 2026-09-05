@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <defs>
+    <filter id="cyberGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="0" stdDeviation="1.5" flood-color="#818cf8"/>
+    </filter>
+  </defs>
+  <g filter="url(#cyberGlow)">
+    <!-- Cyber Pointer Arrow at (2,2) -->
+    <path d="M 2 2 L 18 8 L 12 12 L 8 18 Z" fill="#6366f1" stroke="#c7d2fe" stroke-width="1.2" stroke-linejoin="round"/>
+    <circle cx="2" cy="2" r="1.5" fill="#a855f7"/>
+    <!-- Cyber Targeting Brackets -->
+    <path d="M 14 3 L 20 3 L 20 9" stroke="#38bdf8" stroke-width="1.2" fill="none"/>
+    <path d="M 3 14 L 3 20 L 9 20" stroke="#38bdf8" stroke-width="1.2" fill="none"/>
+  </g>
+</svg>

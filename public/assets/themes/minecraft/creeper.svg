@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="48" height="48" shape-rendering="crispEdges">
+  <rect width="16" height="16" fill="#3f8e3f"/>
+  <!-- Outer green shading -->
+  <rect x="0" y="0" width="16" height="1" fill="#4ea44e"/>
+  <rect x="0" y="0" width="1" height="16" fill="#4ea44e"/>
+  <rect x="15" y="0" width="1" height="16" fill="#2f6e2f"/>
+  <rect x="0" y="15" width="16" height="1" fill="#2f6e2f"/>
+  <!-- Creeper Face Features (Black) -->
+  <rect x="3" y="4" width="3" height="3" fill="#0d140d"/>
+  <rect x="10" y="4" width="3" height="3" fill="#0d140d"/>
+  <rect x="6" y="7" width="4" height="4" fill="#0d140d"/>
+  <rect x="4" y="9" width="2" height="5" fill="#0d140d"/>
+  <rect x="10" y="9" width="2" height="5" fill="#0d140d"/>
+</svg>

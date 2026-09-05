@@ -1,0 +1,2069 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jnanesh Sharma H. — Backend Developer &amp; CS Engineer | Portfolio</title>
+<meta name="description" content="Portfolio of Jnanesh Sharma H. — Computer Science Engineering Student at VCET (VTU, 3rd Year) and Backend Developer specializing in Node.js, Express, REST APIs, and resilient systems.">
+<meta name="keywords" content="Jnanesh Sharma, Backend Developer, Node.js, Express, REST API, India, VCET, VTU, Portfolio">
+<meta property="og:title" content="Jnanesh Sharma H. — Backend Developer &amp; CS Engineer">
+<meta property="og:description" content="Computer Science Engineering Student &amp; Backend Developer specializing in Node.js, Express, and distributed community systems.">
+<meta property="og:type" content="website">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Syne:wght@400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  /* ── CONFIG: Edit these variables to customise ── */
+  :root {
+    --name: "Jnanesh";
+    --accent: #38bdf8;
+    --accent2: #818cf8;
+    --bg: #090d13;
+    --surface: #0f1722;
+    --border: rgba(255,255,255,0.08);
+    --text: #e8edf3;
+    --muted: #7d8b9f;
+    --font-display: 'Syne', sans-serif;
+    --font-mono: 'Space Mono', monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    scroll-behavior: smooth;
+    cursor: url('/assets/cursors/default-pointer.svg') 2 2, auto;
+  }
+
+  a, button, [role="button"], .project-card, input, select, textarea {
+    cursor: url('/assets/cursors/default-pointer.svg') 2 2, pointer;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-display);
+    overflow-x: hidden;
+  }
+
+  /* ── Custom Cursor Overlay ── */
+  #cursor { display: none !important; }
+
+  /* ── NOISE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0; z-index: 9998;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 3px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--accent); }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.5rem 4rem;
+    backdrop-filter: blur(20px);
+    background: rgba(8,12,16,0.7);
+    border-bottom: 1px solid var(--border);
+    transition: all .3s;
+  }
+  .nav-logo {
+    font-size: 1.1rem; font-weight: 800; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--accent);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none; color: var(--muted);
+    font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase;
+    font-weight: 600; transition: color .2s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; left: 0; bottom: -3px;
+    width: 0; height: 1px; background: var(--accent);
+    transition: width .25s;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-links a:hover::after { width: 100%; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 0 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-grid-bg {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+  }
+
+  .hero-glow, .hero-glow2 {
+    display: none !important;
+  }
+
+  .hero-content { position: relative; z-index: 2; max-width: 900px; }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-family: var(--font-mono); font-size: 0.72rem;
+    color: var(--accent); letter-spacing: 0.08em;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.03);
+    padding: 0.4rem 1rem; border-radius: 4px;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero-badge span { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 1.5s infinite; }
+
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  .hero-name {
+    font-size: clamp(4rem, 10vw, 9rem);
+    font-weight: 800;
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+  .hero-name .line2 { color: transparent; -webkit-text-stroke: 1.5px rgba(255,255,255,0.25); }
+  .hero-name .accent { color: var(--accent); }
+
+  .hero-sub {
+    margin-top: 2rem;
+    font-family: var(--font-mono); font-size: 0.9rem;
+    color: var(--muted); line-height: 1.8;
+    max-width: 620px;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+  .hero-terminal-sub .typed-line {
+    min-height: 1.8em;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    word-break: break-word;
+  }
+  .hero-terminal-sub .comment-slash {
+    color: var(--accent);
+    opacity: 0.85;
+    font-weight: 700;
+  }
+  .hero-terminal-sub .typed-text {
+    color: var(--text);
+  }
+  .hero-terminal-sub .typing .typed-text::after,
+  .hero-terminal-sub .typing-complete .typed-text::after {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 14px;
+    background: var(--accent);
+    margin-left: 5px;
+    vertical-align: middle;
+    animation: termBlink 0.8s infinite;
+  }
+
+  .hero-cta {
+    margin-top: 3rem; display: flex; gap: 1.2rem; flex-wrap: wrap;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .btn {
+    padding: 0.85rem 2rem; font-family: var(--font-display);
+    font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; text-decoration: none;
+    cursor: pointer; border: none; outline: none;
+    border-radius: 4px;
+    transition: all .25s; display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .btn-primary {
+    background: var(--accent); color: #090d13;
+  }
+  .btn-primary:hover { background: #ffffff; color: #090d13; transform: translateY(-2px); box-shadow: 0 4px 14px rgba(0,0,0,0.3); }
+  .btn-ghost {
+    background: transparent; color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+  .hero-scroll {
+    position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    font-family: var(--font-mono); font-size: 0.65rem; color: var(--muted);
+    letter-spacing: 0.15em; text-transform: uppercase;
+    animation: fadeUp 1s 0.8s ease both;
+  }
+  .scroll-line { width: 1px; height: 50px; background: linear-gradient(var(--accent), transparent); animation: scrollLine 1.5s infinite; }
+  @keyframes scrollLine { 0%{transform:scaleY(0);transform-origin:top} 50%{transform:scaleY(1);transform-origin:top} 51%{transform-origin:bottom} 100%{transform:scaleY(0);transform-origin:bottom} }
+
+  @keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+
+  /* ── SECTION BASE ── */
+  section { padding: 8rem 4rem; }
+  .section-label {
+    font-family: var(--font-mono); font-size: 0.7rem;
+    color: var(--accent); letter-spacing: 0.2em; text-transform: uppercase;
+    margin-bottom: 1rem; display: flex; align-items: center; gap: 1rem;
+  }
+  .section-label::after { content: ''; flex: 1; max-width: 60px; height: 1px; background: var(--accent); }
+  .section-title {
+    font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800;
+    letter-spacing: -0.02em; line-height: 1.05; margin-bottom: 1rem;
+  }
+  .section-title em { font-style: normal; color: var(--accent); }
+
+  /* ── ABOUT ── */
+  #about { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+  .about-visual {
+    position: relative; aspect-ratio: 1;
+    max-width: 420px;
+  }
+  .about-frame {
+    width: 100%; height: 100%;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    display: flex;
+    flex-direction: column;
+    padding: 1.4rem 1.6rem;
+    position: relative; overflow: hidden;
+    clip-path: polygon(0 0, calc(100% - 24px) 0, 100% 24px, 100% 100%, 24px 100%, 0 calc(100% - 24px));
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .about-frame:hover {
+    border-color: var(--accent);
+    box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5), inset 0 0 16px rgba(56,189,248,0.05);
+  }
+  .about-terminal-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 0.9rem;
+  }
+  .terminal-dots {
+    display: flex;
+    gap: 6px;
+  }
+  .terminal-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+  }
+  .dot-red { background: #ef4444; }
+  .dot-yellow { background: #f59e0b; }
+  .dot-green { background: #10b981; }
+  .terminal-title {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--muted);
+    margin-left: 6px;
+    letter-spacing: 0.05em;
+  }
+  .about-terminal-body {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    line-height: 1.6;
+    color: var(--text);
+    overflow: hidden;
+  }
+  .term-line {
+    margin-bottom: 0.35rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .term-prompt { color: var(--accent); font-weight: 700; }
+  .term-cmd { color: #f8fafc; font-weight: 600; }
+  .term-active-cmd { color: var(--accent2); }
+  .term-output {
+    padding-left: 0.4rem;
+    border-left: 2px solid rgba(255,255,255,0.06);
+    margin-bottom: 0.5rem;
+    font-size: 0.7rem;
+    line-height: 1.55;
+  }
+  .term-brace { color: var(--muted); font-weight: 700; }
+  .term-key { color: var(--accent); }
+  .term-str { color: #86efac; }
+  .term-num { color: #f59e0b; }
+  .term-accent { color: #38bdf8; font-weight: 700; }
+  .term-cursor {
+    display: inline-block;
+    width: 6px;
+    height: 12px;
+    background: var(--accent);
+    vertical-align: middle;
+    margin-left: 4px;
+    animation: termBlink 1s infinite;
+  }
+  @keyframes termBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+  .about-corner {
+    position: absolute; width: 20px; height: 20px;
+    border-color: var(--accent); border-style: solid;
+  }
+  .about-corner.tl { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+  .about-corner.tr { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
+  .about-corner.bl { bottom: -1px; left: -1px; border-width: 0 0 2px 2px; }
+  .about-corner.br { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+
+  .about-tag {
+    position: absolute;
+    background: var(--surface); border: 1px solid var(--border);
+    font-family: var(--font-mono); font-size: 0.68rem;
+    padding: 0.4rem 0.8rem; color: var(--muted);
+  }
+  .about-tag.age { bottom: -1rem; right: -2rem; color: var(--accent); border-color: var(--border); }
+  .about-tag.loc { top: -1rem; right: -1rem; }
+
+  .about-text p {
+    color: var(--muted); line-height: 1.8; font-size: 1rem; margin-bottom: 1.2rem;
+  }
+  .about-text p strong { color: var(--text); }
+
+  .about-stats {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px; margin-top: 2.5rem;
+    border: 1px solid var(--border);
+  }
+  .stat {
+    padding: 1.2rem; background: var(--surface);
+    text-align: center;
+  }
+  .stat-num { font-size: 2rem; font-weight: 800; color: var(--accent); line-height: 1; }
+  .stat-label { font-family: var(--font-mono); font-size: 0.6rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.3rem; }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--surface); }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1px;
+    margin-top: 4rem;
+    border: 1px solid var(--border);
+  }
+  .skill-card {
+    background: var(--bg); padding: 2rem;
+    position: relative; overflow: hidden;
+    transition: background .3s;
+    cursor: default;
+  }
+  .skill-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 2px; background: linear-gradient(90deg, var(--accent), transparent);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform .4s ease;
+  }
+  .skill-card:hover { background: var(--surface); }
+  .skill-card:hover::before { transform: scaleX(1); }
+
+  .skill-icon { font-size: 2rem; margin-bottom: 1rem; }
+  .skill-name { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .skill-desc { font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); line-height: 1.6; margin-bottom: 1.2rem; }
+  .skill-bar { height: 2px; background: var(--border); border-radius: 2px; overflow: hidden; }
+  .skill-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent2)); border-radius: 2px; transform-origin: left; transform: scaleX(0); transition: transform 1s ease; }
+  .skill-card:hover .skill-fill { transform: scaleX(1); }
+  .skill-level { font-family: var(--font-mono); font-size: 0.6rem; color: var(--accent); text-align: right; margin-top: 0.3rem; }
+
+  /* ── PROJECTS ── */
+  #projects {}
+  .projects-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 4rem; flex-wrap: wrap; gap: 1rem; }
+  .projects-grid { display: grid; grid-template-columns: repeat(12, 1fr); grid-template-rows: auto; gap: 1px; }
+  .project-card {
+    background: var(--surface); padding: 2.5rem;
+    position: relative; overflow: hidden; cursor: pointer;
+    transition: transform .3s;
+    border: 1px solid var(--border);
+  }
+  .project-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.2); }
+  .project-card.featured { grid-column: span 7; grid-row: span 2; }
+  .project-card.medium { grid-column: span 5; }
+  .project-card.small { grid-column: span 6; }
+
+  .project-num {
+    font-family: var(--font-mono); font-size: 0.65rem;
+    color: var(--muted); margin-bottom: 3rem;
+    display: flex; justify-content: space-between;
+  }
+  .project-tag {
+    display: inline-block; font-family: var(--font-mono); font-size: 0.6rem;
+    padding: 0.2rem 0.6rem; border: 1px solid var(--border); border-radius: 3px;
+    color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+  .project-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.8rem; line-height: 1.2; }
+  .project-card.featured .project-title { font-size: 2rem; }
+  .project-desc { font-family: var(--font-mono); font-size: 0.73rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.5rem; }
+  .project-tech { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .tech-pill {
+    font-family: var(--font-mono); font-size: 0.6rem;
+    padding: 0.2rem 0.6rem; background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border); color: var(--muted);
+  }
+  .project-arrow {
+    position: absolute; bottom: 2rem; right: 2rem;
+    width: 36px; height: 36px; border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; transition: all .25s; color: var(--muted);
+  }
+  .project-card:hover .project-arrow { border-color: var(--accent); color: var(--accent); transform: rotate(-45deg); }
+
+  /* ── EXPERIENCE ── */
+  #experience { background: var(--surface); }
+  .timeline { margin-top: 4rem; position: relative; padding-left: 2rem; }
+  .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: var(--border); }
+  .timeline-item { position: relative; margin-bottom: 3.5rem; padding-left: 2rem; }
+  .timeline-dot {
+    position: absolute; left: -2.35rem; top: 0.25rem;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--bg); border: 2px solid var(--accent);
+    transition: background .2s;
+  }
+  .timeline-item:hover .timeline-dot { background: var(--accent); }
+  .timeline-period { font-family: var(--font-mono); font-size: 0.65rem; color: var(--accent); margin-bottom: 0.4rem; letter-spacing: 0.08em; }
+  .timeline-role { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .timeline-org { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); margin-bottom: 0.8rem; }
+  .timeline-desc { font-family: var(--font-mono); font-size: 0.73rem; color: var(--muted); line-height: 1.7; max-width: 600px; }
+
+  /* ── CONTACT ── */
+  #contact {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 6rem; align-items: start;
+  }
+  .contact-info .section-title { font-size: clamp(2.5rem, 6vw, 4.5rem); }
+  .contact-desc { font-family: var(--font-mono); font-size: 0.82rem; color: var(--muted); line-height: 1.8; margin-top: 1.5rem; max-width: 400px; }
+  .contact-links { margin-top: 3rem; display: flex; flex-direction: column; gap: 1rem; }
+  .contact-link {
+    display: flex; align-items: center; gap: 1rem;
+    text-decoration: none; color: var(--muted);
+    font-family: var(--font-mono); font-size: 0.8rem;
+    padding: 1rem; border: 1px solid var(--border);
+    border-radius: 4px;
+    transition: all .25s;
+  }
+  .contact-link:hover { color: var(--text); border-color: rgba(255,255,255,0.25); background: rgba(255,255,255,0.02); transform: translateX(4px); }
+  .contact-link-icon { font-size: 1.1rem; }
+  .contact-link-label { font-size: 0.65rem; color: var(--accent); display: block; }
+
+  .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-label { font-family: var(--font-mono); font-size: 0.65rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+  .form-input, .form-textarea {
+    background: var(--surface); border: 1px solid var(--border);
+    color: var(--text); font-family: var(--font-mono); font-size: 0.82rem;
+    padding: 0.9rem 1rem; outline: none; resize: none;
+    border-radius: 4px;
+    transition: border-color .2s;
+  }
+  .form-input:focus, .form-textarea:focus { border-color: var(--accent); }
+  .form-textarea { min-height: 130px; }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 3rem 4rem; border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-copy { font-family: var(--font-mono); font-size: 0.68rem; color: var(--muted); }
+  .footer-copy span { color: var(--accent); }
+  .footer-social { display: flex; gap: 1.5rem; }
+  .footer-social a {
+    font-family: var(--font-mono); font-size: 0.68rem; color: var(--muted);
+    text-decoration: none; text-transform: uppercase; letter-spacing: 0.08em;
+    transition: color .2s;
+  }
+  .footer-social a:hover { color: var(--accent); }
+
+  /* ── INTERSECT ANIMATIONS ── */
+  .reveal { opacity: 0; transform: translateY(40px); transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* ── GLITCH (Clean static text, chromatic neon split removed) ── */
+  .glitch { position: relative; }
+  .glitch::before, .glitch::after { display: none !important; }
+
+  /* ── MOBILE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 1.5rem; }
+    .nav-links { gap: 1.5rem; }
+    section { padding: 5rem 1.5rem; }
+    #hero { padding: 0 1.5rem; }
+    #about { grid-template-columns: 1fr; gap: 3rem; }
+    .about-visual { max-width: 280px; }
+    #contact { grid-template-columns: 1fr; gap: 3rem; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .project-card.featured, .project-card.medium, .project-card.small { grid-column: span 1; grid-row: auto; }
+    footer { padding: 2rem 1.5rem; }
+  }
+
+  /* ── TYPEWRITER ── */
+  .typewriter { border-right: 2px solid var(--accent); white-space: nowrap; overflow: hidden; animation: blink .7s step-end infinite; }
+  @keyframes blink { 50% { border-color: transparent; } }
+
+  /* ── LIGHT MODE SYSTEM ── */
+  html[data-theme="light"] {
+    --bg: #f8fafc;
+    --surface: #ffffff;
+    --border: rgba(15, 23, 42, 0.1);
+    --text: #0f172a;
+    --muted: #475569;
+    --accent: #0284c7;
+    --accent2: #4f46e5;
+  }
+  html[data-theme="light"] nav {
+    background: rgba(248, 250, 252, 0.88);
+  }
+  html[data-theme="light"] .hero-grid-bg {
+    background-image:
+      linear-gradient(rgba(15, 23, 42, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(15, 23, 42, 0.05) 1px, transparent 1px);
+  }
+  html[data-theme="light"] .hero-name .line2 {
+    -webkit-text-stroke: 1.5px rgba(15, 23, 42, 0.3);
+  }
+  html[data-theme="light"] .btn-primary {
+    background: var(--accent);
+    color: #ffffff;
+  }
+  html[data-theme="light"] .btn-primary:hover {
+    background: #0369a1;
+    color: #ffffff;
+  }
+  html[data-theme="light"] .skill-card {
+    background: #f1f5f9;
+  }
+  html[data-theme="light"] .skill-card:hover {
+    background: #ffffff;
+  }
+  html[data-theme="light"] .tech-pill {
+    background: rgba(15, 23, 42, 0.04);
+  }
+  html[data-theme="light"] .modal-code-box {
+    background: #0f172a;
+    color: #e2e8f0;
+  }
+
+  /* ── GLOBAL SMOOTH THEME TRANSITION ── */
+  body, nav, section, .skill-card, .project-card, .stat, footer, .form-input, .form-textarea, .modal-container {
+    transition: background 0.35s ease, color 0.35s ease, border-color 0.35s ease;
+  }
+
+  /* ── TORCH BUTTON & BANTER ── */
+  .nav-right-cluster {
+    display: flex;
+    align-items: center;
+    gap: 1.8rem;
+  }
+  .torch-box {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+  }
+  .torch-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1.5px solid var(--border);
+    padding: 0.35rem 0.85rem;
+    border-radius: 9999px;
+    color: var(--text);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    user-select: none;
+    outline: none;
+  }
+  .torch-btn:hover {
+    border-color: var(--accent);
+    transform: translateY(-1px);
+    background: rgba(255, 255, 255, 0.08);
+  }
+  .torch-icon-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.06);
+    transition: all 0.3s ease;
+  }
+  .torch-img-svg {
+    width: 26px;
+    height: 26px;
+    display: block;
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .torch-btn:hover .torch-img-svg {
+    transform: scale(1.15) rotate(-8deg);
+  }
+  .torch-status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #64748b;
+    transition: all 0.25s ease;
+  }
+  /* Torch Lit: White background and radiant yellow light aura */
+  .torch-active {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    border-color: #f59e0b !important;
+    box-shadow: 0 0 16px rgba(245, 158, 11, 0.5), 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+  }
+  .torch-active .torch-icon-wrap {
+    background: #ffffff;
+    box-shadow: 0 0 10px rgba(245, 158, 11, 0.45);
+  }
+  .torch-active .torch-label {
+    color: #b45309 !important;
+    font-weight: 700 !important;
+  }
+  .torch-active .torch-status-dot {
+    background: #f59e0b;
+    box-shadow: 0 0 8px #f59e0b;
+  }
+  .torch-banter-bubble {
+    position: absolute;
+    top: calc(100% + 14px);
+    right: 0;
+    width: 270px;
+    background: var(--surface);
+    border: 1.5px solid var(--accent);
+    border-radius: 8px;
+    padding: 0.85rem 1rem;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+    font-family: var(--font-mono);
+    font-size: 0.73rem;
+    line-height: 1.45;
+    color: var(--text);
+    z-index: 500;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .torch-banter-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    right: 22px;
+    border: 7px solid transparent;
+    border-bottom-color: var(--accent);
+  }
+  .torch-banter-bubble.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  .banter-meta {
+    font-size: 0.6rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 4px;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+  }
+
+
+
+  /* ── INTERACTIVE PROJECT CARDS & HINTS ── */
+  .project-card {
+    cursor: pointer;
+  }
+  .project-card:hover {
+    box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+  }
+  .project-click-hint {
+    margin-top: 1.2rem;
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    color: var(--accent);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    transition: transform 0.2s ease;
+  }
+  .project-card:hover .project-click-hint {
+    transform: translateX(4px);
+  }
+
+  /* ── PROJECT DEEP-DIVE MODAL ── */
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.78);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+  .modal-backdrop.open {
+    opacity: 1;
+    visibility: visible;
+  }
+  .modal-container {
+    background: var(--modal-bg, var(--surface));
+    border: 1px solid var(--modal-border, var(--border));
+    border-radius: 12px;
+    max-width: 860px;
+    width: 100%;
+    max-height: 88vh;
+    overflow-y: auto;
+    padding: 2.5rem 3rem;
+    position: relative;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+    transform: scale(0.96) translateY(18px);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .modal-backdrop.open .modal-container {
+    transform: scale(1) translateY(0);
+  }
+  .modal-close-btn {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border);
+    color: var(--text);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: all 0.2s;
+  }
+  .modal-close-btn:hover {
+    background: var(--modal-accent, var(--accent));
+    color: #090d13;
+  }
+  .modal-theme-banner {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.3rem 0.8rem;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--modal-accent, var(--accent));
+    border: 1px solid var(--modal-accent, var(--accent));
+    margin-bottom: 1.2rem;
+  }
+  .modal-title {
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+    font-weight: 800;
+    margin-bottom: 0.4rem;
+  }
+  .modal-subtitle {
+    font-family: var(--font-mono);
+    color: var(--modal-accent, var(--accent));
+    font-size: 0.85rem;
+    margin-bottom: 1.5rem;
+  }
+  .modal-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+  .modal-btn-cheer {
+    background: var(--modal-accent, var(--accent));
+    color: #090d13;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.8rem;
+    padding: 0.7rem 1.4rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+  }
+  .modal-btn-cheer:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+  }
+  .modal-btn-theme {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    padding: 0.7rem 1.2rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .modal-btn-theme:hover {
+    border-color: var(--modal-accent, var(--accent));
+    color: var(--modal-accent, var(--accent));
+  }
+  .modal-section-title {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin: 1.8rem 0 0.8rem;
+    font-weight: 700;
+  }
+  .modal-problem-solution {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  @media (max-width: 680px) {
+    .modal-problem-solution { grid-template-columns: 1fr; }
+  }
+  .modal-card-box {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.2rem;
+  }
+  .modal-card-box h5 {
+    color: var(--modal-accent, var(--accent));
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+  }
+  .modal-card-box p {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .modal-arch-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+    margin-top: 0.8rem;
+  }
+  .modal-arch-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.2rem;
+  }
+  .modal-arch-card h4 {
+    color: var(--modal-accent, var(--accent));
+    font-size: 0.92rem;
+    margin-bottom: 0.4rem;
+  }
+  .modal-arch-card p {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .modal-code-box {
+    background: #05080c;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.2rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: #cbd5e1;
+    overflow-x: auto;
+    line-height: 1.5;
+  }
+
+  /* ── ACTIVE THEME TOAST ── */
+  .theme-indicator-toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--surface);
+    border: 1px solid var(--accent);
+    padding: 0.8rem 1.4rem;
+    border-radius: 8px;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .theme-indicator-toast.show {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  .theme-reset-btn {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--border);
+    color: var(--accent);
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.7rem;
+  }
+
+  /* ── THEME ENGINES: MINECRAFT, AGRICULTURE & UNIVERSE MODES ── */
+
+  /* 1. MINECRAFT THEME (MGU.One & AIBridge) */
+  html[data-theme-style="minecraft"],
+  html[data-theme-style="minecraft"] body {
+    cursor: url('/assets/cursors/minecraft-sword.svg') 2 2, auto !important;
+  }
+  html[data-theme-style="minecraft"] a,
+  html[data-theme-style="minecraft"] button,
+  html[data-theme-style="minecraft"] .project-card,
+  html[data-theme-style="minecraft"] .torch-btn,
+  html[data-theme-style="minecraft"] input,
+  html[data-theme-style="minecraft"] textarea {
+    cursor: url('/assets/cursors/minecraft-sword.svg') 2 2, pointer !important;
+  }
+  html[data-theme-style="minecraft"] {
+    --accent: #2cf5d6 !important;
+    --accent2: #4ade80 !important;
+    --bg: #0d120d !important;
+    --surface: #151d15 !important;
+    --border: #3f8e3f !important;
+    --text: #f0fdf4 !important;
+    --muted: #86efac !important;
+    --font-pixel: 'Press Start 2P', monospace;
+  }
+  html[data-theme-style="minecraft"] body {
+    background-color: #0d120d !important;
+    background-image:
+      linear-gradient(rgba(44, 245, 214, 0.05) 2px, transparent 2px),
+      linear-gradient(90deg, rgba(44, 245, 214, 0.05) 2px, transparent 2px) !important;
+    background-size: 32px 32px !important;
+  }
+  html[data-theme-style="minecraft"] .nav-logo,
+  html[data-theme-style="minecraft"] .section-title,
+  html[data-theme-style="minecraft"] .hero-name,
+  html[data-theme-style="minecraft"] .project-title,
+  html[data-theme-style="minecraft"] .modal-title,
+  html[data-theme-style="minecraft"] .section-label,
+  html[data-theme-style="minecraft"] .universe-bar-label {
+    font-family: 'Press Start 2P', monospace !important;
+  }
+  html[data-theme-style="minecraft"] .hero-name {
+    font-size: clamp(2.2rem, 5.5vw, 4.2rem) !important;
+    line-height: 1.25 !important;
+    text-shadow: 4px 4px 0 #064e3b, 8px 8px 0 #022c22 !important;
+  }
+  html[data-theme-style="minecraft"] .section-title {
+    font-size: clamp(1.2rem, 2.5vw, 1.7rem) !important;
+  }
+  html[data-theme-style="minecraft"] .btn,
+  html[data-theme-style="minecraft"] .project-card,
+  html[data-theme-style="minecraft"] .torch-btn,
+  html[data-theme-style="minecraft"] .universe-pill,
+  html[data-theme-style="minecraft"] .modal-container {
+    border: 3px solid #3f8e3f !important;
+    box-shadow: inset -3px -3px 0 #142a14, inset 3px 3px 0 #6ee7b7, 0 8px 0 #062406 !important;
+    border-radius: 0px !important;
+  }
+  html[data-theme-style="minecraft"] .project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: inset -3px -3px 0 #142a14, inset 3px 3px 0 #6ee7b7, 0 12px 0 #062406 !important;
+  }
+  html[data-theme-style="minecraft"] .tech-pill {
+    border-radius: 0px !important;
+    border: 1.5px solid #2cf5d6 !important;
+    font-family: 'Press Start 2P', monospace !important;
+    font-size: 0.52rem !important;
+  }
+
+  /* 2. AGRICULTURE THEME (PAYASWINI / OBELE) */
+  html[data-theme-style="agriculture"],
+  html[data-theme-style="agriculture"] body {
+    cursor: url('/assets/cursors/agri-sprout.svg') 2 2, auto !important;
+  }
+  html[data-theme-style="agriculture"] a,
+  html[data-theme-style="agriculture"] button,
+  html[data-theme-style="agriculture"] .project-card,
+  html[data-theme-style="agriculture"] .torch-btn,
+  html[data-theme-style="agriculture"] input,
+  html[data-theme-style="agriculture"] textarea {
+    cursor: url('/assets/cursors/agri-sprout.svg') 2 2, pointer !important;
+  }
+  html[data-theme-style="agriculture"] {
+    --accent: #10b981 !important;
+    --accent2: #f59e0b !important;
+    --bg: #03140d !important;
+    --surface: #0a271c !important;
+    --border: rgba(16, 185, 129, 0.35) !important;
+    --text: #f0fdf4 !important;
+    --muted: #a7f3d0 !important;
+  }
+  html[data-theme-style="agriculture"] body {
+    background-color: #03140d !important;
+    background-image: 
+      radial-gradient(circle at 10% 20%, rgba(16, 185, 129, 0.08) 0%, transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(245, 158, 11, 0.06) 0%, transparent 40%),
+      linear-gradient(rgba(16, 185, 129, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(16, 185, 129, 0.03) 1px, transparent 1px) !important;
+    background-size: auto, auto, 40px 40px, 40px 40px !important;
+  }
+  html[data-theme-style="agriculture"] .project-card {
+    border-color: rgba(16, 185, 129, 0.35) !important;
+    background: linear-gradient(135deg, rgba(10, 39, 28, 0.92) 0%, rgba(6, 25, 18, 0.98) 100%) !important;
+  }
+  html[data-theme-style="agriculture"] .project-card:hover {
+    border-color: #10b981 !important;
+    box-shadow: 0 16px 36px rgba(16, 185, 129, 0.22) !important;
+  }
+
+  /* 3. CYBER VIOLET (CODEX) THEME */
+  html[data-theme-style="cyber"],
+  html[data-theme-style="cyber"] body {
+    cursor: url('/assets/cursors/cyber-crosshair.svg') 2 2, auto !important;
+  }
+  html[data-theme-style="cyber"] a,
+  html[data-theme-style="cyber"] button,
+  html[data-theme-style="cyber"] .project-card,
+  html[data-theme-style="cyber"] .torch-btn,
+  html[data-theme-style="cyber"] input {
+    cursor: url('/assets/cursors/cyber-crosshair.svg') 2 2, pointer !important;
+  }
+  html[data-theme-style="cyber"] {
+    --accent: #6366f1 !important;
+    --accent2: #8b5cf6 !important;
+    --bg: #070814 !important;
+    --surface: #0f122e !important;
+    --border: rgba(99, 102, 241, 0.35) !important;
+    --text: #e0e7ff !important;
+    --muted: #a5b4fc !important;
+  }
+
+  /* 4. SCHOLARLY CYAN (E-LIBRARY) THEME */
+  html[data-theme-style="elibrary"],
+  html[data-theme-style="elibrary"] body {
+    cursor: url('/assets/cursors/resume-pen.svg') 1 1, auto !important;
+  }
+  html[data-theme-style="elibrary"] a,
+  html[data-theme-style="elibrary"] button,
+  html[data-theme-style="elibrary"] .project-card {
+    cursor: url('/assets/cursors/resume-pen.svg') 1 1, pointer !important;
+  }
+  html[data-theme-style="elibrary"] {
+    --accent: #06b6d4 !important;
+    --accent2: #3b82f6 !important;
+    --bg: #02121b !important;
+    --surface: #072233 !important;
+    --border: rgba(6, 182, 212, 0.35) !important;
+    --text: #ecfeff !important;
+    --muted: #a5f3fc !important;
+  }
+
+  /* 5. CELLS AMS THEME */
+  html[data-theme-style="cells"] {
+    --accent: #f43f5e !important;
+    --accent2: #fb7185 !important;
+    --bg: #14070a !important;
+    --surface: #260c14 !important;
+    --border: rgba(244, 63, 94, 0.35) !important;
+    --text: #fff1f2 !important;
+    --muted: #fecdd3 !important;
+  }
+
+  /* ── THEME UNIVERSE SWITCHER BAR ── */
+  .theme-universe-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+    padding: 1rem 1.4rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    backdrop-filter: blur(12px);
+  }
+  .universe-bar-label {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .universe-pills {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+  .universe-pill {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 0.42rem 0.9rem;
+    border-radius: 9999px;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .universe-pill:hover,
+  .universe-pill.active {
+    background: var(--accent) !important;
+    color: #090d13 !important;
+    border-color: var(--accent) !important;
+    font-weight: 700;
+    box-shadow: 0 0 14px var(--accent);
+  }
+
+  /* ── PROJECT CARD QUICK-ACTIONS ── */
+  .project-actions-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.4rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+  .btn-activate-theme {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border);
+    color: var(--accent);
+    padding: 0.4rem 0.85rem;
+    border-radius: 6px;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .btn-activate-theme:hover {
+    background: var(--accent);
+    color: #090d13;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+  }
+
+  /* ── AGRICULTURE EQUIPMENT & MINECRAFT ASSETS IN MODAL ── */
+  .modal-asset-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 0.85rem;
+    margin-top: 1rem;
+    margin-bottom: 1.8rem;
+  }
+  .modal-asset-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.85rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: all 0.25s ease;
+  }
+  .modal-asset-card:hover {
+    border-color: var(--modal-accent, var(--accent));
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.06);
+  }
+  .modal-asset-icon-wrap {
+    width: 54px;
+    height: 54px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.6rem;
+    border: 1px solid var(--border);
+    padding: 6px;
+  }
+  .modal-asset-icon-wrap img {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    object-fit: contain;
+  }
+  .modal-asset-name {
+    font-size: 0.72rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+  }
+  .modal-asset-rate {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--modal-accent, var(--accent));
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">JN</a>
+  <div class="nav-right-cluster">
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="/resume" style="color: var(--accent); border: 1px solid var(--accent); padding: 0.3rem 0.85rem; border-radius: 4px; font-weight: 700;">Resume ↗</a></li>
+    </ul>
+
+    <!-- Torch Dark/Light Toggle with Banter (Vector SVGs with yellow glow & white background) -->
+    <div class="torch-box">
+      <button class="torch-btn" id="torch-btn" aria-label="Toggle Torch (Dark / Light Mode)" title="Click to strike the torch!">
+        <span class="torch-icon-wrap" id="torch-icon-wrap">
+          <img id="torch-img" src="/assets/torch-off.svg" alt="Torch Off" class="torch-img-svg" />
+        </span>
+        <span class="torch-label" id="torch-label">Torch Off</span>
+        <span class="torch-status-dot" id="torch-dot"></span>
+      </button>
+      <div class="torch-banter-bubble" id="torch-banter">
+        <div class="banter-meta"><span>🔥 Cave Banter</span><span id="banter-mode">Dark Mode</span></div>
+        <div id="banter-text">It's dark in here... click the torch to light up!</div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span></span>
+      <span id="typed-role">Available for opportunities</span>
+    </div>
+    <h1 class="hero-name glitch" data-text="Jnanesh">
+      <span>Jnanesh</span><br>
+      <span class="line2">Sharma H<span class="accent">.</span></span>
+    </h1>
+    <div class="hero-sub hero-terminal-sub" id="hero-typewriter-sub" aria-label="CS Engineering Student VCET VTU 3rd Year. Backend Dev Node.js and Express. India, Turning ideas into resilient software.">
+      <div class="typed-line" id="type-line-1"><span class="comment-slash">//</span> <span class="typed-text"></span></div>
+      <div class="typed-line" id="type-line-2"><span class="comment-slash">//</span> <span class="typed-text"></span></div>
+      <div class="typed-line" id="type-line-3"><span class="comment-slash">//</span> <span class="typed-text"></span></div>
+    </div>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">View Projects →</a>
+      <a href="/resume" class="btn btn-ghost" style="border-color: var(--accent); color: var(--accent);">View Resume ↗</a>
+      <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    Scroll
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-visual reveal">
+    <div class="about-frame" title="Jnanesh Dev Terminal">
+      <div class="about-terminal-header">
+        <div class="terminal-dots">
+          <span class="terminal-dot dot-red"></span>
+          <span class="terminal-dot dot-yellow"></span>
+          <span class="terminal-dot dot-green"></span>
+        </div>
+        <span class="terminal-title">bash: jnanesh@vcet:~</span>
+      </div>
+      <div class="about-terminal-body">
+        <div class="term-line"><span class="term-prompt">$</span> <span class="term-cmd">curl -s /api/developer/profile</span></div>
+        <div class="term-output">
+          <span class="term-brace">{</span><br>
+          &nbsp;&nbsp;<span class="term-key">"name"</span>: <span class="term-str">"Jnanesh Sharma H."</span>,<br>
+          &nbsp;&nbsp;<span class="term-key">"role"</span>: <span class="term-str">"Backend Engineer"</span>,<br>
+          &nbsp;&nbsp;<span class="term-key">"education"</span>: <span class="term-str">"VCET (VTU) · 3rd Year"</span>,<br>
+          &nbsp;&nbsp;<span class="term-key">"focus"</span>: <span class="term-str">"Scalable APIs &amp; Distributed Systems"</span>,<br>
+          &nbsp;&nbsp;<span class="term-key">"stack"</span>: [<span class="term-str">"Node"</span>, <span class="term-str">"Express"</span>, <span class="term-str">"C++"</span>, <span class="term-str">"Java"</span>],<br>
+          &nbsp;&nbsp;<span class="term-key">"status"</span>: <span class="term-accent">"Open for Internships"</span><br>
+          <span class="term-brace">}</span>
+        </div>
+        <div class="term-line" style="margin-top:0.45rem;"><span class="term-prompt">$</span> <span class="term-active-cmd">node --watch server.js</span><span class="term-cursor"></span></div>
+      </div>
+      <div class="about-corner tl"></div>
+      <div class="about-corner tr"></div>
+      <div class="about-corner bl"></div>
+      <div class="about-corner br"></div>
+    </div>
+    <div class="about-tag age">// VCET · 3rd Year</div>
+    <div class="about-tag loc">⚡ Backend &amp; Distributed</div>
+  </div>
+  <div class="about-text">
+    <div class="section-label">About Me</div>
+    <h2 class="section-title reveal">Who I <em>Am</em></h2>
+    <p class="reveal reveal-delay-1">I'm <strong>Jnanesh Sharma H.</strong>, a Computer Science Engineering student (3rd Year, VCET &mdash; affiliated with VTU) with a 7.4 CGPA. I specialize in backend development, scalable REST services, and community-scale platform management.</p>
+    <p class="reveal reveal-delay-2">My experience spans from engineering production backends &mdash; such as implementing hardened JWT authentication and building a Firebase Cloud Messaging (FCM) notification service during my software internship at Akanksha Charitable Trust &mdash; to managing gaming communities and server infrastructure on MGU.One, and previously leading creative production at WeMod.</p>
+    <p class="reveal reveal-delay-3">Currently designing peer-to-peer agricultural equipment platforms, architecting modular Express micro-routes, and tackling algorithmic challenges on LeetCode. Always open to backend software internships and high-impact collaborative engineering.</p>
+    <div class="about-stats reveal">
+      <div class="stat"><div class="stat-num">3rd</div><div class="stat-label">Year B.E. CS</div></div>
+      <div class="stat"><div class="stat-num">7.4</div><div class="stat-label">CGPA</div></div>
+      <div class="stat"><div class="stat-num">10+</div><div class="stat-label">Projects &amp; Systems</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">Toolkit</div>
+  <h2 class="section-title reveal">What I <em>Know</em></h2>
+  <div class="skills-grid">
+
+    <div class="skill-card reveal">
+      <div class="skill-icon">⚡</div>
+      <div class="skill-name">Languages</div>
+      <div class="skill-desc">C++, C, JavaScript, Java, Python &mdash; writing clean, performant code across systems, backend web services, and algorithmic problem solving.</div>
+      <div class="skill-bar"><div class="skill-fill" style="--w:0.88"></div></div>
+      <div class="skill-level">Advanced</div>
+    </div>
+
+    <div class="skill-card reveal reveal-delay-1">
+      <div class="skill-icon">🌐</div>
+      <div class="skill-name">Backend &amp; Web Dev</div>
+      <div class="skill-desc">Node.js, Express.js, RESTful APIs, React, MongoDB (MERN). Modular controllers, request validation middleware, and token-based security.</div>
+      <div class="skill-bar"><div class="skill-fill" style="--w:0.85"></div></div>
+      <div class="skill-level">Advanced</div>
+    </div>
+
+    <div class="skill-card reveal reveal-delay-2">
+      <div class="skill-icon">🔒</div>
+      <div class="skill-name">Auth &amp; Cloud Services</div>
+      <div class="skill-desc">JWT authentication security, Firebase Cloud Messaging (FCM), Firestore indexing, and background schedulers for automated reminders.</div>
+      <div class="skill-bar"><div class="skill-fill" style="--w:0.82"></div></div>
+      <div class="skill-level">Intermediate–Advanced</div>
+    </div>
+
+    <div class="skill-card reveal">
+      <div class="skill-icon">🗄️</div>
+      <div class="skill-name">Core Fundamentals</div>
+      <div class="skill-desc">Data Structures &amp; Algorithms (DSA), Object-Oriented Programming (OOP), Database Management Systems (DBMS), LeetCode problem solving.</div>
+      <div class="skill-bar"><div class="skill-fill" style="--w:0.84"></div></div>
+      <div class="skill-level">Advanced</div>
+    </div>
+
+    <div class="skill-card reveal reveal-delay-1">
+      <div class="skill-icon">🧱</div>
+      <div class="skill-name">Minecraft &amp; Systems</div>
+      <div class="skill-desc">Paper/Spigot API, Demand Balancer ShopGUI, BWLava custom integrations, community operations, server moderation, and Linux hosting.</div>
+      <div class="skill-bar"><div class="skill-fill" style="--w:0.90"></div></div>
+      <div class="skill-level">Expert</div>
+    </div>
+
+    <div class="skill-card reveal reveal-delay-2">
+      <div class="skill-icon">🔧</div>
+      <div class="skill-name">Tools &amp; Version Control</div>
+      <div class="skill-desc">Git, GitHub, Linux CLI, Bash, unit testing, Postman, and collaborative engineering workflows.</div>
+      <div class="skill-bar"><div class="skill-fill" style="--w:0.80"></div></div>
+      <div class="skill-level">Proficient</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="projects-header">
+    <div>
+      <div class="section-label">Work &amp; Interactive Universes</div>
+      <h2 class="section-title reveal">Featured <em>Projects</em></h2>
+    </div>
+    <a href="/resume" class="btn btn-ghost reveal">View Full Resume ↗</a>
+  </div>
+
+  <!-- THEME UNIVERSE SWITCHER -->
+  <div class="theme-universe-bar reveal">
+    <span class="universe-bar-label">⚡ UNIVERSE THEME ENGINE:</span>
+    <div class="universe-pills">
+      <button class="universe-pill active" data-style="default" onclick="applyThemeStyle('default')">🌟 Default Obsidian</button>
+      <button class="universe-pill" data-style="agriculture" onclick="applyThemeStyle('agriculture')">🌾 Payaswini AgriTech</button>
+      <button class="universe-pill" data-style="minecraft" onclick="applyThemeStyle('minecraft')">⛏️ Minecraft AIBridge</button>
+      <button class="universe-pill" data-style="cyber" onclick="applyThemeStyle('cyber')">⚡ Codex Cyber</button>
+      <button class="universe-pill" data-style="elibrary" onclick="applyThemeStyle('elibrary')">📚 Scholarly Cyan</button>
+      <button class="universe-pill" data-style="cells" onclick="applyThemeStyle('cells')">🧬 Bio-Matrix</button>
+    </div>
+  </div>
+
+  <div class="projects-grid">
+
+    <div class="project-card featured reveal" data-project-id="obele">
+      <div class="project-num"><span>01</span><span>★ Featured · AgriTech</span></div>
+      <div class="project-tag">🌾 Agricultural Web Platform (Payaswini)</div>
+      <div class="project-title">O~Bele / Payaswini &mdash; Tool Rental Platform</div>
+      <div class="project-desc">A peer-to-peer agricultural equipment rental platform connecting farm machinery owners with smallholder operators across agricultural communities. Features verified certified-operator workflows with a 4-hour confirmation SLA, hourly/daily billing models, and a complete suite of agricultural equipment SVGs.</div>
+      <div class="project-tech">
+        <span class="tech-pill">Node.js</span>
+        <span class="tech-pill">Express.js</span>
+        <span class="tech-pill">REST APIs</span>
+        <span class="tech-pill">Agriculture SVGs</span>
+        <span class="tech-pill">Validation</span>
+      </div>
+      <div class="project-actions-row">
+        <button class="btn-activate-theme" onclick="event.stopPropagation(); applyThemeStyle('agriculture')">🌾 Activate Payaswini Theme</button>
+        <span class="project-click-hint">⚡ View Equipment SVGs &amp; Specs ↗</span>
+      </div>
+      <div class="project-arrow">↗</div>
+    </div>
+
+    <div class="project-card medium reveal reveal-delay-1" data-project-id="codex">
+      <div class="project-num"><span>02</span><span>Production Internship</span></div>
+      <div class="project-tag">⚡ Backend Services &amp; Security</div>
+      <div class="project-title">Codex Learning Platform Backend</div>
+      <div class="project-desc">Engineered backend enhancements at Akanksha Charitable Trust. Implemented hardened JWT security validation, built a Firebase Cloud Messaging (FCM) notification service with in-process streak reminders, and integrated gamification milestones.</div>
+      <div class="project-tech">
+        <span class="tech-pill">Node.js</span><span class="tech-pill">Firebase FCM</span><span class="tech-pill">JWT Auth</span><span class="tech-pill">Firestore</span><span class="tech-pill">Unit Tests</span>
+      </div>
+      <div class="project-actions-row">
+        <button class="btn-activate-theme" onclick="event.stopPropagation(); applyThemeStyle('cyber')">⚡ Activate Cyber Theme</button>
+        <span class="project-click-hint">⚡ View Architecture Specs ↗</span>
+      </div>
+      <div class="project-arrow">↗</div>
+    </div>
+
+    <div class="project-card medium reveal reveal-delay-2" data-project-id="elibrary">
+      <div class="project-num"><span>03</span><span>MERN Platform</span></div>
+      <div class="project-tag">📚 Academic Repository</div>
+      <div class="project-title">E-Library Management System</div>
+      <div class="project-desc">Full-stack library management application. Built RESTful API routes with MongoDB for persistent catalog data, member borrowing records, and CRUD operations, structured with JSON middleware and modular Express controllers.</div>
+      <div class="project-tech">
+        <span class="tech-pill">MongoDB</span><span class="tech-pill">Express.js</span><span class="tech-pill">React</span><span class="tech-pill">Node.js</span>
+      </div>
+      <div class="project-actions-row">
+        <button class="btn-activate-theme" onclick="event.stopPropagation(); applyThemeStyle('elibrary')">📚 Activate Library Theme</button>
+        <span class="project-click-hint">⚡ View Architecture Specs ↗</span>
+      </div>
+      <div class="project-arrow">↗</div>
+    </div>
+
+    <div class="project-card small reveal" data-project-id="cells">
+      <div class="project-num"><span>04</span><span>In Progress</span></div>
+      <div class="project-tag">🧬 Attendance Systems</div>
+      <div class="project-title">Cells AMS &mdash; Attendance Management</div>
+      <div class="project-desc">Attendance management system for tracking member check-ins, record auditing, and administrative workflows with relational schemas and audit logging.</div>
+      <div class="project-tech">
+        <span class="tech-pill">JavaScript</span><span class="tech-pill">Express.js</span><span class="tech-pill">DBMS</span>
+      </div>
+      <div class="project-actions-row">
+        <button class="btn-activate-theme" onclick="event.stopPropagation(); applyThemeStyle('cells')">🧬 Activate Bio Theme</button>
+        <span class="project-click-hint">⚡ View Specs ↗</span>
+      </div>
+      <div class="project-arrow">↗</div>
+    </div>
+
+    <div class="project-card small reveal reveal-delay-1" data-project-id="mgu">
+      <div class="project-num"><span>05</span><span>Paper 1.21.4 + AI</span></div>
+      <div class="project-tag">⛏️ Minecraft AIBridge &amp; Server Ops</div>
+      <div class="project-title">MGU.One &amp; Minecraft AIBridge</div>
+      <div class="project-desc">Ongoing server administration and custom Java 17+ Paper plugin development — including AIBridge, a direct Paper-to-OpenCode headless server bridge for in-game automated server administration with FileGuard sandboxing.</div>
+      <div class="project-tech">
+        <span class="tech-pill">Java 17</span><span class="tech-pill">Paper API</span><span class="tech-pill">OpenCode AI</span><span class="tech-pill">Linux</span>
+      </div>
+      <div class="project-actions-row">
+        <button class="btn-activate-theme" onclick="event.stopPropagation(); applyThemeStyle('minecraft')">⛏️ Activate Minecraft Theme</button>
+        <span class="project-click-hint">⚡ View Pixel SVGs &amp; Java Code ↗</span>
+      </div>
+      <div class="project-arrow">↗</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE / EDUCATION -->
+<section id="experience">
+  <div class="section-label">Journey</div>
+  <h2 class="section-title reveal">My <em>Timeline</em></h2>
+  <div class="timeline">
+
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+      <div class="timeline-period">Jan 2026 — Jul 2026</div>
+      <div class="timeline-role">Software Intern</div>
+      <div class="timeline-org">Akanksha Charitable Trust &mdash; Codex Learning Platform Backend</div>
+      <div class="timeline-desc">Implemented JWT authentication improvements including validation for tampered and invalid tokens. Designed and built an FCM notification service with an in-process scheduler for streak reminders. Extended user models with configurable notification preferences and contributed unit tests and Firestore indexing optimizations.</div>
+    </div>
+
+    <div class="timeline-item reveal reveal-delay-1">
+      <div class="timeline-dot"></div>
+      <div class="timeline-period">2023 — Expected 2028</div>
+      <div class="timeline-role">B.E. Computer Science Engineering (3rd Year, Sem 5)</div>
+      <div class="timeline-org">Vivekananda College of Engineering and Technology (VCET, VTU) · CGPA: 7.4</div>
+      <div class="timeline-desc">Core coursework in Data Structures &amp; Algorithms, Object-Oriented Programming, Database Management Systems, and Computer Networks. Active member of CoRE Club VCET.</div>
+    </div>
+
+    <div class="timeline-item reveal reveal-delay-2">
+      <div class="timeline-dot"></div>
+      <div class="timeline-period">Mar 2025 — Present</div>
+      <div class="timeline-role">Administrator</div>
+      <div class="timeline-org">MGU.One Minecraft Server</div>
+      <div class="timeline-desc">Administer ongoing server operations, community moderation, user support, and infrastructure workflows while coordinating server rules and technical integrations.</div>
+    </div>
+
+    <div class="timeline-item reveal reveal-delay-3">
+      <div class="timeline-dot"></div>
+      <div class="timeline-period">2022 — 2025</div>
+      <div class="timeline-role">Creative Head</div>
+      <div class="timeline-org">WeMod (Atlantis Corporation)</div>
+      <div class="timeline-desc">Led creative planning and asset production across gaming and YouTube creator initiatives (MrGamerJay, Mineplex). Coordinated cross-functional deliverables, creator specifications, and end-to-end partner communications.</div>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+      <div class="timeline-period">Certifications &amp; Competitions</div>
+      <div class="timeline-role">Technical Activities</div>
+      <div class="timeline-org">IEEE Xtreme · LeetCode · MICE · NITK Surathkal</div>
+      <div class="timeline-desc">Participated in IEEE Xtreme Competitive Programming, solved 50+ LeetCode algorithmic problems, earned Python Programming Certificate (MICE Institute), and attended Entrepreneurship Workshop at NITK Surathkal.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-info">
+    <div class="section-label">Contact</div>
+    <h2 class="section-title reveal">Let's <em>Build</em><br>Together</h2>
+    <p class="contact-desc reveal reveal-delay-1">Whether it's an internship opportunity, backend engineering collaboration, freelance work, or discussing distributed systems &mdash; my inbox is open.</p>
+    <div class="contact-links reveal reveal-delay-2">
+      <a href="mailto:jnaneshsharmah@gmail.com" class="contact-link">
+        <span class="contact-link-icon">✉️</span>
+        <div><span class="contact-link-label">Email</span>jnaneshsharmah@gmail.com</div>
+      </a>
+      <a href="tel:+917994655828" class="contact-link">
+        <span class="contact-link-icon">📞</span>
+        <div><span class="contact-link-label">Phone</span>+91 7994655828</div>
+      </a>
+      <a href="https://github.com/Jnanesh321" target="_blank" class="contact-link">
+        <span class="contact-link-icon">🐙</span>
+        <div><span class="contact-link-label">GitHub</span>github.com/Jnanesh321</div>
+      </a>
+      <a href="/resume" class="contact-link">
+        <span class="contact-link-icon">📄</span>
+        <div><span class="contact-link-label">Resume</span>View &amp; Print Full Resume</div>
+      </a>
+      <div class="contact-link">
+        <span class="contact-link-icon">📍</span>
+        <div><span class="contact-link-label">Location</span>India</div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <form class="contact-form reveal reveal-delay-1" onsubmit="handleForm(event)">
+      <div class="form-group">
+        <label class="form-label">Your Name</label>
+        <input type="text" id="contact-name" class="form-input" placeholder="Your Name" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input type="email" id="contact-email" class="form-input" placeholder="you@example.com" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Subject</label>
+        <input type="text" id="contact-subject" class="form-input" placeholder="Internship Opportunity / Collab / Project">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Message</label>
+        <textarea id="contact-message" class="form-textarea" placeholder="Hey Jnanesh, I'd love to talk about..." required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">
+        Send Message →
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-copy">© 2026 <span>Jnanesh Sharma H.</span> · Built with Express &amp; Node.js</div>
+  <div class="footer-social">
+    <a href="https://github.com/Jnanesh321" target="_blank">GitHub</a>
+    <a href="/resume">Resume</a>
+    <a href="mailto:jnaneshsharmah@gmail.com">Email</a>
+    <a href="#hero">Back to Top ↑</a>
+  </div>
+</footer>
+
+<script>
+// ── Scroll Reveal ──
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ── Skill bar on hover ──
+// (handled by CSS :hover) — also trigger on scroll into view
+const skillObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting) {
+      const fill = e.target.querySelector('.skill-fill');
+      if(fill) { setTimeout(() => { fill.style.transform = `scaleX(${getComputedStyle(fill).getPropertyValue('--w') || 0.7})`; }, 300); }
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.skill-card').forEach(c => skillObserver.observe(c));
+
+// ── Typewriter roles ──
+const roles = [
+  'Backend Developer',
+  'Node.js & Express Engineer',
+  'CS Engineering Student · 3rd Year',
+  'Building Resilient Systems'
+];
+let ri = 0, ci = 0, deleting = false;
+const tyEl = document.getElementById('typed-role');
+function typewrite() {
+  const word = roles[ri];
+  if(!deleting) {
+    tyEl.textContent = word.slice(0, ++ci);
+    if(ci === word.length) { deleting = true; setTimeout(typewrite, 1800); return; }
+  } else {
+    tyEl.textContent = word.slice(0, --ci);
+    if(ci === 0) { deleting = false; ri = (ri+1) % roles.length; }
+  }
+  setTimeout(typewrite, deleting ? 45 : 90);
+}
+typewrite();
+
+// ── Hero Subtitle Multi-Line Terminal Typewriter ──
+const heroSubLines = [
+  { id: 'type-line-1', text: 'CS Engineering Student · VCET (VTU) · 3rd Year' },
+  { id: 'type-line-2', text: 'Backend Dev · Node.js & Express · Distributed & Community Systems' },
+  { id: 'type-line-3', text: 'India · Turning ideas into resilient software' }
+];
+
+function initHeroSubtypewriter() {
+  let lineIdx = 0;
+  let charIdx = 0;
+
+  function typeNextChar() {
+    if (lineIdx >= heroSubLines.length) return;
+    const current = heroSubLines[lineIdx];
+    const lineEl = document.getElementById(current.id);
+    if (!lineEl) return;
+    const textSpan = lineEl.querySelector('.typed-text');
+    lineEl.classList.add('typing');
+
+    if (charIdx < current.text.length) {
+      textSpan.textContent += current.text.charAt(charIdx);
+      charIdx++;
+      setTimeout(typeNextChar, 24);
+    } else {
+      lineEl.classList.remove('typing');
+      lineEl.classList.add('typed-done');
+      lineIdx++;
+      charIdx = 0;
+      if (lineIdx < heroSubLines.length) {
+        setTimeout(typeNextChar, 160);
+      } else {
+        lineEl.classList.add('typing-complete');
+      }
+    }
+  }
+
+  setTimeout(typeNextChar, 400);
+}
+initHeroSubtypewriter();
+
+// ── Form handler (Express API) ──
+async function handleForm(e) {
+  e.preventDefault();
+  const form = e.target;
+  const btn = form.querySelector('button');
+  const originalText = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = 'Sending Message...';
+
+  const payload = {
+    name: document.getElementById('contact-name').value,
+    email: document.getElementById('contact-email').value,
+    subject: document.getElementById('contact-subject').value,
+    message: document.getElementById('contact-message').value
+  };
+
+  try {
+    const res = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const data = await res.json();
+    if (res.ok && data.success) {
+      btn.textContent = '✓ Message Sent!';
+      btn.style.background = '#38bdf8';
+      btn.style.color = '#090d13';
+      form.reset();
+    } else {
+      btn.textContent = '✕ Error Sending';
+      btn.style.background = '#ef4444';
+      btn.style.color = '#ffffff';
+    }
+  } catch (err) {
+    btn.textContent = '✓ Message Sent!';
+    btn.style.background = '#38bdf8';
+    btn.style.color = '#090d13';
+    form.reset();
+  } finally {
+    setTimeout(() => {
+      btn.disabled = false;
+      btn.textContent = originalText;
+      btn.style.background = '';
+      btn.style.color = '';
+    }, 3500);
+  }
+}
+
+// ── Nav shrink on scroll ──
+window.addEventListener('scroll', () => {
+  document.querySelector('nav').style.padding = window.scrollY > 80 ? '0.9rem 4rem' : '1.5rem 4rem';
+});
+
+// ── Torch Dark/Light Mode with Banter ──
+const torchBtn = document.getElementById('torch-btn');
+const torchImg = document.getElementById('torch-img');
+const torchLabel = document.getElementById('torch-label');
+const torchDot = document.getElementById('torch-dot');
+const torchBanter = document.getElementById('torch-banter');
+const banterText = document.getElementById('banter-text');
+const banterMode = document.getElementById('banter-mode');
+
+const darkBanter = [
+  "🔥 AHH! Who turned on the sun?! My dev eyes!",
+  "☀️ Blinded by the light! Welcome to day-shift mode.",
+  "✨ Torch ignited! Coding outside the terminal?!",
+  "🔥 Warning: Light mode active! Don't stare directly!",
+  "🔦 The torch burns bright! Cave explored!"
+];
+
+const lightReturnBanter = [
+  "💨 *Puff* Extinguished. Back to the dev cave! 🦇",
+  "🌑 Ahhh, sweet darkness returns. Hello terminal!",
+  "🦇 Back into the shadows where the real bugs hide.",
+  "🕶️ Retinas saved. Darkness restored.",
+  "💨 Torch put out. Midnight coding commences."
+];
+
+let banterTimer = null;
+function showBanter(message, modeLabel) {
+  clearTimeout(banterTimer);
+  banterText.textContent = message;
+  banterMode.textContent = modeLabel;
+  torchBanter.classList.add('show');
+  banterTimer = setTimeout(() => {
+    torchBanter.classList.remove('show');
+  }, 4500);
+}
+
+function initTorch() {
+  const savedTheme = localStorage.getItem('jnanesh-portfolio-theme') || 'dark';
+  applyTheme(savedTheme, false);
+
+  torchBtn.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    applyTheme(newTheme, true);
+  });
+
+  torchBtn.addEventListener('mouseenter', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+    if (!torchBanter.classList.contains('show')) {
+      if (currentTheme === 'dark') {
+        showBanter("It's dark in here... click the torch to light up! 🔦", "Dark Mode");
+      } else {
+        showBanter("Torch is blazing! Click to extinguish & go dark 💨", "Light Mode");
+      }
+    }
+  });
+}
+
+function applyTheme(theme, showSpeech) {
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem('jnanesh-portfolio-theme', theme);
+
+  if (theme === 'light') {
+    torchBtn.classList.add('torch-active');
+    if (torchImg) {
+      torchImg.src = '/assets/torch.svg';
+      torchImg.alt = 'Torch Lit';
+    }
+    torchLabel.textContent = 'Torch Lit';
+    torchDot.style.background = '#f59e0b';
+    if (showSpeech) {
+      const line = darkBanter[Math.floor(Math.random() * darkBanter.length)];
+      showBanter(line, "Light Mode Active");
+    }
+  } else {
+    torchBtn.classList.remove('torch-active');
+    if (torchImg) {
+      torchImg.src = '/assets/torch-off.svg';
+      torchImg.alt = 'Torch Off';
+    }
+    torchLabel.textContent = 'Torch Off';
+    torchDot.style.background = '#64748b';
+    if (showSpeech) {
+      const line = lightReturnBanter[Math.floor(Math.random() * lightReturnBanter.length)];
+      showBanter(line, "Dark Mode Restored");
+    }
+  }
+}
+initTorch();
+
+// ── Express-Powered Project Modal & Theming ──
+const modalBackdrop = document.getElementById('project-modal-backdrop');
+const modalContainer = document.getElementById('project-modal-content');
+const modalInner = document.getElementById('modal-inner-content');
+const modalCloseBtn = document.getElementById('modal-close-btn');
+const themeToast = document.getElementById('theme-toast');
+const toastThemeName = document.getElementById('toast-theme-name');
+
+document.querySelectorAll('.project-card[data-project-id]').forEach(card => {
+  card.addEventListener('click', () => {
+    const id = card.getAttribute('data-project-id');
+    openProjectModal(id);
+  });
+});
+
+async function openProjectModal(id) {
+  modalInner.innerHTML = '<div style="text-align:center;padding:3rem;font-family:var(--font-mono);color:var(--muted);">⚡ Fetching live architecture specs from Express backend...</div>';
+  modalBackdrop.classList.add('open');
+
+  try {
+    const res = await fetch(`/api/projects/${id}`);
+    const data = await res.json();
+    if (!data.success || !data.project) {
+      modalInner.innerHTML = '<p style="color:#ef4444;font-family:var(--font-mono);padding:2rem;">Failed to load project details.</p>';
+      return;
+    }
+
+    const p = data.project;
+    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    modalContainer.style.setProperty('--modal-accent', p.theme.accent);
+    modalContainer.style.setProperty('--modal-accent2', p.theme.accent2);
+    modalContainer.style.setProperty('--modal-bg', isLight ? p.theme.lightSurface : p.theme.surface);
+    modalContainer.style.setProperty('--modal-border', p.theme.border);
+
+    // Build logo header if available (Obele)
+    const logoHeader = p.logo ? `
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:1.2rem;">
+        <img src="${p.logo}" alt="${p.title}" style="height:36px;max-width:180px;object-fit:contain;filter:drop-shadow(0 2px 8px rgba(0,0,0,0.3));" />
+      </div>
+    ` : '';
+
+    // Build equipment gallery if available (Obele / Agriculture)
+    const equipmentHtml = p.equipmentGallery ? `
+      <div class="modal-section-title">🌾 Payaswini Agricultural Fleet &amp; Equipment SVGs</div>
+      <div class="modal-asset-grid">
+        ${p.equipmentGallery.map(eq => `
+          <div class="modal-asset-card">
+            <div class="modal-asset-icon-wrap">
+              <img src="${eq.icon}" alt="${eq.name}" />
+            </div>
+            <div class="modal-asset-name">${eq.name}</div>
+            <div class="modal-asset-rate">${eq.rate}</div>
+          </div>
+        `).join('')}
+      </div>
+    ` : '';
+
+    // Build Minecraft assets if available (MGU.One / Minecraft)
+    const minecraftHtml = p.minecraftAssets ? `
+      <div class="modal-section-title">⛏️ Minecraft Pixel Assets &amp; AIBridge Architecture</div>
+      <div class="modal-asset-grid">
+        ${p.minecraftAssets.map(mc => `
+          <div class="modal-asset-card" style="border-radius:0;border:2px solid #3f8e3f;box-shadow:inset -2px -2px 0 #183318, inset 2px 2px 0 #6ee7b7;">
+            <div class="modal-asset-icon-wrap" style="border-radius:0;background:#182018;">
+              <img src="${mc.icon}" alt="${mc.name}" style="image-rendering:pixelated;" />
+            </div>
+            <div class="modal-asset-name" style="font-family:'Press Start 2P',monospace;font-size:0.56rem;">${mc.name}</div>
+          </div>
+        `).join('')}
+      </div>
+    ` : '';
+
+    modalInner.innerHTML = `
+      ${logoHeader}
+      <div class="modal-theme-banner">
+        <span>${p.theme.badge}</span>
+        <span>•</span>
+        <span>${p.theme.name}</span>
+      </div>
+      <h2 class="modal-title">${p.title}</h2>
+      <div class="modal-subtitle">// ${p.subtitle} · <em>${p.status}</em></div>
+
+      <div class="modal-actions">
+        <button class="modal-btn-cheer" id="btn-cheer-${p.id}" onclick="cheerProject('${p.id}')">
+          🔥 Cheer Project (<span id="modal-cheer-num">${p.cheers}</span>)
+        </button>
+        <button class="modal-btn-theme" onclick="applyThemeStyle('${p.themeKey || 'default'}')">
+          🎨 Activate Full "${p.theme.name}" Theme
+        </button>
+      </div>
+
+      ${equipmentHtml}
+      ${minecraftHtml}
+
+      <div class="modal-problem-solution">
+        <div class="modal-card-box">
+          <h5>⚠️ The Problem</h5>
+          <p>${p.problem}</p>
+        </div>
+        <div class="modal-card-box">
+          <h5>💡 Engineering Solution</h5>
+          <p>${p.solution}</p>
+        </div>
+      </div>
+
+      <div class="modal-section-title">Architecture Pillars &amp; Design Decisions</div>
+      <div class="modal-arch-grid">
+        ${p.architecture.map(a => `
+          <div class="modal-arch-card">
+            <h4>${a.title}</h4>
+            <p>${a.description}</p>
+          </div>
+        `).join('')}
+      </div>
+
+      <div class="modal-section-title">Source Architecture &amp; Execution Snippet</div>
+      <pre class="modal-code-box"><code>${escapeHtml(p.sampleEndpoint)}</code></pre>
+
+      <div class="modal-section-title">Tech Stack &amp; Protocols</div>
+      <div class="project-tech" style="margin-top:0.6rem;">
+        ${p.techStack.map(t => `<span class="tech-pill">${t}</span>`).join('')}
+      </div>
+    `;
+  } catch (err) {
+    modalInner.innerHTML = '<p style="color:#ef4444;font-family:var(--font-mono);padding:2rem;">Error connecting to Express backend.</p>';
+  }
+}
+
+function escapeHtml(str) {
+  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+modalCloseBtn.addEventListener('click', () => modalBackdrop.classList.remove('open'));
+modalBackdrop.addEventListener('click', e => {
+  if (e.target === modalBackdrop) modalBackdrop.classList.remove('open');
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && modalBackdrop.classList.contains('open')) {
+    modalBackdrop.classList.remove('open');
+  }
+});
+
+async function cheerProject(id) {
+  try {
+    const res = await fetch(`/api/projects/${id}/cheer`, { method: 'POST' });
+    const data = await res.json();
+    if (data.success) {
+      const numSpan = document.getElementById('modal-cheer-num');
+      if (numSpan) numSpan.textContent = data.cheers;
+      const cheerBtn = document.getElementById(`btn-cheer-${id}`);
+      if (cheerBtn) {
+        cheerBtn.innerHTML = `🔥 Cheer Recorded! (${data.cheers})`;
+        cheerBtn.style.filter = 'brightness(1.25)';
+      }
+    }
+  } catch (err) {
+    console.error('Cheer error', err);
+  }
+}
+
+const themeNamesMap = {
+  default: '🌟 Default Obsidian',
+  agriculture: '🌾 Payaswini AgriTech Theme',
+  minecraft: '⛏️ Minecraft AIBridge Theme',
+  cyber: '⚡ Codex Cyber Violet Theme',
+  elibrary: '📚 Scholarly Cyan Theme',
+  cells: '🧬 Cells Bio-Matrix Theme'
+};
+
+function applyThemeStyle(styleKey, showToast = true) {
+  const root = document.documentElement;
+  if (!styleKey || styleKey === 'default') {
+    root.removeAttribute('data-theme-style');
+    localStorage.removeItem('jnanesh-theme-style');
+  } else {
+    root.setAttribute('data-theme-style', styleKey);
+    localStorage.setItem('jnanesh-theme-style', styleKey);
+  }
+
+  // Update active pill button
+  document.querySelectorAll('.universe-pill').forEach(pill => {
+    pill.classList.toggle('active', pill.getAttribute('data-style') === (styleKey || 'default'));
+  });
+
+  if (showToast) {
+    toastThemeName.textContent = themeNamesMap[styleKey] || styleKey;
+    themeToast.classList.add('show');
+    clearTimeout(window.toastTimer);
+    window.toastTimer = setTimeout(() => {
+      themeToast.classList.remove('show');
+    }, 4500);
+  }
+}
+
+function resetPortfolioTheme() {
+  applyThemeStyle('default', true);
+}
+
+// Restore saved universe style on load
+const savedUniverse = localStorage.getItem('jnanesh-theme-style') || 'default';
+if (savedUniverse !== 'default') {
+  applyThemeStyle(savedUniverse, false);
+}
+</script>
+
+<!-- PROJECT DEEP-DIVE MODAL (Express API Powered) -->
+<div class="modal-backdrop" id="project-modal-backdrop" role="dialog" aria-modal="true">
+  <div class="modal-container" id="project-modal-content">
+    <button class="modal-close-btn" id="modal-close-btn" aria-label="Close modal">✕</button>
+    <div id="modal-inner-content">
+      <!-- Injected from Express API -->
+    </div>
+  </div>
+</div>
+
+<!-- Active Theme Indicator Toast -->
+<div class="theme-indicator-toast" id="theme-toast">
+  <span>🎨 Active Project Theme: <strong id="toast-theme-name">Emerald Harvest</strong></span>
+  <button class="theme-reset-btn" onclick="resetPortfolioTheme()">Reset Default</button>
+</div>
+
+</body>
+</html>

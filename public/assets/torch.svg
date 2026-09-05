@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" fill="none">
+  <defs>
+    <!-- Yellow Light Glow Filter -->
+    <filter id="yellowLightGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2.5" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <!-- Warm Radiant Yellow Light Gradient -->
+    <radialGradient id="torchAura" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#fef08a" stop-opacity="0.95" />
+      <stop offset="50%" stop-color="#facc15" stop-opacity="0.65" />
+      <stop offset="85%" stop-color="#f59e0b" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#ea580c" stop-opacity="0.0" />
+    </radialGradient>
+
+    <!-- Inner Core Brightness -->
+    <radialGradient id="whiteCore" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="1" />
+      <stop offset="80%" stop-color="#fef08a" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#fde047" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Crisp White Circular Background for Torch as requested -->
+  <circle cx="24" cy="24" r="22" fill="#ffffff" stroke="#fcd34d" stroke-width="2.2" />
+  
+  <!-- Outer Yellow Light Glow Halo -->
+  <circle cx="24" cy="20" r="17" fill="url(#torchAura)" />
+
+  <!-- Radiating Yellow Light Beams -->
+  <line x1="24" y1="2" x2="24" y2="5" stroke="#f59e0b" stroke-width="2.2" stroke-linecap="round" />
+  <line x1="12" y1="7" x2="14.5" y2="9.5" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" />
+  <line x1="36" y1="7" x2="33.5" y2="9.5" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" />
+  <line x1="6" y1="18" x2="9.5" y2="19" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" />
+  <line x1="42" y1="18" x2="38.5" y2="19" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" />
+
+  <!-- Outer Flame Body (Warm Amber & Orange) -->
+  <path d="M24 6 C28.5 11 31.5 15 29.5 20 C27.5 23.5 20.5 23.5 18.5 20 C16.5 15 19.5 11 24 6 Z" fill="#ea580c" filter="url(#yellowLightGlow)" />
+  
+  <!-- Mid Flame Body (Bright Radiant Yellow) -->
+  <path d="M24 8.5 C27 12.5 28.8 15.8 27.5 19.5 C26 22 22 22 20.5 19.5 C19.2 15.8 21 12.5 24 8.5 Z" fill="#facc15" />
+
+  <!-- Core Flame (Pure Intense Light Yellow / White Center) -->
+  <path d="M24 11.5 C25.8 14.5 26.8 16.8 26 19 C25.2 20.5 22.8 20.5 22 19 C21.2 16.8 22.2 14.5 24 11.5 Z" fill="#ffffff" />
+  <circle cx="24" cy="18" r="4" fill="url(#whiteCore)" />
+
+  <!-- Torch Head / Charcoal Mount -->
+  <rect x="20" y="21" width="8" height="4" rx="1" fill="#451a03" stroke="#292524" stroke-width="0.8" />
+
+  <!-- Torch Metal Bracket Band -->
+  <rect x="19" y="24" width="10" height="3" rx="0.8" fill="#78716c" stroke="#44403c" stroke-width="0.8" />
+  <circle cx="21.5" cy="25.5" r="0.8" fill="#fbbf24" />
+  <circle cx="26.5" cy="25.5" r="0.8" fill="#fbbf24" />
+
+  <!-- Wooden Torch Handle -->
+  <path d="M21.5 27 L22 39 C22 40.5 26 40.5 26 39 L26.5 27 Z" fill="#92400e" stroke="#713f12" stroke-width="1" />
+  <line x1="24" y1="28" x2="24" y2="38" stroke="#b45309" stroke-width="0.8" stroke-linecap="round" />
+</svg>

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" fill="none">
+  <!-- Soft subtle circular background -->
+  <circle cx="24" cy="24" r="22" fill="#1e293b" fill-opacity="0.6" stroke="#475569" stroke-width="1.5" />
+  
+  <!-- Extinguished smoke wisps -->
+  <path d="M24 13 C22 10 26 8 23 5" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="2 2" opacity="0.75" />
+  <path d="M26 15 C27 12 29 11 28 8" stroke="#64748b" stroke-width="1.2" stroke-linecap="round" opacity="0.6" />
+
+  <!-- Torch Head / Charcoal -->
+  <rect x="20" y="15" width="8" height="7" rx="1.5" fill="#334155" stroke="#1e293b" stroke-width="1" />
+  <rect x="21" y="16" width="6" height="2" rx="0.8" fill="#475569" />
+
+  <!-- Torch Metal Bracket -->
+  <rect x="19" y="22" width="10" height="3" rx="1" fill="#64748b" stroke="#334155" stroke-width="0.8" />
+  <circle cx="21" cy="23.5" r="0.8" fill="#94a3b8" />
+  <circle cx="27" cy="23.5" r="0.8" fill="#94a3b8" />
+
+  <!-- Wooden Handle -->
+  <path d="M21.5 25 L22 39 C22 40.5 26 40.5 26 39 L26.5 25 Z" fill="#854d0e" stroke="#713f12" stroke-width="1" />
+  <!-- Wood grain lines -->
+  <line x1="24" y1="26" x2="24" y2="38" stroke="#a16207" stroke-width="0.8" stroke-linecap="round" />
+  <line x1="23" y1="30" x2="23" y2="36" stroke="#713f12" stroke-width="0.6" />
+
+  <!-- Unlit status dot indicator -->
+  <circle cx="24" cy="44" r="1.5" fill="#64748b" />
+</svg>

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jnanesh Sharma H. — Resume</title>
+  <style>
+    @page {
+      size: Letter;
+      margin: 0.55in 0.8in;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      cursor: url('/assets/cursors/resume-pen.svg') 1 1, auto;
+    }
+
+    a, button, [role="button"], input, select {
+      cursor: url('/assets/cursors/resume-pen.svg') 1 1, pointer;
+    }
+
+    body {
+      font-family: 'Calibri', 'Arial', 'Helvetica Neue', sans-serif;
+      font-size: 11.3pt;
+      line-height: 1.42;
+      color: #1a1a1a;
+      margin: 0;
+      padding: 0;
+      background: #0d1117;
+    }
+
+    /* ---------- Toolbar (Screen only) ---------- */
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 860px;
+      margin: 20px auto 12px auto;
+      padding: 0 16px;
+    }
+
+    .toolbar a, .toolbar button {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-back {
+      background: rgba(255, 255, 255, 0.08);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    .btn-back:hover {
+      background: rgba(56, 189, 248, 0.1);
+      border-color: #38bdf8;
+    }
+
+    .btn-print {
+      background: #38bdf8;
+      color: #090d13;
+      border: none;
+    }
+
+    .btn-print:hover {
+      background: #0284c7;
+      color: #ffffff;
+    }
+
+    /* ---------- Resume Paper Container ---------- */
+    .resume-wrapper {
+      max-width: 860px;
+      margin: 0 auto 40px auto;
+      background: #ffffff;
+      padding: 0.6in 0.85in;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      border-radius: 4px;
+    }
+
+    /* ---------- Header ---------- */
+    .name {
+      font-size: 27pt;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      color: #14304d;
+      margin: 0 0 6px 0;
+    }
+
+    .contact-line {
+      font-size: 10.6pt;
+      color: #333333;
+      margin-bottom: 16px;
+    }
+
+    .contact-line a {
+      color: #14304d;
+      text-decoration: none;
+    }
+
+    .contact-sep {
+      color: #999999;
+      margin: 0 8px;
+    }
+
+    /* ---------- Section headings ---------- */
+    h2 {
+      font-size: 12pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #14304d;
+      border-bottom: 1.4px solid #14304d;
+      padding-bottom: 3px;
+      margin: 11px 0 6px 0;
+    }
+
+    h2:first-of-type {
+      margin-top: 0;
+    }
+
+    /* ---------- Entries ---------- */
+    .entry {
+      margin-bottom: 7px;
+    }
+
+    .entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .entry-title {
+      font-weight: 700;
+      font-size: 11.4pt;
+      color: #111111;
+    }
+
+    .entry-subtitle {
+      font-style: italic;
+      font-size: 11pt;
+      color: #333333;
+    }
+
+    .entry-date {
+      font-size: 10.4pt;
+      color: #444444;
+      font-weight: 600;
+      white-space: nowrap;
+      text-align: right;
+    }
+
+    .entry-meta {
+      font-size: 10.4pt;
+      color: #444444;
+      margin: 1px 0 3px 0;
+    }
+
+    ul {
+      margin: 4px 0 0 0;
+      padding-left: 18px;
+    }
+
+    li {
+      margin-bottom: 3px;
+    }
+
+    /* ---------- Skills ---------- */
+    .skills-row {
+      margin-bottom: 6px;
+      font-size: 11pt;
+    }
+
+    .skills-label {
+      font-weight: 700;
+      color: #111111;
+    }
+
+    /* ---------- Two-column leadership/activities ---------- */
+    .subheading {
+      font-weight: 700;
+      font-size: 10.8pt;
+      margin-top: 4px;
+      margin-bottom: 2px;
+      color: #111111;
+    }
+
+    a {
+      color: #14304d;
+    }
+
+    /* ---------- Print Styles ---------- */
+    @media print {
+      body {
+        background: transparent;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .resume-wrapper {
+        padding: 0;
+        margin: 0;
+        box-shadow: none;
+        max-width: 100%;
+        border-radius: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="toolbar no-print">
+    <a href="/" class="btn-back">← Back to Portfolio</a>
+    <button onclick="window.print()" class="btn-print">🖨️ Print / Save PDF</button>
+  </div>
+
+  <div class="resume-wrapper">
+    <div class="name">Jnanesh Sharma H.</div>
+    <div class="contact-line">
+      <a href="mailto:jnaneshsharmah@gmail.com">jnaneshsharmah@gmail.com</a><span class="contact-sep">|</span>
+      <a href="tel:+917994655828">+91 7994655828</a><span class="contact-sep">|</span>
+      India<span class="contact-sep">|</span>
+      <a href="https://github.com/Jnanesh321" target="_blank">github.com/Jnanesh321</a>
+    </div>
+
+    <h2>Experience</h2>
+
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">Software Intern</span>
+        <span class="entry-date">Jan 2026 &ndash; Jul 2026</span>
+      </div>
+      <div class="entry-meta">Akanksha Charitable Trust &mdash; Codex Learning Platform Backend</div>
+      <ul>
+        <li>Implemented JWT authentication improvements, including security validation for tampered and invalid tokens.</li>
+        <li>Designed and built a Firebase Cloud Messaging (FCM) notification service with a lightweight, in-process scheduler for daily streak reminders.</li>
+        <li>Integrated achievement notifications with the gamification system and extended user models with configurable notification preferences.</li>
+        <li>Contributed unit tests covering notification logic, gamification milestones, and authentication scenarios.</li>
+        <li>Enhanced backend repository support and Firestore indexing to optimize notification operations.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">Creative Head</span>
+        <span class="entry-date">2022 &ndash; 2025</span>
+      </div>
+      <div class="entry-meta">WeMod (Atlantis Corporation)</div>
+      <ul>
+        <li>Led creative planning and asset production across gaming and YouTube creator initiatives, including work with creators such as MrGamerJay and Mineplex-related projects.</li>
+        <li>Coordinated cross-functional deliverables involving creator specifications, production schedules, and community assets.</li>
+        <li>Owned end-to-end creative workflows and communication between external partners and internal teams.</li>
+      </ul>
+    </div>
+
+    <h2>Projects</h2>
+
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">O~Bele / Payaswini &mdash; Agricultural Tool Rental Platform</span>
+        <span class="entry-date">In Progress</span>
+      </div>
+      <div class="entry-meta">Node.js, Express.js, REST APIs</div>
+      <ul>
+        <li>Designing a peer-to-peer agricultural equipment rental platform connecting farm machinery owners with local operators.</li>
+        <li>Structured rental workflows around hourly and daily pricing, equipment deposits, and consumable tracking.</li>
+        <li>Modeled certified-operator requirements with explicit operator selection and a 4-hour confirmation SLA, preventing silent fallback to self-service when certification is required.</li>
+        <li>Implementing Express route controllers, modular routing, and request-validation middleware for application state transitions.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">E-Library Management System</span>
+      </div>
+      <div class="entry-meta">MongoDB, Express.js, React, Node.js (MERN)</div>
+      <ul>
+        <li>Engineered a full-stack library management application using the MERN stack.</li>
+        <li>Connected RESTful API routes with MongoDB for persistent catalog data and CRUD operations.</li>
+        <li>Structured backend routing using JSON middleware, request parameter parsing, and modular controllers.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">Cells AMS &mdash; Attendance Management System</span>
+        <span class="entry-date">In Progress</span>
+      </div>
+      <div class="entry-meta">JavaScript, Node.js, Express.js, Relational Schemas</div>
+      <ul>
+        <li>Engineering an Express-backed state tracking engine with batch status logging, relational schemas, and automated attendance threshold auditing.</li>
+        <li>Structuring administrative workflows to flag member attendance deficits and generate exportable eligibility logs.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">MGU.One AIBridge &mdash; Autonomous Minecraft Server Infrastructure</span>
+        <span class="entry-date">Live System</span>
+      </div>
+      <div class="entry-meta">Java 17, Paper API, OpenCode AI, Bukkit Async, Linux</div>
+      <ul>
+        <li>Engineered a custom Java Paper plugin integrating an in-game bridge to a local OpenCode headless engine (port 4096) for automated server administration.</li>
+        <li>Implemented FileGuard sandboxing with automated snapshot rollbacks prior to configuration hot-patching.</li>
+        <li>Offloaded AI prompt processing to async Bukkit workers, guaranteeing zero main-thread lag and 20.0 TPS stability under high load.</li>
+      </ul>
+    </div>
+
+    <h2>Technical Skills</h2>
+    <div class="skills-row"><span class="skills-label">Languages: </span>C++, C, JavaScript, Java, Python</div>
+    <div class="skills-row"><span class="skills-label">Backend &amp; Web Development: </span>Node.js, Express.js, RESTful APIs, React, MongoDB</div>
+    <div class="skills-row"><span class="skills-label">Tools &amp; Version Control: </span>Git, GitHub</div>
+    <div class="skills-row"><span class="skills-label">Core Fundamentals: </span>Data Structures &amp; Algorithms, Object-Oriented Programming (OOP), Database Management Systems (DBMS)</div>
+
+    <h2>Education</h2>
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">Vivekananda College of Engineering and Technology (VCET) &mdash; Affiliated with VTU</span>
+        <span class="entry-date">Expected 2028</span>
+      </div>
+      <div class="entry-meta">Bachelor of Engineering (B.E.) in Computer Science Engineering &mdash; 3rd Year, Semester 5 &mdash; CGPA: 7.4 / 10.0</div>
+    </div>
+
+    <h2>Leadership &amp; Community</h2>
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">Administrator, MGU.One Minecraft Server</span>
+        <span class="entry-date">Mar 2025 &ndash; Present</span>
+      </div>
+      <ul>
+        <li>Administer ongoing server operations and community moderation.</li>
+        <li>Manage operational workflows and user support while coordinating platform rules and community operations.</li>
+      </ul>
+    </div>
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-title">Member, CoRE Club &mdash; VCET</span>
+      </div>
+    </div>
+
+    <h2>Technical Activities &amp; Certifications</h2>
+    <ul>
+      <li>Participated in the IEEE Xtreme Competitive Programming competition.</li>
+      <li>Solved approximately 50 algorithmic problems on LeetCode.</li>
+      <li>Built custom integrations including Demand Balancer ShopGUI and BWLava BW2023.</li>
+      <li>Python Programming Certificate &mdash; MICE Institute.</li>
+      <li>Entrepreneurship Workshop &mdash; NITK Surathkal.</li>
+    </ul>
+  </div>
+
+</body>
+
+</html>
