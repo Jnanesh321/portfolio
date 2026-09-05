@@ -2935,6 +2935,22 @@
   </div>
 </footer>
 
+<!-- PROJECT DEEP-DIVE MODAL (Express API Powered) -->
+<div class="modal-backdrop" id="project-modal-backdrop" role="dialog" aria-modal="true">
+  <div class="modal-container" id="project-modal-content">
+    <button class="modal-close-btn" id="modal-close-btn" aria-label="Close modal">✕</button>
+    <div id="modal-inner-content">
+      <!-- Injected from Express API -->
+    </div>
+  </div>
+</div>
+
+<!-- Active Theme Indicator Toast -->
+<div class="theme-indicator-toast" id="theme-toast">
+  <span>🎨 Active Project Theme: <strong id="toast-theme-name">Emerald Harvest</strong></span>
+  <button class="theme-reset-btn" onclick="resetPortfolioTheme()">Reset Default</button>
+</div>
+
 <script>
 // ── Scroll Reveal ──
 const observer = new IntersectionObserver(entries => {
@@ -3692,23 +3708,30 @@ document.querySelectorAll('.project-card[data-project-id]').forEach(card => {
 });
 
 async function openProjectModal(id) {
-  modalInner.innerHTML = '<div style="text-align:center;padding:3rem;font-family:var(--font-mono);color:var(--muted);">⚡ Fetching live architecture specs from Express backend...</div>';
-  modalBackdrop.classList.add('open');
+  const backdrop = document.getElementById('project-modal-backdrop') || modalBackdrop;
+  const container = document.getElementById('project-modal-content') || modalContainer;
+  const inner = document.getElementById('modal-inner-content') || modalInner;
+
+  if (!inner || !backdrop) return;
+  inner.innerHTML = '<div style="text-align:center;padding:3rem;font-family:var(--font-mono);color:var(--muted);">⚡ Fetching live project details...</div>';
+  backdrop.classList.add('open');
 
   try {
     const res = await fetch(`/api/projects/${id}`);
     const data = await res.json();
     if (!data.success || !data.project) {
-      modalInner.innerHTML = '<p style="color:#ef4444;font-family:var(--font-mono);padding:2rem;">Failed to load project details.</p>';
+      inner.innerHTML = '<p style="color:#ef4444;font-family:var(--font-mono);padding:2rem;">Failed to load project details.</p>';
       return;
     }
 
     const p = data.project;
     const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-    modalContainer.style.setProperty('--modal-accent', p.theme.accent);
-    modalContainer.style.setProperty('--modal-accent2', p.theme.accent2);
-    modalContainer.style.setProperty('--modal-bg', isLight ? p.theme.lightSurface : p.theme.surface);
-    modalContainer.style.setProperty('--modal-border', p.theme.border);
+    if (container) {
+      container.style.setProperty('--modal-accent', p.theme.accent);
+      container.style.setProperty('--modal-accent2', p.theme.accent2);
+      container.style.setProperty('--modal-bg', isLight ? p.theme.lightSurface : p.theme.surface);
+      container.style.setProperty('--modal-border', p.theme.border);
+    }
 
     // Build logo header if available (Obele)
     const logoHeader = p.logo ? `
@@ -3868,7 +3891,7 @@ async function openProjectModal(id) {
       </div>
     `;
   } catch (err) {
-    modalInner.innerHTML = '<p style="color:#ef4444;font-family:var(--font-mono);padding:2rem;">Error connecting to Express backend.</p>';
+    inner.innerHTML = '<p style="color:#ef4444;font-family:var(--font-mono);padding:2rem;">Error connecting to Express backend.</p>';
   }
 }
 
@@ -3876,14 +3899,24 @@ function escapeHtml(str) {
   return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
-modalCloseBtn.addEventListener('click', () => modalBackdrop.classList.remove('open'));
-modalBackdrop.addEventListener('click', e => {
-  if (e.target === modalBackdrop) modalBackdrop.classList.remove('open');
-});
+const closeBtnElem = document.getElementById('modal-close-btn');
+if (closeBtnElem) {
+  closeBtnElem.addEventListener('click', () => {
+    const b = document.getElementById('project-modal-backdrop');
+    if (b) b.classList.remove('open');
+  });
+}
+const backdropElem = document.getElementById('project-modal-backdrop');
+if (backdropElem) {
+  backdropElem.addEventListener('click', e => {
+    if (e.target === backdropElem) backdropElem.classList.remove('open');
+  });
+}
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
-    if (modalBackdrop && modalBackdrop.classList.contains('open')) {
-      modalBackdrop.classList.remove('open');
+    const b = document.getElementById('project-modal-backdrop');
+    if (b && b.classList.contains('open')) {
+      b.classList.remove('open');
     }
     if (typeof termCard !== 'undefined' && termCard && termCard.classList.contains('fullscreen-active')) {
       toggleTermFullscreen();
@@ -3987,22 +4020,5 @@ if (navToggleBtn && navLinks) {
   });
 }
 </script>
-
-<!-- PROJECT DEEP-DIVE MODAL (Express API Powered) -->
-<div class="modal-backdrop" id="project-modal-backdrop" role="dialog" aria-modal="true">
-  <div class="modal-container" id="project-modal-content">
-    <button class="modal-close-btn" id="modal-close-btn" aria-label="Close modal">✕</button>
-    <div id="modal-inner-content">
-      <!-- Injected from Express API -->
-    </div>
-  </div>
-</div>
-
-<!-- Active Theme Indicator Toast -->
-<div class="theme-indicator-toast" id="theme-toast">
-  <span>🎨 Active Project Theme: <strong id="toast-theme-name">Emerald Harvest</strong></span>
-  <button class="theme-reset-btn" onclick="resetPortfolioTheme()">Reset Default</button>
-</div>
-
 </body>
 </html>
